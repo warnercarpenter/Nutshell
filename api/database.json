@@ -1,0 +1,45 @@
+{
+  "lego": [
+    {
+      "creator": "Panya",
+      "color": "6",
+      "shape": "hut",
+      "creation": "Dream House",
+      "id": 1
+    }
+  ],
+  "colors": [
+    {
+      "id": 1,
+      "name": "red"
+    },
+    {
+      "id": 2,
+      "name": "blue"
+    },
+    {
+      "id": 3,
+      "name": "white"
+    },
+    {
+      "id": 4,
+      "name": "black"
+    },
+    {
+      "id": 5,
+      "name": "yellow"
+    },
+    {
+      "id": 6,
+      "name": "purple"
+    },
+    {
+      "id": 7,
+      "name": "pink"
+    },
+    {
+      "id": 8,
+      "name": "light blue"
+    }
+  ]
+}
