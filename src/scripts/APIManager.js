@@ -1,3 +1,4 @@
+
 const APIManager = {
     getByUserId: (desiredDatabase, userId) => {
         return fetch (`http://localhost:8088/${desiredDatabase}?_userId=${userId}`)
@@ -29,8 +30,8 @@ const APIManager = {
         })
         .then(res => res.json())
     },
-    fetchWithExpandedUserInfo: (desiredDatabase, objectId) => {
-        return fetch (`http://localhost:8088/${desiredDatabase}/${objectId}?_expand=user`)
+    fetchWithExpandedUserInfo: (desiredDatabase, userId) => {
+        return fetch (`http://localhost:8088/${desiredDatabase}?_expand=user&userId=${userId}`)
             .then(res => res.json())
 
     }
