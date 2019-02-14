@@ -17,10 +17,10 @@ const tasksModule = {
 
         `
     },
-    taskForm: function (userId) {
+    taskForm: function (objectId) {
         return `
         <fieldset>
-            <input type="hidden" id="userId" value="${userId}"><br>
+            <input type="hidden" id="userId" value="${objectId}"><br>
             <label for="name">Name of task: </label><br>
             <input type="text" placeholder="Task name" id="taskName">
         </fieldset>
