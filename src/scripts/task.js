@@ -1,5 +1,5 @@
 
-const taskManager = {
+const tasksModule = {
     taskToHTML: function (taskObject) {
         return `
             <h1>${taskObject.name}</h1>
@@ -11,7 +11,7 @@ const taskManager = {
 
         `
     },
-    taskForm: function () {
+    taskForm: function (userId) {
         return `
             <input type="hidden" id="userId" value="${userId}"><br>
             <label for="name">Name of task: </label><br>
