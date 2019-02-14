@@ -2,7 +2,7 @@ const APIManager = {
     getByUserId: (desiredDatabase, userId) => {
         return fetch (`http://localhost:8088/${desiredDatabase}?_userId=${userId}`)
             .then(res => res.json())
-            .then(results => console.log(results))
+
     },
     delete: (desiredDatabase, objectId) => {
         return fetch(`http://127.0.0.1:8088/${desiredDatabase}/${objectId}`, {
@@ -17,6 +17,7 @@ const APIManager = {
         },
         body: JSON.stringify(objectToPost)
     })
+        .then(res => res.json())
    },
     Put:(desiredDatabase, objectId, editedObject) => {
         return fetch(`http://localhost:8088/${desiredDatabase}/${objectId}`, {
@@ -26,11 +27,12 @@ const APIManager = {
             },
             body: JSON.stringify(editedObject)
         })
+        .then(res => res.json())
     },
     fetchWithExpandedUserInfo: (desiredDatabase, objectId) => {
         return fetch (`http://localhost:8088/${desiredDatabase}/${objectId}?_expand=user`)
             .then(res => res.json())
-            .then(results => console.log(results))
+
     }
 }
 
