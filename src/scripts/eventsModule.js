@@ -22,7 +22,7 @@ const eventsModule = {
             <button id="events--create">Create New Event</button>
         </form>`;
     },
-    createEventObject: () => {
+    createEventObject: eventId => {
         let name = document.querySelector("#eventName").value;
         let date = document.querySelector("#eventDate").value;
         let location = document.querySelector("#eventLocation").value;
@@ -36,13 +36,20 @@ const eventsModule = {
             userId: userId
         }
 
-        if (eventId !== "") {
+        return eventObject;
+        // if (eventId !== "") {
 
-        } else {
+        // } else {
 
-        }
+        // }
     },
-    createEventHTML: () => {},
+    createEventHTML: eventObject => {
+        return `<section class="events" id="${eventObject.id}">
+        <div class="eventName">${eventObject.name}</div>
+        <div>${eventObject.date}</div>
+        <div>${eventObject.location}</div>
+        </section>`;
+    },
 }
 
 export default eventsModule;
