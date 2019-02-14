@@ -1,16 +1,4 @@
 {
-<<<<<<< HEAD
-    "events": [
-      {
-        "id": 1,
-        "userId": 1,
-        "name": "Star Wars Day",
-        "date": "1557016200000",
-        "location": "my house"
-      }
-    ]
-  }
-=======
     "user": [
         {
             "id": 1,
@@ -39,7 +27,7 @@
           "summary": "It was awesome.",
           "url ": "www.awesome.com",
           "timestamp": "1557016200000",
-          "userId": 1,
+          "userId": 1
         }
       ],
 
@@ -62,4 +50,3 @@
         }
     ]
 }
->>>>>>> master

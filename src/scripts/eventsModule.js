@@ -11,11 +11,11 @@ const eventsModule = {
                 <input type="text" name="eventName" id="eventName"></input>
             </fieldset>
             <fieldset>
-                <label for="eventDate"></label>
+                <label for="eventDate">Date of the event:</label>
                 <input type="datetime" name="eventDate" id="eventDate"></input>
             </fieldset>
             <fieldset>
-                <label for="eventLocation"></label>
+                <label for="eventLocation">Location of the event:</label>
                 <input type="text" name="eventLocation" id="eventLocation"></input>
             </fieldset>
         </form>`;
