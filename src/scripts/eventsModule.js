@@ -3,10 +3,12 @@ Author: Panya
 Task: handles all functions specific to the events listing in Nutshell
 */
 
+import timeConverter from "./timestampparser";
+
 const eventsModule = {
-    buildEntryForm: () => {
+    buildEntryForm: eventId => {
         return `<form id="eventForm">
-            <input type="hidden" name="eventId" value=""></input>
+            <input type="hidden" name="eventId" value="${eventId}"></input>
             <fieldset>
                 <label for="eventName">Name of the event:</label>
                 <input type="text" name="eventName" id="eventName"></input>
@@ -27,7 +29,7 @@ const eventsModule = {
         let date = document.querySelector("#eventDate").value;
         let location = document.querySelector("#eventLocation").value;
         const userId = Window.sessionStorage.getItem('userId');
-        const eventId = document.querySelector("#eventId").value;
+        // eventId = document.querySelector("#eventId").value;
 
         const eventObject = {
             name: name,
@@ -44,9 +46,10 @@ const eventsModule = {
         // }
     },
     createEventHTML: eventObject => {
+        let time = timeConverter(eventObject.date);
         return `<section class="events" id="event--${eventObject.id}">
         <div class="eventName">${eventObject.name}</div>
-        <div>${eventObject.date}</div>
+        <div>${time}</div>
         <div>${eventObject.location}</div>
         </section>`;
     },
