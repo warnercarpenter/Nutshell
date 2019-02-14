@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "events": [
       {
         "id": 1,
@@ -9,3 +10,56 @@
       }
     ]
   }
+=======
+    "user": [
+        {
+            "id": 1,
+            "username": "Choortlehoort",
+            "password": "NSSrocks1337",
+            "first_name": "Steve",
+            "last_name": "Brownlee",
+            "email": "masterCommander@gmail.com"
+        }
+    ],
+
+    "tasks": [
+        {
+            "id": 1,
+            "name": "Clean the house",
+            "completion_date": "1557016200000",
+            "is_complete": false,
+            "userId": 1
+        }
+    ],
+
+    "articles": [
+        {
+          "id": 1,
+          "title": "The most awesome article ever",
+          "summary": "It was awesome.",
+          "url ": "www.awesome.com",
+          "timestamp": "1557016200000",
+          "userId": 1,
+        }
+      ],
+
+      "events": [
+        {
+          "id": 1,
+          "userId": 1,
+          "name": "Star Wars Day",
+          "date": "1557016200000",
+          "location": "my house"
+        }
+      ],
+
+      "chat": [
+        {
+            "id": 1,
+            "text": "Test message",
+            "timestamp": "1550157220854",
+            "userId": 1
+        }
+    ]
+}
+>>>>>>> master
