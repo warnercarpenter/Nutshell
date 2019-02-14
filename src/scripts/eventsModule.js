@@ -44,7 +44,7 @@ const eventsModule = {
         // }
     },
     createEventHTML: eventObject => {
-        return `<section class="events" id="${eventObject.id}">
+        return `<section class="events" id="event--${eventObject.id}">
         <div class="eventName">${eventObject.name}</div>
         <div>${eventObject.date}</div>
         <div>${eventObject.location}</div>
