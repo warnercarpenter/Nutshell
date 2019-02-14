@@ -1,3 +1,9 @@
+/*
+Author: Sam
+Task: handles all functions specific to the tasks listing in Nutshell
+*/
+
+
 
 const tasksModule = {
     taskToHTML: function (taskObject) {
@@ -13,19 +19,21 @@ const tasksModule = {
     },
     taskForm: function (userId) {
         return `
+        <fieldset>
             <input type="hidden" id="userId" value="${userId}"><br>
             <label for="name">Name of task: </label><br>
-
             <input type="text" placeholder="Task name" id="taskName">
+        </fieldset>
             <label for="completion_date">Date to be completed by: </label><br>
-
             <input type="date" id="taskDate">
+        <fieldset>
             <label>Is task complete: </label><br>
-
             <input type="checkbox" id="taskComplete" value="Yes">Yes<br>
             <input type="checkbox" id="taskComplete" value="No">No<br>
-
+        </fieldset>
+        <fieldset>
             <button id="task--submit">Submit</button>
+        </fieldset>
         `
     },
     captureFormValues: function () {
