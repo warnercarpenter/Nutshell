@@ -3,6 +3,10 @@ Author: Panya
 Task: listen to the body of the page for clicks, and call other methods based on the target of the click
 */
 
+import APIManager from "./APIManager";
+import printToDOM from "./printToDOM";
+import chatsModule from "./chats";
+
 const clickBubbler = {
     listener: () => {
         document.querySelector("#dashboardContainer").addEventListener("click", event => {
@@ -10,19 +14,72 @@ const clickBubbler = {
                 const targetList = event.target.id.split("--");
                 if (targetList[1] === "create") {
                     // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events') 
+                    if (targetList[0] === "chats") {
+                        const newObject = chatsModule.buildChatsObject();
+                    }
                     // then call the api create method and pass it the new object and the module name
+                    APIManager.Post(targetList[0], newObject)
                     // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
-                    // call printToDom() and pass it the new HTML string
+                    .then(
+                        objectArray => {
+                            let newHTMLstring = "";
+                            objectArray.forEach(element => {
+                                if (targetList[0] === "chats") {
+                                    newHTMLstring += chatsModule.buildChatsHTML(element);
+                                }
+                            });
+                            // call printToDom() and pass it the new HTML string
+                            const where = targetList[0] + "Container";
+                            printToDOM(newHTMLstring, where);
+                        }
+                    )
                 } else if (targetList[1] === "edit") {
                     // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events') 
+                    if (targetList[0] === "chats") {
+                        const newObject = chatsModule.buildChatsObject();
+                    }
                     // then call the api edit method and pass it the new object, the module name, and the original object id
+                    //desiredDatabase, objectId, editedObject
+                    let chatId = document.querySelector("#chatId");
+                    APIManager.Put(targetList[0], chatId, newObject)
                     // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
-                    // call printToDom() and pass it the new HTML string
+                    .then(
+                        objectArray => {
+                            let newHTMLstring = "";
+                            objectArray.forEach(element => {
+                                if (targetList[0] === "chats") {
+                                    newHTMLstring += chatsModule.buildChatsHTML(element);
+                                }
+                            });
+                            // call printToDom() and pass it the new HTML string
+                            const where = targetList[0] + "Container";
+                            printToDOM(newHTMLstring, where);
+                        }
+                    )
                 } else if (targetList[1] === "delete") {
                     // call the api delete method and pass it the module name and the original object id
+                    let chatId = document.querySelector("#chatId");
+                    APIManager.delete(targetList[0], chatId)
                     // .then() and call the api list method, passing it the correct module and userid
-                    // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
-                    // call printToDom() and pass it the new HTML string
+                    .then(
+                        () => {
+                            APIManager.getByUserId(targetList[0], Window.sessionStorage.getItem('userId'))
+                            // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
+                            .then(
+                                objectArray => {
+                                    let newHTMLstring = "";
+                                    objectArray.forEach(element => {
+                                        if (targetList[0] === "chats") {
+                                            newHTMLstring += chatsModule.buildChatsHTML(element);
+                                        }
+                                    });
+                                    // call printToDom() and pass it the new HTML string
+                                    const where = targetList[0] + "Container";
+                                    printToDOM(newHTMLstring, where);
+                                }
+                            )
+                        }
+                    )
                 }
             }
         })
