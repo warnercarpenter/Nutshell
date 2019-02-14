@@ -1,0 +1,11 @@
+{
+    "events": [
+      {
+        "id": 1,
+        "userId": 1,
+        "name": "Star Wars Day",
+        "date": "2019-05-04T19:30",
+        "location": "my house"
+      }
+    ]
+  }
