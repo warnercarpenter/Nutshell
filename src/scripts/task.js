@@ -37,4 +37,4 @@ const tasksModule = {
     }
 }
 
-
+export default tasksModule;

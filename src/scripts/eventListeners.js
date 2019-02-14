@@ -6,6 +6,9 @@ Task: listen to the body of the page for clicks, and call other methods based on
 import APIManager from "./APIManager";
 import printToDOM from "./printToDOM";
 import eventsModule from "./eventsModule";
+import chatsModule from "./chats";
+import tasksModule from "./task";
+import articleModule from "./article";
 
 const clickBubbler = {
     listener: () => {
@@ -16,8 +19,21 @@ const clickBubbler = {
                 let newObject = {};
                 if (targetList[1] === "add") {
                     let newHTMLstring = "";
-                    newHTMLstring = eventsModule.buildEntryForm();
-                    printToDOM(newHTMLstring, "#dashboardContainer");
+                    switch (targetList[0]) {
+                        case 'event':
+                            newHTMLstring = eventsModule.buildEntryForm();
+                            break;
+                        case 'chat':
+                            newHTMLstring = chatsModule.buildChatsForm();
+                            break;
+                        case 'task':
+                            newHTMLstring = tasksModule.taskForm();
+                            break;
+                        case 'article':
+                            newHTMLstring = articleModule.buildArticleForm();
+                            break;
+                    }
+                    document.querySelector("#dashboardContainer").innerHTML = newHTMLstring;
                 } else if (targetList[1] === "create") {
                     // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events')
                     if (targetList[0] === "events") {
