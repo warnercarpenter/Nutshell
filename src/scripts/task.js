@@ -3,8 +3,8 @@ const tasksModule = {
     taskToHTML: function (taskObject) {
         return `
             <h1>${taskObject.name}</h1>
-            <section id="completion__date">${taskObject.completion_date}</section>
-            <label for="is__complete__boolean" id="task__complete__boolean">${taskObject.is_complete}</label>
+            <section id="completion_date">${taskObject.completion_date}</section>
+            <label for="is_complete" id="task_complete">${taskObject.is_complete}</label>
 
             <button id="deleteButton--${taskObject.id}">Delete ${taskObject.name}</button>
             <button id="editButton--${taskObject.id}">Edit ${taskObject.name}</button>
@@ -17,7 +17,7 @@ const tasksModule = {
             <label for="name">Name of task: </label><br>
 
             <input type="text" placeholder="Task name" id="taskName">
-            <label for="completion__date">Date to be completed by: </label><br>
+            <label for="completion_date">Date to be completed by: </label><br>
 
             <input type="date" id="taskDate">
             <label>Is task complete: </label><br>
@@ -29,8 +29,8 @@ const tasksModule = {
     captureFormValues: function () {
         const taskObject = {
             name: document.querySelector("#taskName").value,
-            completion__date: document.querySelector("#taskDate").value,
-            is__complete__boolean: document.querySelector("#taskComplete").value,
+            completion_date: document.querySelector("#taskDate").value,
+            is_complete: document.querySelector("#taskComplete").value,
             userId: Window.sessionStorage.getItem("userId")
         }
         return taskObject
