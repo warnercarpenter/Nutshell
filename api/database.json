@@ -1,5 +1,5 @@
 {
-    "user": [
+    "users": [
         {
             "id": 1,
             "username": "Choortlehoort",
@@ -27,7 +27,7 @@
           "summary": "It was awesome.",
           "url ": "www.awesome.com",
           "timestamp": "1557016200000",
-          "userId": 1,
+          "userId": 1
         }
       ],
 
@@ -41,7 +41,7 @@
         }
       ],
 
-      "chat": [
+      "chats": [
         {
             "id": 1,
             "text": "Test message",
