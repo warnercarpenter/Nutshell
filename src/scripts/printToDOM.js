@@ -1,3 +1,3 @@
-const printToDOM = (object) => {
-    document.querySelector("#this_can_be_called_whatever_for_now").innerhtml += object
+const printToDOM = (what, where) => {
+    document.querySelector(`${where}`).innerhtml += what
 }
