@@ -28,7 +28,8 @@ const eventsModule = {
         let name = document.querySelector("#eventName").value;
         let date = document.querySelector("#eventDate").value;
         let location = document.querySelector("#eventLocation").value;
-        const userId = Window.sessionStorage.getItem('userId');
+        // const userId = Window.sessionStorage.getItem('userId');
+        const userId = 1;
         // eventId = document.querySelector("#eventId").value;
 
         const eventObject = {

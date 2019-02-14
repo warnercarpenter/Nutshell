@@ -10,11 +10,15 @@ import eventsModule from "./eventsModule";
 const clickBubbler = {
     listener: () => {
         document.querySelector("#dashboardContainer").addEventListener("click", event => {
-            if (event.target === "button") {
+            if (event.target.nodeName === "BUTTON") {
                 const targetList = event.target.id.split("--");
                 const where = targetList[0] + "Display";
                 let newObject = {};
-                if (targetList[1] === "create") {
+                if (targetList[1] === "add") {
+                    let newHTMLstring = "";
+                    newHTMLstring = eventsModule.buildEntryForm();
+                    printToDOM(newHTMLstring, "#dashboardContainer");
+                } else if (targetList[1] === "create") {
                     // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events')
                     if (targetList[0] === "events") {
                         newObject = eventsModule.createEventObject();
