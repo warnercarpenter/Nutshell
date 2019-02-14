@@ -1,5 +1,5 @@
 {
-    "user": [
+    "users": [
         {
             "id": 1,
             "username": "Choortlehoort",
@@ -41,7 +41,7 @@
         }
       ],
 
-      "chat": [
+      "chats": [
         {
             "id": 1,
             "text": "Test message",
