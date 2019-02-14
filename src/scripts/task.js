@@ -3,8 +3,8 @@ const tasksModule = {
     taskToHTML: function (taskObject) {
         return `
             <h1>${taskObject.name}</h1>
-            <section id="completion__date">${taskObject.completion__date}</section>
-            <label for="is__complete__boolean" id="task__complete__boolean">${taskObject.is__complete__boolean}</label>
+            <section id="completion__date">${taskObject.completion_date}</section>
+            <label for="is__complete__boolean" id="task__complete__boolean">${taskObject.is_complete}</label>
 
             <button id="deleteButton--${taskObject.id}">Delete ${taskObject.name}</button>
             <button id="editButton--${taskObject.id}">Edit ${taskObject.name}</button>
@@ -31,6 +31,7 @@ const tasksModule = {
             name: document.querySelector("#taskName").value,
             completion__date: document.querySelector("#taskDate").value,
             is__complete__boolean: document.querySelector("#taskComplete").value,
+            userId: Window.sessionStorage.getItem("userId")
         }
         return taskObject
     }
