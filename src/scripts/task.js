@@ -6,8 +6,8 @@ const tasksModule = {
             <section id="completion_date">${taskObject.completion_date}</section>
             <label for="is_complete" id="task_complete">${taskObject.is_complete}</label>
 
-            <button id="deleteButton--${taskObject.id}">Delete ${taskObject.name}</button>
-            <button id="editButton--${taskObject.id}">Edit ${taskObject.name}</button>
+            <button id="task--delete">Delete ${taskObject.name}</button>
+            <button id="task--edit">Edit ${taskObject.name}</button>
 
         `
     },
@@ -24,6 +24,8 @@ const tasksModule = {
 
             <input type="checkbox" id="taskComplete" value="Yes">Yes<br>
             <input type="checkbox" id="taskComplete" value="No">No<br>
+
+            <button id="task--submit">Submit</button>
         `
     },
     captureFormValues: function () {
@@ -36,5 +38,7 @@ const tasksModule = {
         return taskObject
     }
 }
+
+export default tasksModule
 
 
