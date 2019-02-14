@@ -1,4 +1,15 @@
 {
+    "user": [
+        {
+            "id": 1,
+            "username": "Choortlehoort",
+            "password": "NSSrocks1337",
+            "first_name": "Steve",
+            "last_name": "Brownlee",
+            "email": "masterCommander@gmail.com"
+        }
+    ],
+
     "tasks": [
         {
             "id": 1,
