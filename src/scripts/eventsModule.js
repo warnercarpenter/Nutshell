@@ -52,6 +52,10 @@ const eventsModule = {
         <div class="eventName">${eventObject.name}</div>
         <div>${time}</div>
         <div>${eventObject.location}</div>
+        <div>
+            <button id="events--edit--${eventObject.id}">Edit<button>
+            <button id="events--delete--${eventObject.id}">Delete<button>
+        </div>
         </section>`;
     },
 }
