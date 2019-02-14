@@ -13,7 +13,7 @@ const chatsModule = {
         const chatsObject = {}
         chatsObject.text = document.getElementById("chat--textInput").value
         chatsObject.timestamp = Date.now()
-        chatsObject.userID = Window.sessionStorage.getItem('userId');
+        chatsObject.userId = Window.sessionStorage.getItem('userId')
         return chatsObject
     },
     buildChatsHTML: (chatObject) => {
