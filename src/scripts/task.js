@@ -47,10 +47,6 @@ const tasksModule = {
     }
 }
 
-<<<<<<< HEAD
-export default tasksModule;
-=======
 export default tasksModule
 
 
->>>>>>> master

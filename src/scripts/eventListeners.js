@@ -90,7 +90,7 @@ const clickBubbler = {
                             break;
                         case 'task':
                             newObject = tasksModule.captureFormValues();
-                            targetId = document.querySelector("#taskId");
+                            targetId = document.querySelector("#objectId");
                             break;
                         case 'article':
                             newObject = articleModule.createArticleObject();
@@ -134,7 +134,7 @@ const clickBubbler = {
                             targetId = document.querySelector("#chatId");
                             break;
                         case 'task':
-                            targetId = document.querySelector("#taskId");
+                            targetId = document.querySelector("#objectId");
                             break;
                         case 'article':
                             targetId = document.querySelector("#articleId");
