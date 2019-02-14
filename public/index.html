@@ -1,39 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Nutshell</title>
-    <link rel="stylesheet" href="./styles/main.css" />
-  </head>
 
-  <body>
-    <nav></nav>
+<head>
+  <meta charset="utf-8" />
+  <title>Nutshell</title>
+  <link rel="stylesheet" href="./styles/main.css" />
+</head>
 
-    <header></header>
+<body>
+  <nav></nav>
 
-    <article id="articleDisplay">
-      <!-- display all the user's articles, sorted by posted date -->
-    </article>
+  <header></header>
 
-    <article id="taskDisplay">
-      <!-- display all the user's tasks, sorted by due date -->
-    </article>
+  <div id="dashboardContainer">
 
-    <article id="eventDisplay">
-      <!-- display all the user's events, sorted by date of ocurrence -->
-    </article>
+    <div id="chatContainer">
+      <h2 class="sectionHeader">Chat <button id="chat--add">+</button></h2>
+      <article id="chatDisplay">
+        <!-- display all the chat messagess, sorted by timestamp -->
+      </article>
+    </div>
 
-    <article id="chatDisplay">
-      <!-- display all the chat messagess, sorted by timestamp -->
-    </article>
+    <div id="articleContainer">
+      <h2 class="sectionHeader">Articles <button id="article--add">+</button></h2>
+      <article id="articleDisplay">
+        <!-- display all the user's articles, sorted by posted date -->
+      </article>
+    </div>
 
-    <article id="friendDisplay">
-      <!-- display all the user's friends, to allow for deletion from list -->
-    </article>
+    <div id="taskAndEventContainer">
+      <div id="eventContainer">
+        <h2 class="sectionHeader">Events <button id="event--add">+</button></h2>
+        <article id="eventDisplay">
+          <!-- display all the user's events, sorted by date of ocurrence -->
+        </article>
+      </div>
+
+      <div id="taskContainer">
+        <h2 class="sectionHeader">Tasks <button id="task--add">+</button></h2>
+        <article id="taskDisplay">
+          <!-- display all the user's tasks, sorted by due date -->
+        </article>
+      </div>
+    </div>
 
 
-    <footer></footer>
+    <div id="friendContainer">
+      <h2 class="sectionHeader">Friends <button id="friend--add">+</button></h2>
+      <article id="friendDisplay">
+        <!-- display all the user's friends, to allow for deletion from list -->
+      </article>
+    </div>
 
-    <script src="./bundle.js"></script>
-  </body>
+  </div>
+
+
+  <footer></footer>
+
+  <script src="./bundle.js"></script>
+</body>
+
 </html>
