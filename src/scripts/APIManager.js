@@ -3,7 +3,6 @@ const APIManager = {
     getUsers: () => {
         return fetch (`http://localhost:8088/users/`)
             .then(res => res.json())
-
     },
     delete: (desiredDatabase, objectId) => {
         return fetch(`http://127.0.0.1:8088/${desiredDatabase}/${objectId}`, {
