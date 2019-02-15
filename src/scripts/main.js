@@ -4,16 +4,16 @@ import dashboardRefreshional from "./dashboardRefreshional";
 
 // hello world
 
-import listeners from "./eventListeners";
+import clickBubbler from "./eventListeners";
 import registrationHandler from "./registration";
 
 let userId = sessionStorage.getItem("userId");
 if (userId !== null) {
     dashboardRefreshional()
-    listeners.listener();
+    clickBubbler.listener();
 } else {
-    const HTMLsquirt = registrationHandler.buildRegistrationForm();
-    document.querySelector("#dashboardContainer").innerHTML = HTMLsquirt;
-    listeners.register();
+    const HTMLcode = registrationHandler.buildRegistrationForm();
+    document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
+    clickBubbler.register();
 }
 
