@@ -15,7 +15,7 @@ const eventsModule = {
             </fieldset>
             <fieldset>
                 <label for="eventDate">Date of the event:</label>
-                <input type="datetime" name="eventDate" id="eventDate"></input>
+                <input type="date" name="eventDate" id="eventDate"></input>
             </fieldset>
             <fieldset>
                 <label for="eventLocation">Location of the event:</label>

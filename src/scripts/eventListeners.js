@@ -56,6 +56,7 @@ const clickBubbler = {
                     // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
                     .then(
                         objectArray => {
+                            location.reload(true);
                             let newHTMLstring = "";
                             switch (targetList[0]) {
                                 case 'events':
@@ -100,6 +101,7 @@ const clickBubbler = {
                     // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
                     .then(
                         objectArray => {
+                            location.reload(true);
                             let newHTMLstring = "";
                             objectArray.forEach(element => {
                                 switch (targetList[0]) {
@@ -145,6 +147,7 @@ const clickBubbler = {
                             // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
                             .then(
                                 objectArray => {
+                                    location.reload(true);
                                     let newHTMLstring = "";
                                     objectArray.forEach(element => {
                                         switch (targetList[0]) {
