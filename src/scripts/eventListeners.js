@@ -41,13 +41,13 @@ const clickBubbler = {
                         case 'events':
                             newObject = eventsModule.createEventObject();
                             break;
-                        case 'chat':
+                        case 'chats':
                             newObject = chatsModule.buildChatsObject();
                             break;
-                        case 'task':
+                        case 'tasks':
                             newObject = tasksModule.captureFormValues();
                             break;
-                        case 'article':
+                        case 'articles':
                             newObject = articleModule.createArticleObject();
                             break;
                     }
@@ -57,26 +57,23 @@ const clickBubbler = {
                     .then(
                         objectArray => {
                             let newHTMLstring = "";
-                            objectArray.forEach(element => {
-                                switch (targetList[0]) {
-                                    case 'events':
-                                        newHTMLstring += eventsModule.createEventHTML(element);
-                                        break;
-                                    case 'chat':
-                                        newHTMLstring += chatsModule.buildChatsHTML(element);
-                                        break;
-                                    case 'task':
-                                        newHTMLstring += tasksModule.taskToHTML(element);
-                                        break;
-                                    case 'article':
-                                        newHTMLstring += articleModule.createArticleHTML(element);
-                                        break;
-                                }
-                            });
+                            switch (targetList[0]) {
+                                case 'events':
+                                    newHTMLstring += eventsModule.createEventHTML(objectArray);
+                                    break;
+                                case 'chats':
+                                    newHTMLstring += chatsModule.buildChatsHTML(objectArray);
+                                    break;
+                                case 'tasks':
+                                    newHTMLstring += tasksModule.taskToHTML(objectArray);
+                                    break;
+                                case 'articles':
+                                    newHTMLstring += articleModule.createArticleHTML(objectArray);
+                                    break;
+                            }
                             // call printToDom() and pass it the new HTML string
                             printToDOM(newHTMLstring, where);
-                        }
-                    )
+                        })
                 } else if (targetList[1] === "edit") {
                     // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events')
                     switch (targetList[0]) {
@@ -84,15 +81,15 @@ const clickBubbler = {
                             newObject = eventsModule.createEventObject();
                             targetId = document.querySelector("#eventId");
                             break;
-                        case 'chat':
+                        case 'chats':
                             newObject = chatsModule.buildChatsObject();
                             targetId = document.querySelector("#chatId");
                             break;
-                        case 'task':
+                        case 'tasks':
                             newObject = tasksModule.captureFormValues();
                             targetId = document.querySelector("#objectId");
                             break;
-                        case 'article':
+                        case 'articles':
                             newObject = articleModule.createArticleObject();
                             targetId = document.querySelector("#articleId");
                             break;
@@ -109,13 +106,13 @@ const clickBubbler = {
                                     case 'events':
                                         newHTMLstring += eventsModule.createEventHTML(element);
                                         break;
-                                    case 'chat':
+                                    case 'chats':
                                         newHTMLstring += chatsModule.buildChatsHTML(element);
                                         break;
-                                    case 'task':
+                                    case 'tasks':
                                         newHTMLstring += tasksModule.taskToHTML(element);
                                         break;
-                                    case 'article':
+                                    case 'articles':
                                         newHTMLstring += articleModule.createArticleHTML(element);
                                         break;
                                 }
@@ -130,13 +127,13 @@ const clickBubbler = {
                         case 'events':
                             targetId = document.querySelector("#eventId");
                             break;
-                        case 'chat':
+                        case 'chats':
                             targetId = document.querySelector("#chatId");
                             break;
-                        case 'task':
+                        case 'tasks':
                             targetId = document.querySelector("#objectId");
                             break;
-                        case 'article':
+                        case 'articles':
                             targetId = document.querySelector("#articleId");
                             break;
                     }
@@ -154,13 +151,13 @@ const clickBubbler = {
                                             case 'events':
                                                 newHTMLstring += eventsModule.createEventHTML(element);
                                                 break;
-                                            case 'chat':
+                                            case 'chats':
                                                 newHTMLstring += chatsModule.buildChatsHTML(element);
                                                 break;
-                                            case 'task':
+                                            case 'tasks':
                                                 newHTMLstring += tasksModule.taskToHTML(element);
                                                 break;
-                                            case 'article':
+                                            case 'articles':
                                                 newHTMLstring += articleModule.createArticleHTML(element);
                                                 break;
                                         }
