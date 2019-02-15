@@ -1,21 +1,25 @@
-/*
-Author: Sam
-Task: handles all functions specific to the tasks listing in Nutshell
-*/
-
-
+import timeConverter from "./timestampparser";
 
 const tasksModule = {
-    taskToHTML: function (taskObject) {
-        return `
-            <h1>${taskObject.name}</h1>
-            <section id="completion_date">${taskObject.completion_date}</section>
+    taskToHTML: function (taskObject, userId) {
+        const taskTimestamp = timeConverter(taskObject.completion_date)
+        let baseHTML = `
+            <section class="tasks" id="task--${taskObject.id}>
+            <div class="taskName">${taskObject.name}</div>
+            <p id="completion_date">${taskTimestamp}</p>
             <label for="is_complete" id="task_complete">${taskObject.is_complete}</label>
-
-            <button id="tasks--delete">Delete ${taskObject.name}</button>
-            <button id="tasks--edit">Edit ${taskObject.name}</button>
-
         `
+
+        if (taskObject.userId === userId) {
+            baseHTML += `
+                <button id="tasks--edit--${taskObject.id}">Edit</button>
+                <button id="tasks--delete--${taskObject.id}">Delete</button>
+            `
+        }
+
+        baseHTML += "</section><hr/>"
+
+        return baseHTML
     },
     taskForm: function (objectId) {
         return `
@@ -49,5 +53,3 @@ const tasksModule = {
 }
 
 export default tasksModule
-
-

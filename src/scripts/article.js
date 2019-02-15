@@ -36,12 +36,23 @@ const articleModule = {
         return articleObject
 
     },
-    createArticleHTML: articleObject => {
-        return `<section class="articles" id="article--${articleObject.id}">
-        <div class="articleTitle">${articleObject.name}</div>
-        <div>${articleObject.summary}</div>
-        <div>${articleObject.url}</div>
-        </section>`
+    createArticleHTML: (articleObject, userId) => {
+        let baseHTML = `<section class="articles" id="article--${articleObject.id}">
+        <div class="articleTitle">${articleObject.title}</div>
+        <p>${articleObject.summary}</p>
+        <p><a href="http://${articleObject.url}" target="_blank">${articleObject.url}</a></p>
+        `
+
+        if (articleObject.userId === userId) {
+            baseHTML += `
+                <button id="articles--edit--${articleObject.id}">Edit</button>
+                <button id="articles--delete--${articleObject.id}">Delete</button>
+            `
+        }
+
+        baseHTML += "</section><hr/>"
+
+        return baseHTML
     },
 }
 
