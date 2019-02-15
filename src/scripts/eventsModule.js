@@ -46,17 +46,24 @@ const eventsModule = {
 
         // }
     },
-    createEventHTML: eventObject => {
-        let time = timeConverter(eventObject.date);
-        return `<section class="events" id="event--${eventObject.id}">
+    createEventHTML: (eventObject, userId) => {
+        let time = timeConverter(eventObject.date)
+        let baseHTML =  `<section class="events" id="event--${eventObject.id}">
         <div class="eventName">${eventObject.name}</div>
-        <div>${time}</div>
-        <div>${eventObject.location}</div>
-        <div>
-            <button id="events--edit--${eventObject.id}">Edit<button>
-            <button id="events--delete--${eventObject.id}">Delete<button>
-        </div>
+        <p>${time}</p>
+        <p>${eventObject.location}</p>
         </section>`;
+
+        if (eventObject.userId === userId) {
+            baseHTML += `
+                <button id="events--edit--${eventObject.id}">Edit</button>
+                <button id="events--delete--${eventObject.id}">Delete</button>
+            `
+        }
+
+        baseHTML += "<hr/>"
+
+        return baseHTML
     },
 }
 

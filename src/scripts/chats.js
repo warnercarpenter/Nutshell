@@ -1,3 +1,5 @@
+import timeConverter from "./timestampparser";
+
 const chatsModule = {
     buildChatsForm: (chatId) => {
         return `
@@ -17,20 +19,25 @@ const chatsModule = {
         chatsObject.userId = 1;
         return chatsObject
     },
-    buildChatsHTML: (chatObject) => {
-        timestamp = String(new Date(chatObject.timestamp))
-        cutTimestamp = timestamp.split(" ")
-        cutTimestamp.length = 4
-        cutTimestamp.splice(0, 1, `${cutTimestamp[0]}.`)
-        cutTimestamp.splice(1, 1, `${cutTimestamp[1]},`)
-        formattedTimestamp = cutTimestamp.join(" ")
+    buildChatsHTML: (chatObject, userId) => {
+        const chatTimestamp = timeConverter(chatObject.timestamp)
 
-        return `
-            <div id="chat--${chatObject.id}"
+        let baseHTML = `
+            <div class="chats" id="chat--${chatObject.id}"
                 <p class="chatTextContent">${chatObject.text}</p>
-                <p class="chatSubText">Posted by ${chatObject.user.username} on ${formattedTimestamp}</p>
-            </div>
+                <p class="chatSubText">Posted by ${chatObject.user.username} on ${chatTimestamp}</p>
         `
+
+        if (chatObject.userId === userId) {
+            baseHTML += `
+                <button id="chats--edit--${chatObject.id}">Edit</button>
+                <button id="chats--delete--${chatObject.id}">Delete</button>
+            `
+        }
+
+        baseHTML += "</div><hr/>"
+
+        return baseHTML
     }
 }
 
