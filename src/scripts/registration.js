@@ -44,18 +44,18 @@ const registrationLoginHandler = {
         return `<form id="loginForm">
         <fieldset>
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username"></input>
+            <input type="text" name="loginUsername" id="loginUsername"></input>
         </fieldset>
         <fieldset>
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password"></input>
+            <input type="password" name="loginPassword" id="loginPassword"></input>
         </fieldset>
         <fieldset>
         `
     },
     createLoginObject: () => {
-        let username = document.querySelector("#username").value
-        let password = document.querySelector("#password").value
+        let username = document.querySelector("#loginUsername").value
+        let password = document.querySelector("#loginPassword").value
 
         const userLoginObject = {
             username: username,
