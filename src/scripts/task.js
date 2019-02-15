@@ -1,15 +1,27 @@
+import timeConverter from "./timestampparser";
 
 const tasksModule = {
-    taskToHTML: function (taskObject) {
-        return `
-            <h1>${taskObject.name}</h1>
-            <section id="completion_date">${taskObject.completion_date}</section>
+    taskToHTML: function (taskObject, userId) {
+        const taskTimestamp = timeConverter(taskObject.completion_date)
+        let baseHTML = `
+            <section class="tasks" id="task--${taskObject.id}>
+            <div class="taskName">${taskObject.name}</div>
+            <p id="completion_date">${taskTimestamp}</p>
             <label for="is_complete" id="task_complete">${taskObject.is_complete}</label>
-
-            <button id="deleteButton--${taskObject.id}">Delete ${taskObject.name}</button>
-            <button id="editButton--${taskObject.id}">Edit ${taskObject.name}</button>
-
         `
+
+        if (taskObject.userId === userId) {
+            baseHTML += `
+                <button id="tasks--edit--${taskObject.id}">Edit</button>
+                <button id="tasks--delete--${taskObject.id}">Delete</button>
+            `
+        }
+
+        baseHTML += "</section><hr/>"
+
+        console.log(baseHTML)
+
+        return baseHTML
     },
     taskForm: function (userId) {
         return `
@@ -38,3 +50,4 @@ const tasksModule = {
 }
 
 
+export default tasksModule

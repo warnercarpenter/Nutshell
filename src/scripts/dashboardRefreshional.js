@@ -2,6 +2,8 @@ import APIManager from "./APIManager"
 import printToDOM from "./printToDOM";
 import chatsModule from "./chats";
 import articleModule from "./article"
+import eventsModule from "./eventsModule"
+import tasksModule from "./task"
 
 const dashboardRefreshional = () => {
     // NEED TO BE CHANGED TO const userId = Window.sessionStorage.getItem('userId');
@@ -29,6 +31,20 @@ const dashboardRefreshional = () => {
             const currentArticle = articles[i]
             const articleHTML = articleModule.createArticleHTML(currentArticle, userId)
             printToDOM(articleHTML, "#" + articleContainer.id)
+        }
+    })
+    APIManager.fetchWithExpandedUserInfo("events", userId).then(function(events) {
+        for (let i = 0; i < events.length; i++) {
+            const currentEvent = events[i]
+            const eventHTML = eventsModule.createEventHTML(currentEvent, userId)
+            printToDOM(eventHTML, "#" + eventContainer.id)
+        }
+    })
+    APIManager.fetchWithExpandedUserInfo("tasks", userId).then(function(tasks) {
+        for (let i = 0; i < tasks.length; i++) {
+            const currentTask = tasks[i]
+            const taskHTML = tasksModule.taskToHTML(currentTask, userId)
+            printToDOM(taskHTML, "#" + taskContainer.id)
         }
     })
 }

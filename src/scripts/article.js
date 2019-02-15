@@ -38,14 +38,14 @@ const articleModule = {
     createArticleHTML: (articleObject, userId) => {
         let baseHTML = `<section class="articles" id="article--${articleObject.id}">
         <div class="articleTitle">${articleObject.title}</div>
-        <div>${articleObject.summary}</div>
-        <div><a href=${articleObject.url} target="_blank">${articleObject.url}</a></div>
+        <p>${articleObject.summary}</p>
+        <p><a href="http://${articleObject.url}" target="_blank">${articleObject.url}</a></p>
         `
 
         if (articleObject.userId === userId) {
             baseHTML += `
-                <button id="chat--edit--${articleObject.id}">Edit</button>
-                <button id="chat--delete--${articleObject.id}">Delete</button>
+                <button id="articles--edit--${articleObject.id}">Edit</button>
+                <button id="articles--delete--${articleObject.id}">Delete</button>
             `
         }
 

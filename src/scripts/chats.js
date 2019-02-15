@@ -22,20 +22,19 @@ const chatsModule = {
         const chatTimestamp = timeConverter(chatObject.timestamp)
 
         let baseHTML = `
-            <div id="chat--${chatObject.id}"
+            <div class="chats" id="chat--${chatObject.id}"
                 <p class="chatTextContent">${chatObject.text}</p>
                 <p class="chatSubText">Posted by ${chatObject.user.username} on ${chatTimestamp}</p>
-            </div>
         `
 
         if (chatObject.userId === userId) {
             baseHTML += `
-                <button id="chat--edit--${chatObject.id}">Edit</button>
-                <button id="chat--delete--${chatObject.id}">Delete</button>
+                <button id="chats--edit--${chatObject.id}">Edit</button>
+                <button id="chats--delete--${chatObject.id}">Delete</button>
             `
         }
 
-        baseHTML += "<hr/>"
+        baseHTML += "</div><hr/>"
 
         return baseHTML
     }
