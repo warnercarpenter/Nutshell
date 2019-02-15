@@ -1,7 +1,7 @@
 
 const APIManager = {
-    getByUserId: (desiredDatabase, userId) => {
-        return fetch (`http://localhost:8088/${desiredDatabase}?_userId=${userId}`)
+    getUsers: () => {
+        return fetch (`http://localhost:8088/users/`)
             .then(res => res.json())
 
     },

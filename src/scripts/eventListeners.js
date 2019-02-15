@@ -10,6 +10,7 @@ import chatsModule from "./chats";
 import tasksModule from "./task";
 import articleModule from "./article";
 import registrationLoginHandler from "./registration";
+import dashboardRefreshional from "./dashboardRefreshional";
 
 const clickBubbler = {
     listener: () => {
@@ -177,7 +178,7 @@ const clickBubbler = {
         })
     },
     firstLoad: () => {
-        document.querySelector("#dashboardContainer").addEventListener("click", event => {
+        document.querySelector("#listenToMe").addEventListener("click", event => {
             const targetList = event.target.id.split("--");
             if (targetList[0] === "register") {
                 const HTMLcode = registrationLoginHandler.buildRegistrationForm();
@@ -186,7 +187,6 @@ const clickBubbler = {
             } else {
                 const HTMLcode = registrationLoginHandler.buildLoginForm();
                 document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
-                
             }
         })
     },
@@ -194,7 +194,15 @@ const clickBubbler = {
         document.querySelector("#login").addEventListener("click",
         event => {
             const newObject = registrationLoginHandler.createLoginObject();
-            
+            const userList = APIManager.getUsers();
+            userList.forEach(element => {
+                if (newObject.username === element.username && newObject.password === element.password ) {
+                    sessionStorage.setItem("userId", element.id);
+                    dashboardRefreshional();
+                } else {
+                    document.querySelector("#dashboardContainer").innerHTML += "the username or password does not match; please try again";
+                }
+            });
         })
     },
     register: () => {
