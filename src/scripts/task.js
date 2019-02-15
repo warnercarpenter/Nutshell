@@ -19,23 +19,25 @@ const tasksModule = {
 
         baseHTML += "</section><hr/>"
 
-        console.log(baseHTML)
-
         return baseHTML
     },
-    taskForm: function (userId) {
+    taskForm: function (objectId) {
         return `
-            <input type="hidden" id="userId" value="${userId}"><br>
+        <fieldset>
+            <input type="hidden" id="userId" value="${objectId}"><br>
             <label for="name">Name of task: </label><br>
-
             <input type="text" placeholder="Task name" id="taskName">
+        </fieldset>
             <label for="completion_date">Date to be completed by: </label><br>
-
             <input type="date" id="taskDate">
+        <fieldset>
             <label>Is task complete: </label><br>
-
             <input type="checkbox" id="taskComplete" value="Yes">Yes<br>
             <input type="checkbox" id="taskComplete" value="No">No<br>
+        </fieldset>
+        <fieldset>
+            <button id="tasks--submit">Submit</button>
+        </fieldset>
         `
     },
     captureFormValues: function () {
@@ -48,6 +50,8 @@ const tasksModule = {
         return taskObject
     }
 }
+
+export default tasksModule
 
 
 export default tasksModule
