@@ -12,8 +12,8 @@ const tasksModule = {
             <section id="completion_date">${taskObject.completion_date}</section>
             <label for="is_complete" id="task_complete">${taskObject.is_complete}</label>
 
-            <button id="task--delete">Delete ${taskObject.name}</button>
-            <button id="task--edit">Edit ${taskObject.name}</button>
+            <button id="tasks--delete">Delete ${taskObject.name}</button>
+            <button id="tasks--edit">Edit ${taskObject.name}</button>
 
         `
     },
@@ -32,7 +32,7 @@ const tasksModule = {
             <input type="checkbox" id="taskComplete" value="No">No<br>
         </fieldset>
         <fieldset>
-            <button id="task--submit">Submit</button>
+            <button id="tasks--submit">Submit</button>
         </fieldset>
         `
     },
