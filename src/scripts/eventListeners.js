@@ -176,9 +176,23 @@ const clickBubbler = {
             }
         })
     },
+    firstLoad: () => {
+        document.querySelector("#dashboardContainer").addEventListener("click", event => {
+            const targetList = event.target.id.split("--");
+            if (targetList[0] === "register") {
+                const HTMLcode = registrationHandler.buildRegistrationForm();
+                document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
+                clickBubbler.register();
+            } else {
+                const HTMLcode = registrationHandler.buildLoginForm();
+                document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
+                
+            }
+        })
+    },
     register: () => {
         document.querySelector("#registration--create").addEventListener("click",
-        event => {
+        () => {
             const newObject = registrationHandler.createRegistrationObject();
             APIManager.Post("users", newObject)
             .then(
