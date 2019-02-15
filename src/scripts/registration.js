@@ -1,6 +1,6 @@
 const registrationHandler = {
-    buildRegistrationForm: () => { return `
-        <form id="registrationForm">
+    buildRegistrationForm: () => {
+        return `<form id="registrationForm">
         <fieldset>
             <label for="email">Email:</label>
             <input type="text" name="email" id="email"></input>
@@ -11,7 +11,7 @@ const registrationHandler = {
         </fieldset>
         <fieldset>
             <label for="password">Password:</label>
-            <input type="text" name="password" id="password"></input>
+            <input type="password" name="password" id="password"></input>
         </fieldset>
         <fieldset>
             <label for="firstName">First Name:</label>
@@ -21,8 +21,7 @@ const registrationHandler = {
             <label for="lastName">Last Name:</label>
             <input type="text" name="lastName" id="lastName"></input>
         <button id="registration--create">Register</button>
-        `
-
+        `;
     },
     createRegistrationObject: () => {
         let username = document.querySelector("#username").value
@@ -40,6 +39,8 @@ const registrationHandler = {
 
         }
         return userObject
-    },
+    }
 
 }
+
+export default registrationHandler;

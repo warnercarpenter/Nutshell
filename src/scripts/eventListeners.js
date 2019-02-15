@@ -9,6 +9,7 @@ import eventsModule from "./eventsModule";
 import chatsModule from "./chats";
 import tasksModule from "./task";
 import articleModule from "./article";
+import registrationHandler from "./registration";
 
 const clickBubbler = {
     listener: () => {
@@ -174,6 +175,19 @@ const clickBubbler = {
                 }
             }
         })
+    },
+    register: () => {
+        document.querySelector("#registration--create").addEventListener("click",
+        event => {
+            const newObject = registrationHandler.createRegistrationObject();
+            APIManager.Post("users", newObject)
+            .then(
+                objectArray => {
+                    let userId = objectArray.id;
+                    sessionStorage.setItem("userId", userId);
+                }
+            )
+        });
     }
 }
 
