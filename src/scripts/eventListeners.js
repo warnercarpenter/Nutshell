@@ -9,6 +9,7 @@ import eventsModule from "./eventsModule";
 import chatsModule from "./chats";
 import tasksModule from "./task";
 import articleModule from "./article";
+import registrationHandler from "./registration";
 
 const clickBubbler = {
     listener: () => {
@@ -56,6 +57,7 @@ const clickBubbler = {
                     // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
                     .then(
                         objectArray => {
+                            location.reload(true);
                             let newHTMLstring = "";
                             switch (targetList[0]) {
                                 case 'events':
@@ -100,6 +102,7 @@ const clickBubbler = {
                     // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
                     .then(
                         objectArray => {
+                            location.reload(true);
                             let newHTMLstring = "";
                             objectArray.forEach(element => {
                                 switch (targetList[0]) {
@@ -145,6 +148,7 @@ const clickBubbler = {
                             // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
                             .then(
                                 objectArray => {
+                                    location.reload(true);
                                     let newHTMLstring = "";
                                     objectArray.forEach(element => {
                                         switch (targetList[0]) {
@@ -171,6 +175,19 @@ const clickBubbler = {
                 }
             }
         })
+    },
+    register: () => {
+        document.querySelector("#registration--create").addEventListener("click",
+        event => {
+            const newObject = registrationHandler.createRegistrationObject();
+            APIManager.Post("users", newObject)
+            .then(
+                objectArray => {
+                    let userId = objectArray.id;
+                    sessionStorage.setItem("userId", userId);
+                }
+            )
+        });
     }
 }
 

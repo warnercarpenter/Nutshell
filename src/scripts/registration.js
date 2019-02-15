@@ -1,6 +1,6 @@
-const registrationHandler = {
-    buildRegistrationForm: () => { return `
-        <form id="registrationForm">
+const registrationLoginHandler = {
+    buildRegistrationForm: () => {
+        return `<form id="registrationForm">
         <fieldset>
             <label for="email">Email:</label>
             <input type="text" name="email" id="email"></input>
@@ -11,7 +11,7 @@ const registrationHandler = {
         </fieldset>
         <fieldset>
             <label for="password">Password:</label>
-            <input type="text" name="password" id="password"></input>
+            <input type="password" name="password" id="password"></input>
         </fieldset>
         <fieldset>
             <label for="firstName">First Name:</label>
@@ -22,7 +22,6 @@ const registrationHandler = {
             <input type="text" name="lastName" id="lastName"></input>
         <button id="registration--create">Register</button>
         `
-
     },
     createRegistrationObject: () => {
         let username = document.querySelector("#username").value
@@ -41,5 +40,32 @@ const registrationHandler = {
         }
         return userObject
     },
+    buildLoginForm: () => {
+        return `<form id="loginForm">
+        <fieldset>
+            <label for="username">Username:</label>
+            <input type="text" name="loginUsername" id="loginUsername"></input>
+        </fieldset>
+        <fieldset>
+            <label for="password">Password:</label>
+            <input type="password" name="loginPassword" id="loginPassword"></input>
+        </fieldset>
+        <fieldset>
+        <button id="login">Login</button>
+        `
+    },
+    createLoginObject: () => {
+        let username = document.querySelector("#loginUsername").value
+        let password = document.querySelector("#loginPassword").value
+
+        const userLoginObject = {
+            username: username,
+            password: password,
+
+        }
+        return userLoginObject
+    }
 
 }
+
+export default registrationLoginHandler
