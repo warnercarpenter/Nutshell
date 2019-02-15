@@ -44,7 +44,7 @@
       "id": 1,
       "title": "The most awesome article ever",
       "summary": "It was awesome.",
-      "url ": "www.awesome.com",
+      "url": "www.awesome.com",
       "timestamp": "1557016200000",
       "userId": 1
     },
@@ -100,6 +100,12 @@
       "timestamp": 1550261155093,
       "userId": 1,
       "id": 5
+    },
+    {
+      "text": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+      "timestamp": 1550265232248,
+      "userId": 1,
+      "id": 6
     }
   ]
 }

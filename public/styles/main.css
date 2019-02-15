@@ -1,8 +1,70 @@
 html, body{
+    background-color: #f2efc7;
     font-family: sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
+    color: #6b5547
+}
+
+button {
+    background-color: #9f7e69;
+    border: none;
+    color: white;
+    padding: 2px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.articleTitle {
+    font-size: 20px
+}
+
+#chatDisplay::-webkit-scrollbar {
+    width: .5em;
+}
+
+#chatDisplay::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+}
+
+#chatDisplay::-webkit-scrollbar-thumb {
+  background-color: #9f7e69;
+}
+#articleDisplay::-webkit-scrollbar {
+    width: .5em;
+}
+
+#articleDisplay::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+}
+
+#articleDisplay::-webkit-scrollbar-thumb {
+  background-color: #9f7e69;
+}
+#taskDisplay::-webkit-scrollbar {
+    width: .5em;
+}
+
+#taskDisplay::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+}
+
+#taskDisplay::-webkit-scrollbar-thumb {
+  background-color: #9f7e69;
+}
+#eventDisplay::-webkit-scrollbar {
+    width: .5em;
+}
+
+#eventDisplay::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+}
+
+#eventDisplay::-webkit-scrollbar-thumb {
+  background-color: #9f7e69;
 }
 
 #dashboardContainer {
@@ -15,19 +77,31 @@ html, body{
 }
 
 #chatDisplay {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    box-shadow: 4px 4px #d2bba0;
+    padding: 10px;
+    background-color: #f7ffe0;
     overflow: auto;
     width: 300px;
-    height: 500px;
-    border: solid 1px black;
+    height: 475px;
     margin: 10px;
+    word-wrap: break-word;
 }
 
+
+
 #articleDisplay {
+    box-shadow: 4px 4px #d2bba0;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 10px;
+    background-color: #f7ffe0;
     overflow: auto;
     width: 300px;
-    height: 500px;
-    border: solid 1px black;
+    height: 475px;
     margin: 10px;
+    word-wrap: break-word;
 }
 
 #friendContainer {
@@ -39,27 +113,37 @@ html, body{
 }
 
 #eventContainer {
-    height: 51.85%
+    height: 52%
 }
 
 #taskContainer {
-    height: 51.85%
+    height: 52%
 }
 
 #eventDisplay {
+    box-shadow: 4px 4px #d2bba0;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 10px;
+    background-color: #f7ffe0;
     overflow: auto;
     width: 300px;
-    height: 85%;
-    border: solid 1px black;
+    height: 75%;
     margin: 10px;
+    word-wrap: break-word;
 }
 
 #taskDisplay {
+    box-shadow: 4px 4px #d2bba0;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 10px;
+    background-color: #f7ffe0;
     overflow: auto;
     width: 300px;
-    height: 85%;
-    border: solid 1px black;
+    height: 75%;
     margin: 10px;
+    word-wrap: break-word;
 }
 
 .sectionHeader {
@@ -70,7 +154,7 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid black;
+    border-top: 1px solid #f2efc7;
     margin: 1em 0;
     padding: 0;
 }
