@@ -21,8 +21,9 @@ const articleModule = {
         let title = document.querySelector("#articleTitle").value;
         let summary = document.querySelector("#articleSummary").value;
         let url = document.querySelector("#articleURL").value;
-        const userId = Window.sessionStorage.getItem('userId');
-        let articleId = document.querySelector("#articleId").value;
+        // const userId = Window.sessionStorage.getItem('userId');
+        const userId = 1;
+        // let articleId = document.querySelector("#articleId").value;
 
         const articleObject = {
             title: title,
