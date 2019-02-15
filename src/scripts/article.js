@@ -15,7 +15,7 @@ const articleModule = {
                 <input type="text" name="articleURL" id="articleURL"></input>
             </fieldset>
             <button id="articles--create">Post Your Article</button>
-        </form>`;
+        </form>`
     },
     createArticleObject: () => {
         let title = document.querySelector("#articleTitle").value;
@@ -32,7 +32,7 @@ const articleModule = {
             userId: userId
         }
 
-        return articleObject;
+        return articleObject
 
     },
     createArticleHTML: articleObject => {
@@ -40,8 +40,8 @@ const articleModule = {
         <div class="articleTitle">${articleObject.name}</div>
         <div>${articleObject.summary}</div>
         <div>${articleObject.url}</div>
-        </section>`;
+        </section>`
     },
 }
 
-export default articleModule;
+export default articleModule
