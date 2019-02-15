@@ -36,7 +36,7 @@ const tasksModule = {
             <input type="checkbox" id="taskComplete" value="No">No<br>
         </fieldset>
         <fieldset>
-            <button id="tasks--submit">Submit</button>
+            <button id="tasks--create">Submit</button>
         </fieldset>
         `
     },
@@ -45,7 +45,8 @@ const tasksModule = {
             name: document.querySelector("#taskName").value,
             completion_date: document.querySelector("#taskDate").value,
             is_complete: document.querySelector("#taskComplete").value,
-            userId: Window.sessionStorage.getItem("userId")
+            //userId: Window.sessionStorage.getItem("userId")
+            userId: 1
         }
         return taskObject
     }

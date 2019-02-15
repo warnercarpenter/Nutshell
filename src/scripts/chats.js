@@ -7,7 +7,7 @@ const chatsModule = {
                 <input type="hidden" name="chatId" value="${chatId}"></input>
                 Enter your message:</br>
                 <textarea rows="4" cols="50" name="chatMessage" id="chat--textInput"></textarea></br>
-                <button id="chat--submit">Submit</button>
+                <button id="chats--create">Submit</button>
             </div>
         `
     },
@@ -15,7 +15,8 @@ const chatsModule = {
         const chatsObject = {}
         chatsObject.text = document.getElementById("chat--textInput").value
         chatsObject.timestamp = Date.now()
-        chatsObject.userId = Window.sessionStorage.getItem('userId')
+        // chatsObject.userId = Window.sessionStorage.getItem('userId')
+        chatsObject.userId = 1;
         return chatsObject
     },
     buildChatsHTML: (chatObject, userId) => {
