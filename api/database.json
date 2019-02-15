@@ -7,6 +7,14 @@
       "first_name": "Steve",
       "last_name": "Brownlee",
       "email": "masterCommander@gmail.com"
+    },
+    {
+      "username": "alexandrina",
+      "password": "fubar",
+      "first_name": "Summer",
+      "last_name": "Rainault",
+      "email": "alexandrine_dream@yahoo.com",
+      "id": 2
     }
   ],
   "tasks": [
@@ -55,6 +63,14 @@
       "timestamp": 1550259628015,
       "userId": 1,
       "id": 2
+    },
+    {
+      "title": "sdt",
+      "summary": "test",
+      "url": "sidnfoime",
+      "timestamp": 1550261947216,
+      "userId": 1,
+      "id": 3
     }
   ],
   "events": [
@@ -71,6 +87,13 @@
       "location": "sdfg",
       "userId": 1,
       "id": 2
+    },
+    {
+      "name": "Brains",
+      "date": "2019-02-19",
+      "location": "sdfewr",
+      "userId": 1,
+      "id": 3
     }
   ],
   "chats": [
