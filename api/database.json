@@ -66,9 +66,9 @@
       "location": "my house"
     },
     {
-      "name": "",
-      "date": "",
-      "location": "",
+      "name": "sdfg",
+      "date": "1557016200000",
+      "location": "sdfg",
       "userId": 1,
       "id": 2
     }
@@ -88,6 +88,18 @@
       "timestamp": 1550258740749,
       "userId": 1,
       "id": 3
+    },
+    {
+      "text": "hello",
+      "timestamp": 1550261004372,
+      "userId": 1,
+      "id": 4
+    },
+    {
+      "text": "sdfgsdfhsfd",
+      "timestamp": 1550261155093,
+      "userId": 1,
+      "id": 5
     }
   ]
 }

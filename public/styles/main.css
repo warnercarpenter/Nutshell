@@ -15,6 +15,7 @@ html, body{
 }
 
 #chatDisplay {
+    overflow: auto;
     width: 300px;
     height: 500px;
     border: solid 1px black;
@@ -22,6 +23,7 @@ html, body{
 }
 
 #articleDisplay {
+    overflow: auto;
     width: 300px;
     height: 500px;
     border: solid 1px black;
@@ -45,6 +47,7 @@ html, body{
 }
 
 #eventDisplay {
+    overflow: auto;
     width: 300px;
     height: 85%;
     border: solid 1px black;
@@ -52,6 +55,7 @@ html, body{
 }
 
 #taskDisplay {
+    overflow: auto;
     width: 300px;
     height: 85%;
     border: solid 1px black;
