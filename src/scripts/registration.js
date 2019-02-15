@@ -51,6 +51,7 @@ const registrationLoginHandler = {
             <input type="password" name="loginPassword" id="loginPassword"></input>
         </fieldset>
         <fieldset>
+        <button id="login">Login</button>
         `
     },
     createLoginObject: () => {
