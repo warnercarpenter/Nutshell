@@ -220,6 +220,16 @@ button:hover {
     word-wrap: break-word;
 }
 
+.nextEvent {
+    padding: 5px;
+    background-color: #f2efc7;
+    font-weight: bold;
+}
+
+.nextEvent .eventName{
+    font-size: 22px;
+}
+
 .sectionHeader {
     text-align: center;
 }
