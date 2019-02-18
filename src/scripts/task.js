@@ -4,10 +4,9 @@ const tasksModule = {
     taskToHTML: function (taskObject, userId) {
         const taskTimestamp = timeConverter(taskObject.completion_date)
         let baseHTML = `
-            <section class="tasks" id="task--${taskObject.id}>
+            <section class="tasks" id="task--${taskObject.id}">
             <div class="taskName">${taskObject.name}</div>
-            <p id="completion_date">${taskTimestamp}</p>
-            <label for="is_complete" id="task_complete">${taskObject.is_complete}</label>
+            <p class="taskDate" id="completion_date">${taskTimestamp}</p>
         `
 
         if (taskObject.userId === userId) {
