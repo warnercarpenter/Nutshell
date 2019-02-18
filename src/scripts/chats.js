@@ -15,8 +15,7 @@ const chatsModule = {
         const chatsObject = {}
         chatsObject.text = document.getElementById("chat--textInput").value
         chatsObject.timestamp = parseInt(Date.now())
-        // chatsObject.userId = Window.sessionStorage.getItem('userId')
-        chatsObject.userId = 1;
+        chatsObject.userId = parseInt(sessionStorage.getItem('userId'))
         return chatsObject
     },
     buildChatsHTML: (chatObject, username, userId) => {
@@ -31,7 +30,6 @@ const chatsModule = {
         if (chatObject.userId === userId) {
             baseHTML += `
                 <button id="chats--edit--${chatObject.id}">Edit</button>
-                <button id="chats--delete--${chatObject.id}">Delete</button>
             `
         }
 
