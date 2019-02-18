@@ -61,9 +61,15 @@ const eventsModule = {
             document.querySelector("#events--create").id = "events--editing";
         })
     },
-    createEventHTML: (eventObject, userId) => {
-        let time = timeConverter(eventObject.date);
-        let baseHTML =  `<section class="events" id="event--${eventObject.id}">
+    createEventHTML: (eventObject, userId, checker) => {
+        let time = timeConverter(eventObject.date)
+        let baseHTML = ""
+        if (checker === 0) {
+            baseHTML = '<section class="nextEvent">';
+        } else {
+            baseHTML = '<section>';
+        }
+        baseHTML +=  `<section class="events" id="event--${eventObject.id}">
         <div class="eventName">${eventObject.name}</div>
         <p class="eventTime">Time: ${time}</p>
         <p>Location: ${eventObject.location}</p>
@@ -76,7 +82,7 @@ const eventsModule = {
             `
         };
 
-        baseHTML += "<hr/>";
+        baseHTML += "</section><hr/>"
 
         return baseHTML;
     },

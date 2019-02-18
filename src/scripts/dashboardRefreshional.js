@@ -6,8 +6,6 @@ import eventsModule from "./eventsModule"
 import tasksModule from "./task"
 
 const dashboardRefreshional = () => {
-    // NEED TO CHANGE TO THIS
-    // const userId = parseInt(sessionStorage.getItem('userId'))
     const userId = parseInt(sessionStorage.getItem('userId'))
     const dashboardContainer = document.getElementById("dashboardContainer")
     const chatContainer = document.getElementById("chatDisplay")
@@ -52,7 +50,7 @@ const dashboardRefreshional = () => {
     APIManager.fetchWithExpandedUserInfo("events", userId).then(function(events) {
         for (let i = 0; i < events.length; i++) {
             const currentEvent = events[i]
-            const eventHTML = eventsModule.createEventHTML(currentEvent, userId)
+            const eventHTML = eventsModule.createEventHTML(currentEvent, userId, i)
             printToDOM(eventHTML, "#" + eventContainer.id)
         }
     })
