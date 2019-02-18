@@ -10,7 +10,7 @@
         "semi": 0,
         "eqeqeq": 2,
         "no-trailing-spaces": 2,
-        "indent": 1,
+        "indent": 0,
         "no-mixed-spaces-and-tabs": 1,
         "no-var": 1
     }

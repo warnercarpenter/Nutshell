@@ -81,20 +81,20 @@ const clickBubbler = {
                     // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events')
                     switch (targetList[0]) {
                         case 'events':
-                            newObject = eventsModule.createEventObject();
                             targetId = document.querySelector("#eventId");
+                            newObject = eventsModule.createEventObject(targetId);
                             break;
                         case 'chats':
-                            newObject = chatsModule.buildChatsObject();
                             targetId = document.querySelector("#chatId");
+                            newObject = chatsModule.buildChatsObject(targetId);
                             break;
                         case 'tasks':
-                            newObject = tasksModule.captureFormValues();
                             targetId = document.querySelector("#objectId");
+                            newObject = tasksModule.captureFormValues(targetId);
                             break;
                         case 'articles':
-                            newObject = articleModule.createArticleObject();
                             targetId = document.querySelector("#articleId");
+                            newObject = articleModule.createArticleObject(targetId);
                             break;
                     }
                     // then call the api edit method and pass it the new object, the module name, and the original object id

@@ -4,6 +4,7 @@ Task: handles all functions specific to the events listing in Nutshell
 */
 
 import timeConverter from "./timestampparser";
+import APIManager from "./APIManager";
 
 const eventsModule = {
     buildEntryForm: eventId => {
@@ -26,34 +27,57 @@ const eventsModule = {
         </form>`;
     },
     createEventObject: eventId => {
-        let name = document.querySelector("#eventName").value;
-        let date = document.querySelector("#eventDate").value;
-        let time = document.querySelector("#eventTime").value;
-        let location = document.querySelector("#eventLocation").value;
         const userId = parseInt(sessionStorage.getItem('userId'));
-        // const userId = 1;
-        eventId = document.querySelector("#eventId").value;
+        if (eventId === null) {
+            let name = document.querySelector("#eventName").value;
+            let date = document.querySelector("#eventDate").value;
+            let time = document.querySelector("#eventTime").value;
+            let location = document.querySelector("#eventLocation").value;
 
-        let concat_datetime = `${date} ${time}`;
-        let datetime = new Date(concat_datetime);
-        let timestamp = datetime.getTime();
+            let concat_datetime = `${date} ${time}`;
+            let datetime = new Date(concat_datetime);
+            let timestamp = datetime.getTime();
 
-        const eventObject = {
-            name: name,
-            date: timestamp,
-            location: location,
-            userId: userId
-        }
+            const eventObject = {
+                name: name,
+                date: timestamp,
+                location: location,
+                userId: userId
+            };
 
-        if (eventId !== "") {
-
+            return eventObject;
         } else {
+            eventId = document.querySelector("#eventId").value;
+            APIManager.getAnyById("events", eventId)
+            .then(
+                editingObject => {
+                    let oldtime = timeConverter(eventObject.date);
 
+                    document.querySelector("#eventName").value = editingObject.name;
+                    document.querySelector("#eventDate").value = editingObject.oldtime;
+                    document.querySelector("#eventLocation").value = editingObject.location;
+
+                    let name = document.querySelector("#eventName").value;
+                    let date = document.querySelector("#eventDate").value;
+                    let time = document.querySelector("#eventTime").value;
+                    let location = document.querySelector("#eventLocation").value;
+
+                    let concat_datetime = `${date} ${time}`;
+                    let datetime = new Date(concat_datetime);
+                    let timestamp = datetime.getTime();
+                    const eventObject = {
+                        name: name,
+                        date: timestamp,
+                        location: location,
+                        userId: userId
+                    };
+
+                    return eventObject;
+                })
         }
-        return eventObject;
     },
     createEventHTML: (eventObject, userId) => {
-        let time = timeConverter(eventObject.date)
+        let time = timeConverter(eventObject.date);
         let baseHTML =  `<section class="events" id="event--${eventObject.id}">
         <div class="eventName">${eventObject.name}</div>
         <p>${time}</p>
@@ -65,12 +89,12 @@ const eventsModule = {
                 <button id="events--edit--${eventObject.id}">Edit</button>
                 <button id="events--delete--${eventObject.id}">Delete</button>
             `
-        }
+        };
 
-        baseHTML += "<hr/>"
+        baseHTML += "<hr/>";
 
-        return baseHTML
+        return baseHTML;
     },
-}
+};
 
 export default eventsModule;
