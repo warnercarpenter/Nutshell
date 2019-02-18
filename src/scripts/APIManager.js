@@ -4,8 +4,8 @@ const APIManager = {
         return fetch (`http://localhost:8088/users/`)
             .then(res => res.json())
     },
-    getUserById: (id) => {
-        return fetch (`http://localhost:8088/users/${id}`)
+    getUsAnyById: (desiredDatabase, id) => {
+        return fetch (`http://localhost:8088/${desiredDatabase}/${id}`)
             .then(res => res.json())
     },
     delete: (desiredDatabase, objectId) => {
