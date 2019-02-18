@@ -10,6 +10,7 @@ import tasksModule from "./task";
 import articleModule from "./article";
 import registrationLoginHandler from "./registration";
 import dashboardRefreshional from "./dashboardRefreshional";
+import landing from "./logout";
 
 const clickBubbler = {
     listener: () => {
@@ -152,11 +153,12 @@ const clickBubbler = {
             .then(
                 userList => {
                     userList.forEach(element => {
-                        if (newObject.username === element.username && newObject.password === element.password ) {
-                            sessionStorage.setItem("userId", element.id);
-                            dashboardRefreshional();
-                        } else {
+                        if (newObject.username !== element.username || newObject.password !== element.password) {
                             document.querySelector("#dashboardContainer").innerHTML += "The username or password does not match; please try again";
+                        } else {
+                            sessionStorage.setItem("userId", element.id);
+                            document.querySelector("#formSection").innerHTML = "";
+                            dashboardRefreshional();
                         }
                 })
             });
@@ -171,10 +173,18 @@ const clickBubbler = {
                 objectArray => {
                     let userId = objectArray.id;
                     sessionStorage.setItem("userId", userId);
+                    document.querySelector("#formSection").innerHTML = "";
                     dashboardRefreshional();
                 }
             )
         });
+    },
+    logout: () => {
+        document.querySelector("#logoutButton").addEventListener("click",
+        () => {
+            sessionStorage.removeItem("userId");
+            landing();
+        })
     }
 }
 
