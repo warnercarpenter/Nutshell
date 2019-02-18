@@ -31,7 +31,6 @@ const dashboardRefreshional = () => {
                 newChatArray.push(chat)
             })
         }
-        console.log(newChatArray)
         APIManager.getUsers().then(function(users) {
             newChatArray.sort((a, b) => a.timestamp - b.timestamp).forEach(function(chat) {
                 const username = users.find(user => user.id === chat.userId).username
