@@ -4,6 +4,10 @@ const APIManager = {
         return fetch (`http://localhost:8088/users/`)
             .then(res => res.json())
     },
+    getUserById: (id) => {
+        return fetch (`http://localhost:8088/users/${id}`)
+            .then(res => res.json())
+    },
     delete: (desiredDatabase, objectId) => {
         return fetch(`http://127.0.0.1:8088/${desiredDatabase}/${objectId}`, {
                 method: "DELETE"
@@ -31,6 +35,11 @@ const APIManager = {
     },
     fetchWithExpandedUserInfo: (desiredDatabase, userId) => {
         return fetch (`http://localhost:8088/${desiredDatabase}?_expand=user&userId=${userId}`)
+            .then(res => res.json())
+
+    },
+    fetchAllEmbedded: (desiredDatabase) => {
+        return fetch (`http://localhost:8088/users?_embed=${desiredDatabase}`)
             .then(res => res.json())
 
     }
