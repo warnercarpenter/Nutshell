@@ -26,7 +26,6 @@ const articleModule = {
         let url = document.querySelector("#articleURL").value;
         const userId = parseInt(sessionStorage.getItem('userId'))
 
-
         const articleObject = {
             title: title,
             summary: summary,
