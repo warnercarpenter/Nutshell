@@ -17,7 +17,8 @@ const clickBubbler = {
         document.querySelector("#dashboardContainer").addEventListener("click", event => {
             if (event.target.nodeName === "BUTTON") {
                 const targetList = event.target.id.split("--");
-                const where = `#${targetList[0]}Display`;
+                const location = targetList[0].slice(0,-1);
+                const where = `#${location}Display`;
                 let newObject = {};
                 let targetId = "";
                 if (targetList[1] === "add") {
@@ -102,9 +103,6 @@ const clickBubbler = {
                         case 'events':
                             targetId = document.querySelector("#eventId");
                             break;
-                        case 'chats':
-                            targetId = document.querySelector("#chatId");
-                            break;
                         case 'tasks':
                             targetId = document.querySelector("#objectId");
                             break;
@@ -117,32 +115,12 @@ const clickBubbler = {
                     .then(
                         () => {
                             APIManager.getByUserId(targetList[0], 1)
-                            // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
+                            // .then() and call the dashboard module
                             .then(
                                 objectArray => {
-                                    let newHTMLstring = "";
-                                    objectArray.forEach(element => {
-                                        switch (targetList[0]) {
-                                            case 'events':
-                                                newHTMLstring += eventsModule.createEventHTML(element);
-                                                break;
-                                            case 'chats':
-                                                newHTMLstring += chatsModule.buildChatsHTML(element);
-                                                break;
-                                            case 'tasks':
-                                                newHTMLstring += tasksModule.taskToHTML(element);
-                                                break;
-                                            case 'articles':
-                                                newHTMLstring += articleModule.createArticleHTML(element);
-                                                break;
-                                        }
-                                     });
-                                    // call printToDom() and pass it the new HTML string
-                                    printToDOM(newHTMLstring, where);
-                                }
-                            )
-                        }
-                    )
+                                    dashboardRefreshional();
+                                    });
+                            })
                 } else if (targetList[1] === "editing") {
                     switch (targetList[0]) {
                         case 'events':
@@ -165,24 +143,8 @@ const clickBubbler = {
                     // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
                     .then(
                         objectArray => {
-                            let newHTMLstring = "";
-                            switch (targetList[0]) {
-                                case 'events':
-                                    newHTMLstring += eventsModule.createEventHTML(objectArray);
-                                    where = "event";
-                                    break;
-                                case 'chats':
-                                    newHTMLstring += chatsModule.buildChatsHTML(objectArray);
-                                    break;
-                                case 'tasks':
-                                    newHTMLstring += tasksModule.taskToHTML(objectArray);
-                                    break;
-                                case 'articles':
-                                    newHTMLstring += articleModule.createArticleHTML(objectArray);
-                                    break;
-                            }
-                            // call printToDom() and pass it the new HTML string
-                            printToDOM(newHTMLstring, where);
+                            dashboardRefreshional();
+                            document.querySelector("#formSection").innerHTML = "";
                         }
                     )
                 }
