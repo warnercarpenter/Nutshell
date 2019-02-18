@@ -20,11 +20,14 @@ const dashboardRefreshional = () => {
     taskContainer.innerHTML = ""
     friendContainer.innerHTML = ""
     usernameWelcome.innerHTML = `Welcome, `
-    APIManager.fetchWithExpandedUserInfo("chats", userId).then(function(chats) {
-        for (let i = 0; i < chats.length; i++) {
-            const currentMessage = chats[i]
-            const messageHTML = chatsModule.buildChatsHTML(currentMessage, userId)
-            printToDOM(messageHTML, "#" + chatContainer.id)
+    APIManager.fetchAllEmbedded("chats").then(function(users) {
+        for (let i = 0; i < users.length; i++) {
+            const user = users[i]
+            const username = user.username
+            user.chats.forEach(function(chat) {
+                const messageHTML = chatsModule.buildChatsHTML(chat, username, userId)
+                printToDOM(messageHTML, "#" + chatContainer.id)
+            })
         }
     })
     APIManager.fetchWithExpandedUserInfo("articles", userId).then(function(articles) {

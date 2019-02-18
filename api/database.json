@@ -118,7 +118,7 @@
     {
       "text": "test",
       "timestamp": 1550258740749,
-      "userId": 1,
+      "userId": 5,
       "id": 3
     },
     {
@@ -138,6 +138,12 @@
       "timestamp": 1550265232248,
       "userId": 1,
       "id": 6
+    },
+    {
+      "text": "hello",
+      "timestamp": 1550506999649,
+      "userId": 1,
+      "id": 7
     }
   ]
 }
