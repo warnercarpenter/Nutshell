@@ -8,7 +8,7 @@ import tasksModule from "./task"
 const dashboardRefreshional = () => {
     // NEED TO CHANGE TO THIS
     // const userId = parseInt(sessionStorage.getItem('userId'))
-    const userId = 1
+    const userId = parseInt(sessionStorage.getItem('userId'))
     const dashboardContainer = document.getElementById("dashboardContainer")
     const chatContainer = document.getElementById("chatDisplay")
     const articleContainer = document.getElementById("articleDisplay")
@@ -21,16 +21,26 @@ const dashboardRefreshional = () => {
     eventContainer.innerHTML = ""
     taskContainer.innerHTML = ""
     friendContainer.innerHTML = ""
-    usernameWelcome.innerHTML = `Welcome, `
+    APIManager.getUsers().then(function(users) {
+        const currentUser = users.find(user => user.id === userId)
+        usernameWelcome.innerHTML = `Welcome, ${currentUser.username}`
+    })
     APIManager.fetchAllEmbedded("chats").then(function(users) {
+        const newChatArray = []
         for (let i = 0; i < users.length; i++) {
             const user = users[i]
-            const username = user.username
             user.chats.forEach(function(chat) {
+                newChatArray.push(chat)
+            })
+        }
+        APIManager.getUsers().then(function(users) {
+            newChatArray.sort((a, b) => a.timestamp - b.timestamp).forEach(function(chat) {
+                const username = users.find(user => user.id === chat.userId).username
                 const messageHTML = chatsModule.buildChatsHTML(chat, username, userId)
                 printToDOM(messageHTML, "#" + chatContainer.id)
             })
-        }
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        })
     })
     APIManager.fetchWithExpandedUserInfo("articles", userId).then(function(articles) {
         for (let i = 0; i < articles.length; i++) {
