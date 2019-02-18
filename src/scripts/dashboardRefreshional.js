@@ -6,7 +6,7 @@ import eventsModule from "./eventsModule"
 import tasksModule from "./task"
 
 const dashboardRefreshional = () => {
-    // NEEDS TO CHANGE TO THIS
+    // NEED TO CHANGE TO THIS
     // const userId = parseInt(sessionStorage.getItem('userId'))
     const userId = 1
     const dashboardContainer = document.getElementById("dashboardContainer")
