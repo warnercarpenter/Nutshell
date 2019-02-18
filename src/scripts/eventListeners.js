@@ -81,7 +81,7 @@ const clickBubbler = {
                     // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events')
                     switch (targetList[0]) {
                         case 'events':
-                            targetId = document.querySelector("#eventId");
+                            targetId = targetList[2];
                             newObject = eventsModule.createEventObject(targetId);
                             break;
                         case 'chats':

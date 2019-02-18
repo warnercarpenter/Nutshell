@@ -28,7 +28,7 @@ const eventsModule = {
     },
     createEventObject: eventId => {
         const userId = parseInt(sessionStorage.getItem('userId'));
-        if (eventId === null) {
+        if (eventId === undefined) {
             let name = document.querySelector("#eventName").value;
             let date = document.querySelector("#eventDate").value;
             let time = document.querySelector("#eventTime").value;
@@ -47,14 +47,16 @@ const eventsModule = {
 
             return eventObject;
         } else {
-            eventId = document.querySelector("#eventId").value;
-            APIManager.getAnyById("events", eventId)
+            //eventId = document.querySelector("#eventId").value;
+            APIManager.getUsAnyById("events", eventId)
             .then(
                 editingObject => {
+                    let newHTMLString = eventsModule.buildEntryForm(eventId);
+                    document.querySelector("#formSection").innerHTML = newHTMLString;
                     let oldtime = timeConverter(eventObject.date);
 
                     document.querySelector("#eventName").value = editingObject.name;
-                    document.querySelector("#eventDate").value = editingObject.oldtime;
+                    //document.querySelector("#eventDate").value = oldtime;
                     document.querySelector("#eventLocation").value = editingObject.location;
 
                     let name = document.querySelector("#eventName").value;
