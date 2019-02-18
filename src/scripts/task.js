@@ -7,15 +7,9 @@ const tasksModule = {
             <section class="tasks" id="task--${taskObject.id}">
             <div class="taskName">${taskObject.name}</div>
             <p class="taskDate" id="completion_date">${taskTimestamp}</p>
+            <label>Completed</label>
+            <input type="checkbox" id="tasks--delete--${taskObject.id}"><br>
         `
-
-        if (taskObject.userId === userId) {
-            baseHTML += `
-                <button id="tasks--edit--${taskObject.id}">Edit</button>
-                <label>Completed</label>
-                <input type="checkbox" id="tasks--delete--${taskObject.id}"><br>
-            `
-        }
 
         baseHTML += "</section><hr/>"
 

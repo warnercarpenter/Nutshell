@@ -31,6 +31,7 @@ const dashboardRefreshional = () => {
                 newChatArray.push(chat)
             })
         }
+        console.log(newChatArray)
         APIManager.getUsers().then(function(users) {
             newChatArray.sort((a, b) => a.timestamp - b.timestamp).forEach(function(chat) {
                 const username = users.find(user => user.id === chat.userId).username
@@ -50,7 +51,7 @@ const dashboardRefreshional = () => {
     APIManager.fetchWithExpandedUserInfo("events", userId).then(function(events) {
         for (let i = 0; i < events.length; i++) {
             const currentEvent = events[i]
-            const eventHTML = eventsModule.createEventHTML(currentEvent, userId)
+            const eventHTML = eventsModule.createEventHTML(currentEvent, userId, i)
             printToDOM(eventHTML, "#" + eventContainer.id)
         }
     })
