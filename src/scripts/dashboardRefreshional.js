@@ -6,8 +6,6 @@ import eventsModule from "./eventsModule"
 import tasksModule from "./task"
 
 const dashboardRefreshional = () => {
-    // NEED TO CHANGE TO THIS
-    // const userId = parseInt(sessionStorage.getItem('userId'))
     const userId = parseInt(sessionStorage.getItem('userId'))
     const dashboardContainer = document.getElementById("dashboardContainer")
     const chatContainer = document.getElementById("chatDisplay")
