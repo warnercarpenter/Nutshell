@@ -57,20 +57,18 @@ const articleModule = {
         return baseHTML
     },
     articleEdit: () => {
-        let database = event.target.split("--")[0]
-        let articleId = event.target.split("--")[2]
+        let database = event.target.id.split("--")[0]
+        let articleId = event.target.id.split("--")[2]
         APIManager.getAnyById(database, articleId)
-        .then ( (response) => {
-            printToDOM(articleModule.buildArticleForm, "#formSection")
-            let button = document.getElementById("articles--create")
-            button.innerText = "Save Edits"
-            button.id = "articles--editing"
-            document.querySelector("#articleTitle").value = response.title
-            document.querySelector("#articleSummary").value = response.summary
-        }
-
-
-        )
+            .then((response) => {
+                printToDOM(articleModule.buildArticleForm, "#formSection")
+                let button = document.getElementById("articles--create")
+                button.innerText = "Save Edits"
+                button.id = `articles--editing--${response.id}`
+                document.querySelector("#articleTitle").value = response.title
+                document.querySelector("#articleSummary").value = response.summary
+                document.querySelector("#articleURL").value = response.url
+            })
     }
 }
 
