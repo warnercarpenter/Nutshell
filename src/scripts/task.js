@@ -13,8 +13,8 @@ const tasksModule = {
         if (taskObject.userId === userId) {
             baseHTML += `
                 <button id="tasks--edit--${taskObject.id}">Edit</button>
-                <label>Is task complete?</label>
-                <input id="tasks--delete--${taskObject.id}">Success!<br>
+                <label>Completed</label>
+                <input type="checkbox" id="tasks--delete--${taskObject.id}"><br>
             `
         }
 
