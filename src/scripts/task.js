@@ -1,8 +1,8 @@
 import timeConverter from "./timestampparser";
 
 const tasksModule = {
-    taskToHTML: function (taskObject, userId) {
-        const taskTimestamp = timeConverter(taskObject.completion_date)
+    taskToHTML: function (taskObject) {
+        let taskTimestamp = timeConverter(taskObject.completion_date)
         let baseHTML = `
             <section class="tasks" id="task--${taskObject.id}">
             <div class="taskName">${taskObject.name}</div>
@@ -33,7 +33,6 @@ const tasksModule = {
         const taskObject = {
             name: document.querySelector("#taskName").value,
             completion_date: document.querySelector("#taskDate").value,
-            is_complete: document.querySelector("#taskComplete").value,
             userId: parseInt(sessionStorage.getItem("userId"))
         }
         return taskObject
