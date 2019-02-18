@@ -43,6 +43,20 @@ const tasksModule = {
             userId: parseInt(sessionStorage.getItem("userId"))
         }
         return taskObject
+    },
+    articleEdit: function () {
+        let database = event.target.id.split("--")[0]
+        let taskId = event.target.id.split("--")[2]
+        APIManager.getAnyById(database, taskId)
+            .then((response) => {
+                printToDOM(articleModule.buildArticleForm, "#formSection")
+                let button = document.getElementById("articles--create")
+                button.innerText = "Save Edits"
+                button.id = `articles--editing--${response.id}`
+                document.querySelector("#articleTitle").value = response.title
+                document.querySelector("#articleSummary").value = response.summary
+                document.querySelector("#articleURL").value = response.url
+            })
     }
 }
 
