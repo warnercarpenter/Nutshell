@@ -203,7 +203,7 @@ const clickBubbler = {
                             sessionStorage.setItem("userId", element.id);
                             dashboardRefreshional();
                         } else {
-                            document.querySelector("#dashboardContainer").innerHTML += "the username or password does not match; please try again";
+                            document.querySelector("#dashboardContainer").innerHTML += "The username or password does not match; please try again";
                         }
                 })
             });
@@ -218,6 +218,7 @@ const clickBubbler = {
                 objectArray => {
                     let userId = objectArray.id;
                     sessionStorage.setItem("userId", userId);
+                    dashboardRefreshional();
                 }
             )
         });

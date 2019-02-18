@@ -1,6 +1,6 @@
 const registrationLoginHandler = {
     buildRegistrationForm: () => {
-        return `<form id="registrationForm">
+        return `<section id="registrationForm">
         <fieldset>
             <label for="email">Email:</label>
             <input type="text" name="email" id="email"></input>
@@ -21,6 +21,7 @@ const registrationLoginHandler = {
             <label for="lastName">Last Name:</label>
             <input type="text" name="lastName" id="lastName"></input>
         <button id="registration--create">Register</button>
+        </section>
         `
     },
     createRegistrationObject: () => {
@@ -36,12 +37,11 @@ const registrationLoginHandler = {
             first_name: firstName,
             last_name: lastName,
             email: email
-
         }
         return userObject
     },
     buildLoginForm: () => {
-        return `<form id="loginForm">
+        return `<section id="loginForm">
         <fieldset>
             <label for="username">Username:</label>
             <input type="text" name="loginUsername" id="loginUsername"></input>
@@ -52,6 +52,7 @@ const registrationLoginHandler = {
         </fieldset>
         <fieldset>
         <button id="login">Login</button>
+        </section>
         `
     },
     createLoginObject: () => {
