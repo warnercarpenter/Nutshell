@@ -1,33 +1,185 @@
+.hidden {
+    display: none;
+}
+
 html, body{
-    font-family: sans-serif;
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color: #f2efc7;
     height: 100%;
     margin: 0;
     padding: 0;
+    color: #6b5547
+}
+
+.header {
+    background-color: #6b5547;
+    padding: 0px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    margin: auto
+  }
+
+.headerText {
+    white-space: nowrap;
+    color: #f7ffe0
+}
+
+.logo {
+    padding-top: 8px;
+    padding-left: 25%;
+    padding-bottom: 8px
+}
+
+.header img {
+    width:200px;
+    height:40px;
+  }
+
+.header-right {
+    margin: auto;
+    padding-top: 0px;
+    margin-right: 25%;
+    padding-left: 10px;
+}
+
+#logoutButton {
+    align-self: flex-end;
+    margin-left: 10px;
+}
+
+h2 {
+    margin-top: 30px;
+    margin-bottom: 20px
+}
+
+button {
+    background-color: #fb98aa;
+    border: none;
+    color: white;
+    padding: 2px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    vertical-align: middle;
+    border-radius: 2px;
+    box-shadow: 1px 1px #d2bba0
+}
+
+button:focus {outline:0;}
+
+button:hover {
+    background-color: #ffeee2;
+    color: #6b5547
+}
+
+.articleTitle {
+    font-size: 18px;
+    font-weight: bold
+}
+
+.chatTextContent {
+    font-size: 18px;
+    font-weight: bold
+}
+
+.taskName {
+    font-size: 18px;
+    font-weight: bold
+}
+
+.eventName {
+    font-size: 18px;
+    font-weight: bold
+}
+
+.articleLink {
+    font-size: 12px
+}
+
+.taskDate {
+    font-size: 12px
+}
+
+
+#chatDisplay::-webkit-scrollbar {
+    width: .5em;
+}
+
+#chatDisplay::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+}
+
+#chatDisplay::-webkit-scrollbar-thumb {
+  background-color: #9f7e69;
+}
+#articleDisplay::-webkit-scrollbar {
+    width: .5em;
+}
+
+#articleDisplay::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+}
+
+#articleDisplay::-webkit-scrollbar-thumb {
+  background-color: #9f7e69;
+}
+#taskDisplay::-webkit-scrollbar {
+    width: .5em;
+}
+
+#taskDisplay::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+}
+
+#taskDisplay::-webkit-scrollbar-thumb {
+  background-color: #9f7e69;
+}
+#eventDisplay::-webkit-scrollbar {
+    width: .5em;
+}
+
+#eventDisplay::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+}
+
+#eventDisplay::-webkit-scrollbar-thumb {
+  background-color: #9f7e69;
 }
 
 #dashboardContainer {
     margin: auto;
     width: 100%;
-    height: 100%;
+    height: 90%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap
 }
 
 #chatDisplay {
+    box-shadow: 4px 4px #d2bba0;
+    padding: 10px;
+    background-color: #f7ffe0;
     overflow: auto;
     width: 300px;
     height: 500px;
-    border: solid 1px black;
     margin: 10px;
+    word-wrap: break-word;
 }
 
+
+
 #articleDisplay {
+    box-shadow: 4px 4px #d2bba0;
+    padding: 10px;
+    background-color: #f7ffe0;
     overflow: auto;
     width: 300px;
     height: 500px;
-    border: solid 1px black;
     margin: 10px;
+    word-wrap: break-word;
 }
 
 #friendContainer {
@@ -39,30 +191,40 @@ html, body{
 }
 
 #eventContainer {
-    height: 51.85%
+    height: 268px
 }
 
 #taskContainer {
-    height: 51.85%
+    height: 268px
 }
 
 #eventDisplay {
+    box-shadow: 4px 4px #d2bba0;
+    padding: 10px;
+    background-color: #f7ffe0;
     overflow: auto;
     width: 300px;
-    height: 85%;
-    border: solid 1px black;
+    height: 75%;
     margin: 10px;
+    word-wrap: break-word;
 }
 
 #taskDisplay {
+    box-shadow: 4px 4px #d2bba0;
+    padding: 10px;
+    background-color: #f7ffe0;
     overflow: auto;
     width: 300px;
-    height: 85%;
-    border: solid 1px black;
+    height: 75%;
     margin: 10px;
+    word-wrap: break-word;
 }
 
 .sectionHeader {
+    text-align: center;
+}
+
+.sectionHeaderTasks {
     text-align: center;
 }
 
@@ -70,7 +232,30 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid black;
+    border-top: 1px solid #f2efc7;
     margin: 1em 0;
     padding: 0;
+}
+
+a:link {
+    color: #fb98aa;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: #fb98aa;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: #fb738b;
+  }
+  
+  /* selected link */
+  a:active {
+    color: #e96f88;
+  }
+
+.chatSubText {
+    font-size: 12px
 }

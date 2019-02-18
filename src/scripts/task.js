@@ -4,16 +4,16 @@ const tasksModule = {
     taskToHTML: function (taskObject, userId) {
         const taskTimestamp = timeConverter(taskObject.completion_date)
         let baseHTML = `
-            <section class="tasks" id="task--${taskObject.id}>
+            <section class="tasks" id="task--${taskObject.id}">
             <div class="taskName">${taskObject.name}</div>
-            <p id="completion_date">${taskTimestamp}</p>
-            <label for="is_complete" id="task_complete">${taskObject.is_complete}</label>
+            <p class="taskDate" id="completion_date">${taskTimestamp}</p>
         `
 
         if (taskObject.userId === userId) {
             baseHTML += `
                 <button id="tasks--edit--${taskObject.id}">Edit</button>
-                <button id="tasks--delete--${taskObject.id}">Delete</button>
+                <label>Completed</label>
+                <input type="checkbox" id="tasks--delete--${taskObject.id}"><br>
             `
         }
 
@@ -30,11 +30,6 @@ const tasksModule = {
         </fieldset>
             <label for="completion_date">Date to be completed by: </label><br>
             <input type="date" id="taskDate">
-        <fieldset>
-            <label>Is task complete: </label><br>
-            <input type="checkbox" id="taskComplete" value="Yes">Yes<br>
-            <input type="checkbox" id="taskComplete" value="No">No<br>
-        </fieldset>
         <fieldset>
             <button id="tasks--create">Submit</button>
         </fieldset>

@@ -82,8 +82,8 @@ const eventsModule = {
         let time = timeConverter(eventObject.date);
         let baseHTML =  `<section class="events" id="event--${eventObject.id}">
         <div class="eventName">${eventObject.name}</div>
-        <p>${time}</p>
-        <p>${eventObject.location}</p>
+        <p class="eventTime">Time: ${time}</p>
+        <p>Location: ${eventObject.location}</p>
         </section>`;
 
         if (eventObject.userId === userId) {

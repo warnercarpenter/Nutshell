@@ -14,16 +14,21 @@ const dashboardRefreshional = () => {
     const eventContainer = document.getElementById("eventDisplay")
     const taskContainer = document.getElementById("taskDisplay")
     const friendContainer = document.getElementById("friendDisplay")
+    const usernameWelcome = document.getElementById("usernameWelcome")
     chatContainer.innerHTML = ""
     articleContainer.innerHTML = ""
     eventContainer.innerHTML = ""
     taskContainer.innerHTML = ""
     friendContainer.innerHTML = ""
-    APIManager.fetchWithExpandedUserInfo("chats", userId).then(function(chats) {
-        for (let i = 0; i < chats.length; i++) {
-            const currentMessage = chats[i]
-            const messageHTML = chatsModule.buildChatsHTML(currentMessage, userId)
-            printToDOM(messageHTML, "#" + chatContainer.id)
+    usernameWelcome.innerHTML = `Welcome, `
+    APIManager.fetchAllEmbedded("chats").then(function(users) {
+        for (let i = 0; i < users.length; i++) {
+            const user = users[i]
+            const username = user.username
+            user.chats.forEach(function(chat) {
+                const messageHTML = chatsModule.buildChatsHTML(chat, username, userId)
+                printToDOM(messageHTML, "#" + chatContainer.id)
+            })
         }
     })
     APIManager.fetchWithExpandedUserInfo("articles", userId).then(function(articles) {
@@ -47,6 +52,9 @@ const dashboardRefreshional = () => {
             printToDOM(taskHTML, "#" + taskContainer.id)
         }
     })
+    if (dashboardContainer.classList.contains("hidden")) {
+        dashboardContainer.classList.toggle("hidden")
+    }
 }
 
 export default dashboardRefreshional
