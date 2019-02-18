@@ -1,3 +1,6 @@
+import APIManager from "./APIManager";
+import printToDOM from "./printToDOM";
+
 const articleModule = {
     buildArticleForm: (articleId) => {
         return `<form id="articleForm">
@@ -21,9 +24,8 @@ const articleModule = {
         let title = document.querySelector("#articleTitle").value;
         let summary = document.querySelector("#articleSummary").value;
         let url = document.querySelector("#articleURL").value;
-        // const userId = Window.sessionStorage.getItem('userId');
-        const userId = 1;
-        // let articleId = document.querySelector("#articleId").value;
+        const userId = parseInt(sessionStorage.getItem('userId'))
+
 
         const articleObject = {
             title: title,
@@ -37,7 +39,6 @@ const articleModule = {
 
     },
     createArticleHTML: (articleObject, userId) => {
-        console.log(articleObject.url)
         let baseHTML = `<section class="articles" id="article--${articleObject.id}">
         <div class="articleTitle">${articleObject.title}</div>
         <p>${articleObject.summary}</p>
@@ -55,6 +56,20 @@ const articleModule = {
 
         return baseHTML
     },
+    articleEdit: () => {
+        let database = event.target.id.split("--")[0]
+        let articleId = event.target.id.split("--")[2]
+        APIManager.getAnyById(database, articleId)
+            .then((response) => {
+                printToDOM(articleModule.buildArticleForm, "#formSection")
+                let button = document.getElementById("articles--create")
+                button.innerText = "Save Edits"
+                button.id = `articles--editing--${response.id}`
+                document.querySelector("#articleTitle").value = response.title
+                document.querySelector("#articleSummary").value = response.summary
+                document.querySelector("#articleURL").value = response.url
+            })
+    }
 }
 
 export default articleModule
