@@ -13,6 +13,7 @@ const landing = () => {
     document.querySelector("#formSection").innerHTML = HTMLcode;
     dashboardContainer.classList.add("hidden");
     clickBubbler.firstLoad();
+    document.getElementById("usernameWelcome").innerHTML = "";
 };
 
 export default landing;
