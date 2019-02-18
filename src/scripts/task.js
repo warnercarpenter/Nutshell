@@ -7,7 +7,6 @@ const tasksModule = {
             <section class="tasks" id="task--${taskObject.id}">
             <div class="taskName">${taskObject.name}</div>
             <p class="taskDate" id="completion_date">${taskTimestamp}</p>
-            <label for="is_complete" id="task_complete">${taskObject.is_complete}</label><br/>
         `
 
         if (taskObject.userId === userId) {
