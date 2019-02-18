@@ -36,7 +36,7 @@ const clickBubbler = {
                             newHTMLstring = articleModule.buildArticleForm();
                             break;
                     }
-                    document.querySelector("#dashboardContainer").innerHTML = newHTMLstring;
+                    document.querySelector("#formSection").innerHTML = newHTMLstring;
                 } else if (targetList[1] === "create") {
                     // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events')
                     switch (targetList[0]) {
@@ -58,7 +58,6 @@ const clickBubbler = {
                     // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
                     .then(
                         objectArray => {
-                            location.reload(true);
                             let newHTMLstring = "";
                             switch (targetList[0]) {
                                 case 'events':
@@ -82,7 +81,7 @@ const clickBubbler = {
                     switch (targetList[0]) {
                         case 'events':
                             targetId = targetList[2];
-                            newObject = eventsModule.createEventObject(targetId);
+                            eventsModule.editEventObject(targetId);
                             break;
                         case 'chats':
                             targetId = document.querySelector("#chatId");
@@ -97,34 +96,6 @@ const clickBubbler = {
                             newObject = articleModule.createArticleObject(targetId);
                             break;
                     }
-                    // then call the api edit method and pass it the new object, the module name, and the original object id
-                    //desiredDatabase, objectId, editedObject
-                    APIManager.Put(targetList[0], targetId, newObject)
-                    // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
-                    .then(
-                        objectArray => {
-                            location.reload(true);
-                            let newHTMLstring = "";
-                            objectArray.forEach(element => {
-                                switch (targetList[0]) {
-                                    case 'events':
-                                        newHTMLstring += eventsModule.createEventHTML(element);
-                                        break;
-                                    case 'chats':
-                                        newHTMLstring += chatsModule.buildChatsHTML(element);
-                                        break;
-                                    case 'tasks':
-                                        newHTMLstring += tasksModule.taskToHTML(element);
-                                        break;
-                                    case 'articles':
-                                        newHTMLstring += articleModule.createArticleHTML(element);
-                                        break;
-                                }
-                            });
-                            // call printToDom() and pass it the new HTML string
-                            printToDOM(newHTMLstring, where);
-                        }
-                    )
                 } else if (targetList[1] === "delete") {
                     // call the api delete method and pass it the module name and the original object id
                     switch (targetList[0]) {
@@ -149,7 +120,6 @@ const clickBubbler = {
                             // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
                             .then(
                                 objectArray => {
-                                    location.reload(true);
                                     let newHTMLstring = "";
                                     objectArray.forEach(element => {
                                         switch (targetList[0]) {
@@ -171,6 +141,48 @@ const clickBubbler = {
                                     printToDOM(newHTMLstring, where);
                                 }
                             )
+                        }
+                    )
+                } else if (targetList[1] === "editing") {
+                    switch (targetList[0]) {
+                        case 'events':
+                            targetId = parseInt(document.querySelector("#eventId").value);
+                            newObject = eventsModule.createEventObject();
+                            break;
+                        case 'chats':
+                            targetId = document.querySelector("#chatId");
+                            break;
+                        case 'tasks':
+                            targetId = document.querySelector("#objectId");
+                            break;
+                        case 'articles':
+                            targetId = document.querySelector("#articleId");
+                            break;
+                    }
+                    // then call the api edit method and pass it the new object, the module name, and the original object id
+                    //desiredDatabase, objectId, editedObject
+                    APIManager.Put(targetList[0], targetId, newObject)
+                    // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
+                    .then(
+                        objectArray => {
+                            let newHTMLstring = "";
+                            switch (targetList[0]) {
+                                case 'events':
+                                    newHTMLstring += eventsModule.createEventHTML(objectArray);
+                                    where = "event";
+                                    break;
+                                case 'chats':
+                                    newHTMLstring += chatsModule.buildChatsHTML(objectArray);
+                                    break;
+                                case 'tasks':
+                                    newHTMLstring += tasksModule.taskToHTML(objectArray);
+                                    break;
+                                case 'articles':
+                                    newHTMLstring += articleModule.createArticleHTML(objectArray);
+                                    break;
+                            }
+                            // call printToDom() and pass it the new HTML string
+                            printToDOM(newHTMLstring, where);
                         }
                     )
                 }
@@ -224,6 +236,9 @@ const clickBubbler = {
                 }
             )
         });
+    },
+    editing: () => {
+        document.querySelector("#formSection").addEventListener("click")
     }
 }
 
