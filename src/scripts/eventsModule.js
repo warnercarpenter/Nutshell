@@ -16,6 +16,7 @@ const eventsModule = {
             <fieldset>
                 <label for="eventDate">Date of the event:</label>
                 <input type="date" name="eventDate" id="eventDate"></input>
+                <input type="time" name="eventTime" id="eventTime"></input>
             </fieldset>
             <fieldset>
                 <label for="eventLocation">Location of the event:</label>
@@ -27,24 +28,29 @@ const eventsModule = {
     createEventObject: eventId => {
         let name = document.querySelector("#eventName").value;
         let date = document.querySelector("#eventDate").value;
+        let time = document.querySelector("#eventTime").value;
         let location = document.querySelector("#eventLocation").value;
-        // const userId = Window.sessionStorage.getItem('userId');
-        const userId = 1;
-        // eventId = document.querySelector("#eventId").value;
+        const userId = parseInt(sessionStorage.getItem('userId'));
+        // const userId = 1;
+        eventId = document.querySelector("#eventId").value;
+
+        let concat_datetime = `${date} ${time}`;
+        let datetime = new Date(concat_datetime);
+        let timestamp = datetime.getTime();
 
         const eventObject = {
             name: name,
-            date: date,
+            date: timestamp,
             location: location,
             userId: userId
         }
 
+        if (eventId !== "") {
+
+        } else {
+
+        }
         return eventObject;
-        // if (eventId !== "") {
-
-        // } else {
-
-        // }
     },
     createEventHTML: (eventObject, userId) => {
         let time = timeConverter(eventObject.date)

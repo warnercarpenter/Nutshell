@@ -179,15 +179,17 @@ const clickBubbler = {
     },
     firstLoad: () => {
         document.querySelector("#listenToMe").addEventListener("click", event => {
-            const targetList = event.target.id.split("--");
-            if (targetList[0] === "register") {
-                const HTMLcode = registrationLoginHandler.buildRegistrationForm();
-                document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
-                clickBubbler.register();
-            } else {
-                const HTMLcode = registrationLoginHandler.buildLoginForm();
-                document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
-                clickBubbler.login();
+            if (event.target.nodeName === "A") {
+                const targetList = event.target.id.split("--");
+                if (targetList[0] === "register") {
+                    const HTMLcode = registrationLoginHandler.buildRegistrationForm();
+                    document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
+                    clickBubbler.register();
+                } else {
+                    const HTMLcode = registrationLoginHandler.buildLoginForm();
+                    document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
+                    clickBubbler.login();
+                }
             }
         })
     },
