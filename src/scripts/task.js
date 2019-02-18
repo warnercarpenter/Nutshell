@@ -38,15 +38,15 @@ const tasksModule = {
         }
         return taskObject
     },
-    articleEdit: function () {
+    taskEdit: function () {
         let database = event.target.id.split("--")[0]
         let taskId = event.target.id.split("--")[2]
         APIManager.getAnyById(database, taskId)
             .then((response) => {
-                printToDOM(articleModule.buildArticleForm, "#formSection")
-                let button = document.getElementById("articles--create")
+                taskToHTML(tasksModule.taskForm, "#formSection")
+                let button = document.getElementById("tasks--create")
                 button.innerText = "Save Edits"
-                button.id = `articles--editing--${response.id}`
+                button.id = `tasks--editing--${response.id}`
                 document.querySelector("#articleTitle").value = response.title
                 document.querySelector("#articleSummary").value = response.summary
                 document.querySelector("#articleURL").value = response.url
@@ -55,3 +55,7 @@ const tasksModule = {
 }
 
 export default tasksModule
+
+document.querySelector("#taskName").addEventListener("onclick", (event)=>{
+
+})
