@@ -46,13 +46,24 @@ const eventsModule = {
 
         // }
     },
-    createEventHTML: (eventObject, userId) => {
+    createEventHTML: (eventObject, userId, checker) => {
         let time = timeConverter(eventObject.date)
-        let baseHTML =  `<section class="events" id="event--${eventObject.id}">
-        <div class="eventName">${eventObject.name}</div>
-        <p class="eventTime">Time: ${time}</p>
-        <p>Location: ${eventObject.location}</p>
-        </section>`;
+        let baseHTML = ""
+        if (checker === 0) {
+            baseHTML = '<section class="nextEvent">'
+            baseHTML +=  `<section class="events" id="event--${eventObject.id}">
+            <div class="eventName">${eventObject.name}</div>
+            <p class="eventTime">Time: ${time}</p>
+            <p>Location: ${eventObject.location}</p>
+            </section>`
+        } else {
+            baseHTML = '<section>'
+            baseHTML +=  `<section class="events" id="event--${eventObject.id}">
+            <div class="eventName">${eventObject.name}</div>
+            <p class="eventTime">Time: ${time}</p>
+            <p>Location: ${eventObject.location}</p>
+            </section>`
+        }
 
         if (eventObject.userId === userId) {
             baseHTML += `
@@ -61,7 +72,7 @@ const eventsModule = {
             `
         }
 
-        baseHTML += "<hr/>"
+        baseHTML += "</section><hr/>"
 
         return baseHTML
     },
