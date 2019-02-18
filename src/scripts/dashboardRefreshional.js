@@ -6,20 +6,20 @@ import eventsModule from "./eventsModule"
 import tasksModule from "./task"
 
 const dashboardRefreshional = () => {
-    // NEED TO BE CHANGED TO const userId = Window.sessionStorage.getItem('userId');
-    const userId = 1
-    //
+    const userId = parseInt(sessionStorage.getItem('userId'))
     const dashboardContainer = document.getElementById("dashboardContainer")
     const chatContainer = document.getElementById("chatDisplay")
     const articleContainer = document.getElementById("articleDisplay")
     const eventContainer = document.getElementById("eventDisplay")
     const taskContainer = document.getElementById("taskDisplay")
     const friendContainer = document.getElementById("friendDisplay")
+    const usernameWelcome = document.getElementById("usernameWelcome")
     chatContainer.innerHTML = ""
     articleContainer.innerHTML = ""
     eventContainer.innerHTML = ""
     taskContainer.innerHTML = ""
     friendContainer.innerHTML = ""
+    usernameWelcome.innerHTML = `Welcome, `
     APIManager.fetchWithExpandedUserInfo("chats", userId).then(function(chats) {
         for (let i = 0; i < chats.length; i++) {
             const currentMessage = chats[i]

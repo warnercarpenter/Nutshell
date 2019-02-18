@@ -7,6 +7,38 @@
       "first_name": "Steve",
       "last_name": "Brownlee",
       "email": "masterCommander@gmail.com"
+    },
+    {
+      "username": "warner",
+      "password": "1",
+      "first_name": "warner",
+      "last_name": "carpenter",
+      "email": "warnersemail",
+      "id": 2
+    },
+    {
+      "username": "warner",
+      "password": "1",
+      "first_name": "warner",
+      "last_name": "carpenter",
+      "email": "warnersemail",
+      "id": 3
+    },
+    {
+      "username": "warner",
+      "password": "1",
+      "first_name": "warner",
+      "last_name": "carpenter",
+      "email": "warnersemail",
+      "id": 4
+    },
+    {
+      "username": "warner",
+      "password": "1",
+      "first_name": "warner",
+      "last_name": "carpenter",
+      "email": "warnersemail",
+      "id": 5
     }
   ],
   "tasks": [

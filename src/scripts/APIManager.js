@@ -32,7 +32,6 @@ const APIManager = {
     fetchWithExpandedUserInfo: (desiredDatabase, userId) => {
         return fetch (`http://localhost:8088/${desiredDatabase}?_expand=user&userId=${userId}`)
             .then(res => res.json())
-
     }
 }
 
