@@ -37,24 +37,8 @@ const tasksModule = {
             userId: parseInt(sessionStorage.getItem("userId"))
         }
         return taskObject
-    },
-    taskEdit: function () {
-        let database = event.target.id.split("--")[0]
-        let taskId = event.target.id.split("--")[2]
-        APIManager.getAnyById(database, taskId)
-            .then((response) => {
-                taskToHTML(tasksModule.taskForm, "#formSection")
-                let button = document.getElementById("tasks--create")
-                button.innerText = "Save Edits"
-                button.id = `tasks--editing--${response.id}`
-                document.querySelector("#articleTitle").value = response.title
-                document.querySelector("#articleSummary").value = response.summary
-                document.querySelector("#articleURL").value = response.url
-            })
     }
 }
-
-export default tasksModule
 
 const editTask = () => {
     let input = document.createElement("input")
@@ -64,3 +48,5 @@ const editTask = () => {
 }
 
 document.querySelector("#taskName").addEventListener("onclick", editTask())
+
+export default tasksModule
