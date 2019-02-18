@@ -9,7 +9,8 @@ import eventsModule from "./eventsModule";
 import chatsModule from "./chats";
 import tasksModule from "./task";
 import articleModule from "./article";
-import registrationHandler from "./registration";
+import registrationLoginHandler from "./registration";
+import dashboardRefreshional from "./dashboardRefreshional";
 
 const clickBubbler = {
     listener: () => {
@@ -176,15 +177,48 @@ const clickBubbler = {
             }
         })
     },
+    firstLoad: () => {
+        document.querySelector("#listenToMe").addEventListener("click", event => {
+            const targetList = event.target.id.split("--");
+            if (targetList[0] === "register") {
+                const HTMLcode = registrationLoginHandler.buildRegistrationForm();
+                document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
+                clickBubbler.register();
+            } else {
+                const HTMLcode = registrationLoginHandler.buildLoginForm();
+                document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
+                clickBubbler.login();
+            }
+        })
+    },
+    login: () => {
+        document.querySelector("#login").addEventListener("click",
+        event => {
+            const newObject = registrationLoginHandler.createLoginObject();
+            APIManager.getUsers()
+            .then(
+                userList => {
+                    userList.forEach(element => {
+                        if (newObject.username === element.username && newObject.password === element.password ) {
+                            sessionStorage.setItem("userId", element.id);
+                            dashboardRefreshional();
+                        } else {
+                            document.querySelector("#dashboardContainer").innerHTML += "The username or password does not match; please try again";
+                        }
+                })
+            });
+        })
+    },
     register: () => {
         document.querySelector("#registration--create").addEventListener("click",
-        event => {
-            const newObject = registrationHandler.createRegistrationObject();
+        () => {
+            const newObject = registrationLoginHandler.createRegistrationObject();
             APIManager.Post("users", newObject)
             .then(
                 objectArray => {
                     let userId = objectArray.id;
                     sessionStorage.setItem("userId", userId);
+                    dashboardRefreshional();
                 }
             )
         });
