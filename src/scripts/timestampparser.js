@@ -1,12 +1,15 @@
 function timeConverter (timestamp) {
-    var a = new Date(parseInt(timestamp));
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var year = a.getFullYear();
-    var month = months[a.getMonth()];
-    var date = a.getDate();
-    var hour = a.getHours();
-    var min = a.getMinutes();
-    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min;
+    let a = new Date(parseInt(timestamp));
+    let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    let year = a.getFullYear();
+    let month = months[a.getMonth()];
+    let date = a.getDate();
+    let hour = a.getHours();
+    let min = a.getMinutes();
+
+    let timestring = String(a).split(" ");
+    let time = timestring.slice(0,5).reduce((currentEl, nextEl) => `${currentEl} ${nextEl}`);
+
     return time;
   };
 

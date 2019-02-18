@@ -58,6 +58,7 @@ const clickBubbler = {
                     // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
                     .then(
                         objectArray => {
+                            document.querySelector("#formSection").innerHTML = "";
                             dashboardRefreshional();
                         })
                 } else if (targetList[1] === "edit") {
