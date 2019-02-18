@@ -37,7 +37,6 @@ const articleModule = {
 
     },
     createArticleHTML: (articleObject, userId) => {
-        console.log(articleObject.url)
         let baseHTML = `<section class="articles" id="article--${articleObject.id}">
         <div class="articleTitle">${articleObject.title}</div>
         <p>${articleObject.summary}</p>
