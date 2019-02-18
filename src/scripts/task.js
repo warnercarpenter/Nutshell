@@ -1,7 +1,7 @@
 import timeConverter from "./timestampparser";
 
 const tasksModule = {
-    taskToHTML: function (taskObject, userId) {
+    taskToHTML: function (taskObject) {
         const taskTimestamp = timeConverter(taskObject.completion_date)
         let baseHTML = `
             <section class="tasks" id="task--${taskObject.id}">
