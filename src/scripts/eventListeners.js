@@ -10,6 +10,7 @@ import tasksModule from "./task";
 import articleModule from "./article";
 import registrationLoginHandler from "./registration";
 import dashboardRefreshional from "./dashboardRefreshional";
+import landing from "./logout";
 
 const clickBubbler = {
     listener: () => {
@@ -20,6 +21,7 @@ const clickBubbler = {
                 let targetId = "";
                 if (targetList[1] === "add") {
                     let newHTMLstring = "";
+                    dashboardContainer.classList.toggle("hidden");
                     switch (targetList[0]) {
                         case 'event':
                             newHTMLstring = eventsModule.buildEntryForm();
@@ -60,6 +62,7 @@ const clickBubbler = {
                         })
                 } else if (targetList[1] === "edit") {
                     // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events')
+                    dashboardContainer.classList.toggle("hidden");
                     switch (targetList[0]) {
                         case 'events':
                             targetId = targetList[2];
@@ -151,14 +154,20 @@ const clickBubbler = {
             APIManager.getUsers()
             .then(
                 userList => {
+                    let login_match = false;
                     userList.forEach(element => {
-                        if (newObject.username === element.username && newObject.password === element.password ) {
+                        if (newObject.username === element.username && newObject.password === element.password) {
+                            login_match = true;
                             sessionStorage.setItem("userId", element.id);
+                            document.querySelector("#formSection").innerHTML = "";
                             dashboardRefreshional();
-                        } else {
-                            document.querySelector("#dashboardContainer").innerHTML += "The username or password does not match; please try again";
+                            clickBubbler.listener();
+                            clickBubbler.logout();
                         }
                 })
+                if (login_match === false) {
+                    document.querySelector("#dashboardContainer").innerHTML += "The username or password does not match; please try again";
+                }
             });
         })
     },
@@ -171,10 +180,20 @@ const clickBubbler = {
                 objectArray => {
                     let userId = objectArray.id;
                     sessionStorage.setItem("userId", userId);
+                    document.querySelector("#formSection").innerHTML = "";
                     dashboardRefreshional();
+                    clickBubbler.listener();
+                    clickBubbler.logout();
                 }
             )
         });
+    },
+    logout: () => {
+        document.querySelector("#logoutButton").addEventListener("click",
+        () => {
+            sessionStorage.removeItem("userId");
+            landing();
+        })
     }
 }
 
