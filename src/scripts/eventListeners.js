@@ -59,23 +59,7 @@ const clickBubbler = {
                     // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
                     .then(
                         objectArray => {
-                            let newHTMLstring = "";
-                            switch (targetList[0]) {
-                                case 'events':
-                                    newHTMLstring += eventsModule.createEventHTML(objectArray);
-                                    break;
-                                case 'chats':
-                                    newHTMLstring += chatsModule.buildChatsHTML(objectArray);
-                                    break;
-                                case 'tasks':
-                                    newHTMLstring += tasksModule.taskToHTML(objectArray);
-                                    break;
-                                case 'articles':
-                                    newHTMLstring += articleModule.createArticleHTML(objectArray);
-                                    break;
-                            }
-                            // call printToDom() and pass it the new HTML string
-                            printToDOM(newHTMLstring, where);
+                            dashboardRefreshional();
                         })
                 } else if (targetList[1] === "edit") {
                     // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events')
@@ -93,8 +77,8 @@ const clickBubbler = {
                             newObject = tasksModule.captureFormValues(targetId);
                             break;
                         case 'articles':
-                            targetId = document.querySelector("#articleId");
-                            newObject = articleModule.createArticleObject(targetId);
+                            targetId = targetList[2];
+                            articleModule.articleEdit(targetId);
                             break;
                     }
                 } else if (targetList[1] === "delete") {
@@ -114,13 +98,8 @@ const clickBubbler = {
                     // .then() and call the api list method, passing it the correct module and userid
                     .then(
                         () => {
-                            APIManager.getByUserId(targetList[0], 1)
-                            // .then() and call the dashboard module
-                            .then(
-                                objectArray => {
-                                    dashboardRefreshional();
-                                    });
-                            })
+                             dashboardRefreshional();
+                        })
                 } else if (targetList[1] === "editing") {
                     switch (targetList[0]) {
                         case 'events':
@@ -134,7 +113,8 @@ const clickBubbler = {
                             targetId = document.querySelector("#objectId");
                             break;
                         case 'articles':
-                            targetId = document.querySelector("#articleId");
+                            targetId = parseInt(document.querySelector("#articleId").value);
+                            newObject = articleModule.createArticleObject();
                             break;
                     }
                     // then call the api edit method and pass it the new object, the module name, and the original object id
