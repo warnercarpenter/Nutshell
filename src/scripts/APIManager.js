@@ -38,8 +38,8 @@ const APIManager = {
             .then(res => res.json())
 
     },
-    fetchAllChats: (desiredDatabase) => {
-        return fetch (`http://localhost:8088/users?_embed=chats`)
+    fetchAllEmbedded: (desiredDatabase) => {
+        return fetch (`http://localhost:8088/users?_embed=${desiredDatabase}`)
             .then(res => res.json())
 
     }
