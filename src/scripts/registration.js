@@ -65,6 +65,9 @@ const registrationLoginHandler = {
 
         }
         return userLoginObject
+    },
+    logout: () => {
+        sessionStorage.removeItem("userId")
     }
 
 }
