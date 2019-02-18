@@ -4,6 +4,7 @@ import chatsModule from "./chats";
 import articleModule from "./article"
 import eventsModule from "./eventsModule"
 import tasksModule from "./task"
+import taskEdit from "./taskedit";
 
 const dashboardRefreshional = () => {
     const userId = parseInt(sessionStorage.getItem('userId'))
@@ -64,6 +65,8 @@ const dashboardRefreshional = () => {
     if (dashboardContainer.classList.contains("hidden")) {
         dashboardContainer.classList.toggle("hidden")
     }
+
+    taskEdit()
 }
 
 export default dashboardRefreshional
