@@ -4,7 +4,6 @@ Task: listen to the body of the page for clicks, and call other methods based on
 */
 
 import APIManager from "./APIManager";
-import printToDOM from "./printToDOM";
 import eventsModule from "./eventsModule";
 import chatsModule from "./chats";
 import tasksModule from "./task";
@@ -14,11 +13,9 @@ import dashboardRefreshional from "./dashboardRefreshional";
 
 const clickBubbler = {
     listener: () => {
-        document.querySelector("#dashboardContainer").addEventListener("click", event => {
+        document.querySelector("#listenerBlock").addEventListener("click", event => {
             if (event.target.nodeName === "BUTTON") {
                 const targetList = event.target.id.split("--");
-                const location = targetList[0].slice(0,-1);
-                const where = `#${location}Display`;
                 let newObject = {};
                 let targetId = "";
                 if (targetList[1] === "add") {
@@ -137,11 +134,11 @@ const clickBubbler = {
                 const targetList = event.target.id.split("--");
                 if (targetList[0] === "register") {
                     const HTMLcode = registrationLoginHandler.buildRegistrationForm();
-                    document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
+                    document.querySelector("#formSection").innerHTML = HTMLcode;
                     clickBubbler.register();
                 } else {
                     const HTMLcode = registrationLoginHandler.buildLoginForm();
-                    document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
+                    document.querySelector("#formSection").innerHTML = HTMLcode;
                     clickBubbler.login();
                 }
             }
@@ -178,9 +175,6 @@ const clickBubbler = {
                 }
             )
         });
-    },
-    editing: () => {
-        document.querySelector("#formSection").addEventListener("click")
     }
 }
 
