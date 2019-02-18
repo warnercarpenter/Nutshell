@@ -7,13 +7,15 @@ import dashboardRefreshional from "./dashboardRefreshional";
 import clickBubbler from "./eventListeners";
 import registrationHandler from "./registration";
 
-let userId = sessionStorage.getItem("userId");
-if (userId !== null) {
-    dashboardRefreshional()
-    clickBubbler.listener();
-} else {
-    const HTMLcode = registrationHandler.buildRegistrationForm();
-    document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
-    clickBubbler.register();
-}
+dashboardRefreshional()
+
+// let userId = sessionStorage.getItem("userId");
+// if (userId !== null) {
+//     dashboardRefreshional()
+//     clickBubbler.listener();
+// } else {
+//     const HTMLcode = registrationHandler.buildRegistrationForm();
+//     document.querySelector("#dashboardContainer").innerHTML = HTMLcode;
+//     clickBubbler.register();
+// }
 

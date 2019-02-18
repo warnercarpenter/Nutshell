@@ -9,6 +9,7 @@ const dashboardRefreshional = () => {
     // NEED TO BE CHANGED TO const userId = Window.sessionStorage.getItem('userId');
     const userId = 1
     //
+    const dashboardContainer = document.getElementById("dashboardContainer")
     const chatContainer = document.getElementById("chatDisplay")
     const articleContainer = document.getElementById("articleDisplay")
     const eventContainer = document.getElementById("eventDisplay")
@@ -47,6 +48,9 @@ const dashboardRefreshional = () => {
             printToDOM(taskHTML, "#" + taskContainer.id)
         }
     })
+    if (dashboardContainer.classList.contains("hidden")) {
+        dashboardContainer.classList.toggle("hidden")
+    }
 }
 
 export default dashboardRefreshional

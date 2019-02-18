@@ -41,7 +41,7 @@ const articleModule = {
         let baseHTML = `<section class="articles" id="article--${articleObject.id}">
         <div class="articleTitle">${articleObject.title}</div>
         <p>${articleObject.summary}</p>
-        <p><a href="http://${articleObject.url}" target="_blank">${articleObject.url}</a></p>
+        <p class="articleLink"><a href="http://${articleObject.url}" target="_blank">${articleObject.url}</a></p>
         `
 
         if (articleObject.userId === userId) {

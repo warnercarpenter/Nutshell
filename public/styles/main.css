@@ -1,14 +1,61 @@
+.hidden {
+    display: none;
+}
+
 html, body{
+    font-family: 'Nanum Gothic', sans-serif;
     background-color: #f2efc7;
-    font-family: sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
     color: #6b5547
 }
 
+.header {
+    background-color: #6b5547;
+    padding: 0px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    margin: auto
+  }
+
+.headerText {
+    white-space: nowrap;
+    color: #f7ffe0
+}
+
+.logo {
+    padding-top: 8px;
+    padding-left: 25%;
+    padding-bottom: 8px
+}
+
+.header img {
+    width:200px;
+    height:40px;
+  }
+
+.header-right {
+    margin: auto;
+    padding-top: 0px;
+    margin-right: 25%;
+    padding-left: 10px;
+}
+
+#logoutButton {
+    align-self: flex-end;
+    margin-left: 10px;
+}
+
+h2 {
+    margin-top: 30px;
+    margin-bottom: 20px
+}
+
 button {
-    background-color: #9f7e69;
+    background-color: #fb98aa;
     border: none;
     color: white;
     padding: 2px 6px;
@@ -16,11 +63,46 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
+    vertical-align: middle;
+    border-radius: 2px;
+    box-shadow: 1px 1px #d2bba0
+}
+
+button:focus {outline:0;}
+
+button:hover {
+    background-color: #ffeee2;
+    color: #6b5547
 }
 
 .articleTitle {
-    font-size: 20px
+    font-size: 18px;
+    font-weight: bold
 }
+
+.chatTextContent {
+    font-size: 18px;
+    font-weight: bold
+}
+
+.taskName {
+    font-size: 18px;
+    font-weight: bold
+}
+
+.eventName {
+    font-size: 18px;
+    font-weight: bold
+}
+
+.articleLink {
+    font-size: 12px
+}
+
+.taskDate {
+    font-size: 12px
+}
+
 
 #chatDisplay::-webkit-scrollbar {
     width: .5em;
@@ -70,21 +152,19 @@ button {
 #dashboardContainer {
     margin: auto;
     width: 100%;
-    height: 100%;
+    height: 90%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap
 }
 
 #chatDisplay {
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
     box-shadow: 4px 4px #d2bba0;
     padding: 10px;
     background-color: #f7ffe0;
     overflow: auto;
     width: 300px;
-    height: 475px;
+    height: 500px;
     margin: 10px;
     word-wrap: break-word;
 }
@@ -93,13 +173,11 @@ button {
 
 #articleDisplay {
     box-shadow: 4px 4px #d2bba0;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
     padding: 10px;
     background-color: #f7ffe0;
     overflow: auto;
     width: 300px;
-    height: 475px;
+    height: 500px;
     margin: 10px;
     word-wrap: break-word;
 }
@@ -113,17 +191,15 @@ button {
 }
 
 #eventContainer {
-    height: 52%
+    height: 268px
 }
 
 #taskContainer {
-    height: 52%
+    height: 268px
 }
 
 #eventDisplay {
     box-shadow: 4px 4px #d2bba0;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
     padding: 10px;
     background-color: #f7ffe0;
     overflow: auto;
@@ -135,8 +211,6 @@ button {
 
 #taskDisplay {
     box-shadow: 4px 4px #d2bba0;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
     padding: 10px;
     background-color: #f7ffe0;
     overflow: auto;
@@ -150,6 +224,10 @@ button {
     text-align: center;
 }
 
+.sectionHeaderTasks {
+    text-align: center;
+}
+
 hr {
     display: block;
     height: 1px;
@@ -157,4 +235,27 @@ hr {
     border-top: 1px solid #f2efc7;
     margin: 1em 0;
     padding: 0;
+}
+
+a:link {
+    color: #fb98aa;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: #fb98aa;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: #fb738b;
+  }
+  
+  /* selected link */
+  a:active {
+    color: #e96f88;
+  }
+
+.chatSubText {
+    font-size: 12px
 }
