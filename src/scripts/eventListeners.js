@@ -19,9 +19,6 @@ const clickBubbler = {
                 const targetList = event.target.id.split("--");
                 let newObject = {};
                 let targetId = "";
-                if (targetList[1] === "cancel") {
-                    dashboardRefreshional()
-                }
                 if (targetList[1] === "add") {
                     let newHTMLstring = "";
                     switch (targetList[0]) {
