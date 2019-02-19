@@ -8,6 +8,7 @@ const chatsModule = {
                 Enter your message:</br>
                 <textarea rows="4" cols="50" name="chatMessage" id="chat--textInput"></textarea></br>
                 <button id="chats--create">Submit</button>
+                <button id="chats--cancel">Cancel</button>
             </div>
         `
     },

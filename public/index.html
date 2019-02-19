@@ -11,9 +11,9 @@
 <body>
   
   <div class="header">
-    <img class="logo" src="https://www.dropbox.com/s/16f1vsfybjbd2xc/nutshell%20logo%20spaced.png?raw=1" alt="Nutshell Logo"></a>
-    <div class="header-right">
-      <div class="headerText"><span id="usernameWelcome"></span><button class="hidden" id="logoutButton">Logout</button></div>
+    <img class="logo centeredLogo" src="https://www.dropbox.com/s/16f1vsfybjbd2xc/nutshell%20logo%20spaced.png?raw=1" alt="Nutshell Logo" id="nutshellLogo"></a>
+    <div id="headerRight" class="header-right hidden">
+      <div class="headerText"><span id="usernameWelcome"></span><button id="logoutButton">Logout</button></div>
     </div>
   </div>
   
@@ -26,6 +26,7 @@
       <div id="chatContainer">
         <h2 class="sectionHeader">Chat <button id="chat--add">+</button></h2>
         <article id="chatDisplay">
+          <div id="chatMessageContainer"></div>
           <!-- display all the chat messagess, sorted by timestamp -->
         </article>
       </div>
@@ -53,13 +54,12 @@
         </div>
         
       </div>
-      
-      
+
       <div id="friendContainer">
-        <h2 class="sectionHeader">Friends <button id="friend--add">+</button></h2>
-        <article id="friendDisplay">
-          <!-- display all the user's friends, to allow for deletion from list -->
-        </article>
+          <h2 class="sectionHeader">Friends <button id="friend--add">+</button></h2>
+          <article id="friendDisplay">
+            <!-- display all the user's friends, to allow for deletion from list -->
+          </article>
       </div>
       
     </div>

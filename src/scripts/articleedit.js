@@ -13,7 +13,8 @@ const articleEdit = () => {
                     <div>Edit article title</div><input type="text" id="articleTitleEdit" value="${articleObject.title}"></input>
                     <div>Edit article summary</div><input type="text" id="articleSummaryEdit" value="${articleObject.summary}"></input>
                     <div>Edit article url</div><input type="text" id="articleUrlEdit" value="${articleObject.url}"></input>
-                <button id="articleEditSave">Save</button>`
+                <button id="articleEditSave">Save</button>
+                <button id="articleEditCancel">Cancel</button>`
 
                 document.getElementById("articleTitleEdit").addEventListener("keyup", function(event) {
                     if (event.keyCode === 13) {
@@ -36,6 +37,9 @@ const articleEdit = () => {
                     articleObject.summary = document.getElementById("articleSummaryEdit").value
                     articleObject.url = document.getElementById("articleUrlEdit").value
                     APIManager.Put("articles", articleId, articleObject).then(dashboardRefreshional)
+                })
+                document.getElementById("articleEditCancel").addEventListener("click", function(event) {
+                    dashboardRefreshional()
                 })
             })
         }
