@@ -61,41 +61,20 @@ const clickBubbler = {
                             document.querySelector("#formSection").innerHTML = "";
                             dashboardRefreshional();
                         })
-                } else if (targetList[1] === "edit") {
-                    // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events')
-                    dashboardContainer.classList.toggle("hidden");
-                    switch (targetList[0]) {
-                        case 'events':
-                            targetId = targetList[2];
-                            eventsModule.editEventObject(targetId);
-                            break;
-                        case 'chats':
-                            targetId = document.querySelector("#chatId");
-                            newObject = chatsModule.buildChatsObject(targetId);
-                            break;
-                        case 'tasks':
-                            targetId = document.querySelector("#objectId");
-                            newObject = tasksModule.captureFormValues(targetId);
-                            break;
-                        case 'articles':
-                            targetId = targetList[2];
-                            articleModule.articleEdit(targetId);
-                            break;
-                    }
                 } else if (targetList[1] === "delete") {
                     // call the api delete method and pass it the module name and the original object id
                     switch (targetList[0]) {
                         case 'events':
-                            targetId = document.querySelector("#eventId");
+                            targetId = targetList[2];
                             break;
                         case 'tasks':
                             targetId = document.querySelector("#objectId");
                             break;
                         case 'articles':
-                            targetId = document.querySelector("#articleId");
+                            targetId = targetList[2];
                             break;
                     }
-                    APIManager.delete(targetList[0], eventId)
+                    APIManager.delete(targetList[0], targetId)
                     // .then() and call the api list method, passing it the correct module and userid
                     .then(
                         () => {
