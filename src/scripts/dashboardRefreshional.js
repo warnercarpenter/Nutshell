@@ -8,6 +8,7 @@ import taskEdit from "./taskedit";
 import chatEdit from "./chatedit";
 import articleEdit from "./articleedit";
 import eventEdit from "./eventedit";
+import friendsListener from "./friendsListener";
 
 //
 
@@ -15,6 +16,7 @@ const dashboardRefreshional = () => {
     const userId = parseInt(sessionStorage.getItem('userId'))
     const dashboardContainer = document.getElementById("dashboardContainer")
     const chatContainer = document.getElementById("chatDisplay")
+    const chatMessageContainer = document.getElementById("chatMessageContainer")
     const articleContainer = document.getElementById("articleDisplay")
     const eventContainer = document.getElementById("eventDisplay")
     const taskContainer = document.getElementById("taskDisplay")
@@ -23,7 +25,7 @@ const dashboardRefreshional = () => {
     const logoutButton = document.getElementById("logoutButton")
     const nutshellLogo = document.getElementById("nutshellLogo")
     const headerRight = document.getElementById("headerRight")
-    chatContainer.innerHTML = ""
+    chatContainer.innerHTML = `<div id="chatMessageContainer"></div>`
     articleContainer.innerHTML = ""
     eventContainer.innerHTML = ""
     taskContainer.innerHTML = ""
@@ -44,7 +46,7 @@ const dashboardRefreshional = () => {
             newChatArray.sort((a, b) => a.timestamp - b.timestamp).forEach(function(chat) {
                 const username = users.find(user => user.id === chat.userId).username
                 const messageHTML = chatsModule.buildChatsHTML(chat, username, userId)
-                printToDOM(messageHTML, "#" + chatContainer.id)
+                printToDOM(messageHTML, "#" + chatMessageContainer.id)
             })
             chatContainer.scrollTop = chatContainer.scrollHeight;
         })
@@ -53,7 +55,7 @@ const dashboardRefreshional = () => {
         const sortedArticles = articles.sort((a, b) => a.timestamp - b.timestamp)
         for (let i = 0; i < sortedArticles.length; i++) {
             const currentArticle = sortedArticles[i]
-            const articleHTML = articleModule.createArticleHTML(currentArticle, userId)
+            const articleHTML = articleModule.createArticleHTML(currentArticle, userId, currentArticle.user.username)
             printToDOM(articleHTML, "#" + articleContainer.id)
         }
     })
@@ -61,7 +63,7 @@ const dashboardRefreshional = () => {
         const sortedEvents = events.sort((a, b) => a.date - b.date)
         for (let i = 0; i < sortedEvents.length; i++) {
             const currentEvent = sortedEvents[i]
-            const eventHTML = eventsModule.createEventHTML(currentEvent, userId, i)
+            const eventHTML = eventsModule.createEventHTML(currentEvent, userId, i, currentEvent.user.username)
             printToDOM(eventHTML, "#" + eventContainer.id)
         }
     })
@@ -87,6 +89,7 @@ const dashboardRefreshional = () => {
     chatEdit()
     articleEdit()
     eventEdit()
+    friendsListener()
 }
 
 export default dashboardRefreshional

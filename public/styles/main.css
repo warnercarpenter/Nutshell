@@ -7,6 +7,16 @@ html, body{
     color: #6b5547
 }
 
+input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 130px
+}
+
+input[type="checkbox"] {
+    width: 15px
+}
+
 .header {
     background-color: #6b5547;
     padding: 0px 0px;
@@ -46,6 +56,11 @@ html, body{
 }
 
 #logoutButton {
+    align-self: flex-end;
+    margin-left: 10px;
+}
+
+#addFriendButton {
     align-self: flex-end;
     margin-left: 10px;
 }
@@ -159,12 +174,23 @@ button:hover {
     flex-wrap: wrap
 }
 
+#friendDisplay {
+    box-shadow: 4px 4px #d2bba0;
+    padding: 10px;
+    background-color: #f7ffe0;
+    overflow: auto;
+    width: 250px;
+    height: 500px;
+    margin: 10px;
+    word-wrap: break-word;
+}
+
 #chatDisplay {
     box-shadow: 4px 4px #d2bba0;
     padding: 10px;
     background-color: #f7ffe0;
     overflow: auto;
-    width: 300px;
+    width: 250px;
     height: 500px;
     margin: 10px;
     word-wrap: break-word;
@@ -177,14 +203,10 @@ button:hover {
     padding: 10px;
     background-color: #f7ffe0;
     overflow: auto;
-    width: 300px;
+    width: 250px;
     height: 500px;
     margin: 10px;
     word-wrap: break-word;
-}
-
-#friendContainer {
-    display: none
 }
 
 #taskAndEventContainer {
@@ -204,7 +226,7 @@ button:hover {
     padding: 10px;
     background-color: #f7ffe0;
     overflow: auto;
-    width: 300px;
+    width: 250px;
     height: 75%;
     margin: 10px;
     word-wrap: break-word;
@@ -215,7 +237,7 @@ button:hover {
     padding: 10px;
     background-color: #f7ffe0;
     overflow: auto;
-    width: 300px;
+    width: 250px;
     height: 75%;
     margin: 10px;
     word-wrap: break-word;
@@ -271,6 +293,23 @@ a:link {
     font-size: 12px
 }
 
+.articleSubText {
+    font-size: 12px
+}
+
+.eventSubText {
+    font-size: 12px
+}
+
 .hidden {
     display: none !important;
+}
+
+textarea {
+    width: 200px
+}
+
+fieldset {
+    border: 0;
+    padding: 0;
 }

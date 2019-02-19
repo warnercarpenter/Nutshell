@@ -21,7 +21,8 @@ const eventEdit = () => {
                     <div>Edit event location</div><input type="text" id="eventLocationEdit" value="${eventObject.location}"></input>
                     <div>Edit event date</div><input type="date" id="eventDateEdit" value="${year}-${month}-${day}"}></input>
                     <div>Edit event time</div><input type="time" id="eventTimeEdit" value="${time}"}></input>
-                <button id="eventEditSave">Save</button><button id="eventEditCancel">Cancel</button>`
+                <button id="eventEditSave">Save</button>
+                <button id="eventEditCancel">Cancel</button>`
 
                 document.getElementById("eventNameEdit").addEventListener("keyup", function(event) {
                     if (event.keyCode === 13) {

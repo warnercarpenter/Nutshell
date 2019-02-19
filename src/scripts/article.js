@@ -6,18 +6,19 @@ const articleModule = {
         return `<form id="articleForm">
             <input type="hidden" name="articleId" value="${articleId}"></input>
             <fieldset>
-                <label for="articleTitle">Article Title:</label>
+                <label for="articleTitle">Article Title:</label><br/>
                 <input type="text" name="articleTitle" id="articleTitle"></input>
             </fieldset>
             <fieldset>
-                <label for="articleSummary">Article Summary:</label>
+                <label for="articleSummary">Article Summary:</label><br/>
                 <input type="text" name="articleSummary" id="articleSummary"></input>
             </fieldset>
             <fieldset>
-                <label for="articleURL">Article URL:</label>
+                <label for="articleURL">Article URL:</label><br/>
                 <input type="text" name="articleURL" id="articleURL"></input>
             </fieldset>
-            <button id="articles--create">Post Your Article</button>
+            <button onsubmit="return false" id="articles--create">Post Your Article</button>
+            <button id="articles--cancel">Cancel</button>
         </form>`
     },
     createArticleObject: () => {
@@ -37,11 +38,12 @@ const articleModule = {
         return articleObject
 
     },
-    createArticleHTML: (articleObject, userId) => {
+    createArticleHTML: (articleObject, userId, username) => {
         let baseHTML = `<section class="articles" id="article--${articleObject.id}">
         <div class="articleTitle">${articleObject.title}</div>
         <p>${articleObject.summary}</p>
         <p class="articleLink"><a href="http://${articleObject.url}" target="_blank">${articleObject.url}</a></p>
+        <p class="articleSubText">by ${username}</p>
         `
 
         if (articleObject.userId === userId) {

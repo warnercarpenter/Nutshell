@@ -10,7 +10,8 @@ const taskEdit = () => {
             APIManager.fetchWithoutUserInfo("tasks").then(function(tasks) {
                 taskObject = tasks.find(task => task.id === taskId)
                 taskDisplay.innerHTML = `<div>Edit task title</div><input type="text" id="taskTextEdit" value="${taskObject.name}"></input>
-                <button id="taskTextEditSave">Save</button><button id="taskTextEditCancel">Cancel</button>`
+                <button id="taskTextEditSave">Save</button>
+                <button id="taskTextEditCancel">Cancel</button>`
 
                 document.getElementById("taskTextEdit").addEventListener("keyup", function(event) {
                     if (event.keyCode === 13) {

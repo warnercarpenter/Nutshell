@@ -19,24 +19,29 @@ const clickBubbler = {
                 const targetList = event.target.id.split("--");
                 let newObject = {};
                 let targetId = "";
+                if (targetList[1] === "cancel") {
+                    dashboardRefreshional()
+                }
                 if (targetList[1] === "add") {
                     let newHTMLstring = "";
-                    dashboardContainer.classList.toggle("hidden");
                     switch (targetList[0]) {
                         case 'event':
                             newHTMLstring = eventsModule.buildEntryForm();
+                            document.querySelector("#eventDisplay").innerHTML = newHTMLstring;
                             break;
                         case 'chat':
                             newHTMLstring = chatsModule.buildChatsForm();
+                            document.querySelector("#chatDisplay").innerHTML = newHTMLstring;
                             break;
                         case 'task':
                             newHTMLstring = tasksModule.taskForm();
+                            document.querySelector("#taskDisplay").innerHTML = newHTMLstring;
                             break;
                         case 'article':
                             newHTMLstring = articleModule.buildArticleForm();
+                            document.querySelector("#articleDisplay").innerHTML = newHTMLstring;
                             break;
                     }
-                    document.querySelector("#formSection").innerHTML = newHTMLstring;
                 } else if (targetList[1] === "create") {
                     // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events')
                     switch (targetList[0]) {
@@ -51,6 +56,9 @@ const clickBubbler = {
                             break;
                         case 'articles':
                             newObject = articleModule.createArticleObject();
+                            break;
+                        case 'friends':
+                            newObject = friendsModule.createFriendsObject();
                             break;
                     }
                     // then call the api create method and pass it the new object and the module name

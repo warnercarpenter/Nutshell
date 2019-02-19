@@ -23,7 +23,8 @@ const eventsModule = {
                 <label for="eventLocation">Location of the event:</label>
                 <input type="text" name="eventLocation" id="eventLocation"></input>
             </fieldset>
-            <button id="events--create">Create New Event</button>
+            <button onsubmit="return false" id="events--create">Create New Event</button>
+            <button id="events--cancel">Cancel</button>
         </section>`;
     },
     createEventObject: () => {
@@ -61,7 +62,7 @@ const eventsModule = {
             document.querySelector("#events--create").id = "events--editing";
         })
     },
-    createEventHTML: (eventObject, userId, checker) => {
+    createEventHTML: (eventObject, userId, checker, username) => {
         let time = timeConverter(eventObject.date)
         let baseHTML = ""
         if (checker === 0) {
@@ -73,6 +74,7 @@ const eventsModule = {
         <div class="eventName">${eventObject.name}</div>
         <p class="eventTime">Time: ${time}</p>
         <p>Location: ${eventObject.location}</p>
+        <p class="eventSubText">by ${username}</p>
         </section>`;
 
         if (eventObject.userId === userId) {
