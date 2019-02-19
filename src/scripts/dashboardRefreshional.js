@@ -4,6 +4,10 @@ import chatsModule from "./chats";
 import articleModule from "./article"
 import eventsModule from "./eventsModule"
 import tasksModule from "./task"
+import taskEdit from "./taskedit";
+import chatEdit from "./chatedit";
+import articleEdit from "./articleedit";
+import eventEdit from "./eventedit";
 
 const dashboardRefreshional = () => {
     const userId = parseInt(sessionStorage.getItem('userId'))
@@ -14,6 +18,7 @@ const dashboardRefreshional = () => {
     const taskContainer = document.getElementById("taskDisplay")
     const friendContainer = document.getElementById("friendDisplay")
     const usernameWelcome = document.getElementById("usernameWelcome")
+    const logoutButton = document.getElementById("logoutButton")
     chatContainer.innerHTML = ""
     articleContainer.innerHTML = ""
     eventContainer.innerHTML = ""
@@ -64,6 +69,14 @@ const dashboardRefreshional = () => {
     if (dashboardContainer.classList.contains("hidden")) {
         dashboardContainer.classList.toggle("hidden")
     }
+    if (logoutButton.classList.contains("hidden")) {
+        logoutButton.classList.toggle("hidden")
+    }
+
+    taskEdit()
+    chatEdit()
+    articleEdit()
+    eventEdit()
 }
 
 export default dashboardRefreshional

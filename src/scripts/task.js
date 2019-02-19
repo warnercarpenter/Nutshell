@@ -5,7 +5,7 @@ const tasksModule = {
         let taskTimestamp = timeConverter(taskObject.completion_date)
         let baseHTML = `
             <section class="tasks" id="task--${taskObject.id}">
-            <div class="taskName">${taskObject.name}</div>
+            <div class="taskName" id="taskName--${taskObject.id}">${taskObject.name}</div>
             <p class="taskDate" id="completion_date">${taskTimestamp}</p>
             <label>Completed</label>
             <input type="checkbox" id="tasks--delete--${taskObject.id}"><br>
