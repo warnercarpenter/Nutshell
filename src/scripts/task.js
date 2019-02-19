@@ -11,7 +11,7 @@ const tasksModule = {
             <div class="taskName" id="taskName--${taskObject.id}">${taskObject.name}</div>
             <p class="taskDate" id="completion_date">${justDate}</p>
             <label>Completed</label>
-            <input type="checkbox" id="tasks--delete--${taskObject.id}"><br>
+            <input type="checkbox" id="tasks--complete--${taskObject.id}"><br>
         `
 
         baseHTML += "</section><hr/>"
@@ -43,10 +43,20 @@ const tasksModule = {
         const taskObject = {
             name: document.querySelector("#taskName").value,
             completion_date: true_timestamp,
+            is_complete: false,
             userId: parseInt(sessionStorage.getItem("userId"))
         }
         return taskObject
     }
 }
+
+const editTask = () => {
+    let input = document.createElement("input")
+    input.type = "text"
+    input.name = "editTask"
+    return input
+}
+
+document.querySelector("#taskName").addEventListener("onclick", editTask())
 
 export default tasksModule
