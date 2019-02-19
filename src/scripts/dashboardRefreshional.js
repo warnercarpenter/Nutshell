@@ -21,6 +21,8 @@ const dashboardRefreshional = () => {
     const friendContainer = document.getElementById("friendDisplay")
     const usernameWelcome = document.getElementById("usernameWelcome")
     const logoutButton = document.getElementById("logoutButton")
+    const nutshellLogo = document.getElementById("nutshellLogo")
+    const headerRight = document.getElementById("headerRight")
     chatContainer.innerHTML = ""
     articleContainer.innerHTML = ""
     eventContainer.innerHTML = ""
@@ -74,8 +76,11 @@ const dashboardRefreshional = () => {
     if (dashboardContainer.classList.contains("hidden")) {
         dashboardContainer.classList.toggle("hidden")
     }
-    if (logoutButton.classList.contains("hidden")) {
-        logoutButton.classList.toggle("hidden")
+    if (nutshellLogo.classList.contains("centeredLogo")) {
+        nutshellLogo.classList.toggle("centeredLogo")
+    }
+    if (headerRight.classList.contains("hidden")) {
+        headerRight.classList.toggle("hidden")
     }
 
     taskEdit()
