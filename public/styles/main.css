@@ -28,6 +28,11 @@ html, body{
     padding-bottom: 8px
 }
 
+.centeredLogo {
+    margin: auto;
+    padding-left: 0%
+}
+
 .header img {
     width:200px;
     height:40px;

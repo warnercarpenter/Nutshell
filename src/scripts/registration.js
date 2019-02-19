@@ -1,3 +1,5 @@
+import APIManager from "./APIManager";
+
 const registrationLoginHandler = {
     buildRegistrationForm: () => {
         return `<section id="registrationForm">
@@ -68,8 +70,7 @@ const registrationLoginHandler = {
     },
     logout: () => {
         sessionStorage.removeItem("userId")
-    }
-
+    },
 }
 
 export default registrationLoginHandler
