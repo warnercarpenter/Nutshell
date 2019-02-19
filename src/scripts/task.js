@@ -33,9 +33,7 @@ const tasksModule = {
         const taskObject = {
             name: document.querySelector("#taskName").value,
             completion_date: document.querySelector("#taskDate").value,
-            is_complete: document.querySelector("#taskComplete").value,
-            //userId: Window.sessionStorage.getItem("userId")
-            userId: 1
+            userId: parseInt(sessionStorage.getItem("userId"))
         }
         return taskObject
     }
