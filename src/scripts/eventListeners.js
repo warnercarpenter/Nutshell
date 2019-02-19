@@ -15,7 +15,7 @@ import landing from "./logout";
 const clickBubbler = {
     listener: () => {
         document.querySelector("#listenerBlock").addEventListener("click", event => {
-            if (event.target.nodeName === "BUTTON") {
+            if (event.target.nodeName === "BUTTON" || event.target.nodeName === "INPUT") {
                 const targetList = event.target.id.split("--");
                 let newObject = {};
                 let targetId = "";
@@ -68,7 +68,7 @@ const clickBubbler = {
                             targetId = targetList[2];
                             break;
                         case 'tasks':
-                            targetId = document.querySelector("#objectId");
+                            targetId = targetList[2];
                             break;
                         case 'articles':
                             targetId = targetList[2];
