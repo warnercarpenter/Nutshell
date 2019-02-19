@@ -10,7 +10,8 @@ const chatEdit = () => {
             APIManager.fetchWithoutUserInfo("chats").then(function(chats) {
                 chatObject = chats.find(chat => chat.id === chatId)
                 chatDisplay.innerHTML = `<div>Edit chat</div><input type="text" id="chatTextEdit" value="${chatObject.text}"></input>
-                <button id="chatTextEditSave">Save</button><button id="chatTextEditCancel">Cancel</button>`
+                <button id="chatTextEditSave">Save</button>
+                <button id="chatTextEditCancel">Cancel</button>`
 
                 document.getElementById("chatTextEdit").addEventListener("keyup", function(event) {
                     if (event.keyCode === 13) {
