@@ -48,22 +48,25 @@ const dashboardRefreshional = () => {
         })
     })
     APIManager.fetchWithExpandedUserInfo("articles", userId).then(function(articles) {
-        for (let i = 0; i < articles.length; i++) {
-            const currentArticle = articles[i]
+        const sortedArticles = articles.sort((a, b) => a.timestamp - b.timestamp)
+        for (let i = 0; i < sortedArticles.length; i++) {
+            const currentArticle = sortedArticles[i]
             const articleHTML = articleModule.createArticleHTML(currentArticle, userId)
             printToDOM(articleHTML, "#" + articleContainer.id)
         }
     })
     APIManager.fetchWithExpandedUserInfo("events", userId).then(function(events) {
-        for (let i = 0; i < events.length; i++) {
-            const currentEvent = events[i]
+        const sortedEvents = events.sort((a, b) => a.date - b.date)
+        for (let i = 0; i < sortedEvents.length; i++) {
+            const currentEvent = sortedEvents[i]
             const eventHTML = eventsModule.createEventHTML(currentEvent, userId, i)
             printToDOM(eventHTML, "#" + eventContainer.id)
         }
     })
     APIManager.fetchWithExpandedUserInfo("tasks", userId).then(function(tasks) {
-        for (let i = 0; i < tasks.length; i++) {
-            const currentTask = tasks[i]
+        const sortedTasks = tasks.sort((a, b) => a.completion_date - b.completion_date)
+        for (let i = 0; i < sortedTasks.length; i++) {
+            const currentTask = sortedTasks[i]
             const taskHTML = tasksModule.taskToHTML(currentTask, userId)
             printToDOM(taskHTML, "#" + taskContainer.id)
         }
