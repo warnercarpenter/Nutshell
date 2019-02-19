@@ -1,3 +1,5 @@
+import APIManager from "./APIManager";
+
 const registrationLoginHandler = {
     buildRegistrationForm: () => {
         return `<section id="registrationForm">
@@ -68,6 +70,24 @@ const registrationLoginHandler = {
     },
     logout: () => {
         sessionStorage.removeItem("userId")
+    },
+    registrationDuplicateCheck: () => {
+        APIManager.getUsers((userArray) => {
+            let checkDuplicate = false
+            userArray.forEach(user => {
+                if (user.username === userObject.username || user.email === userObject.email) {
+                    checkDuplicate = true
+                }
+            })
+            return checkDuplicate
+        })
+            .then((checkDuplicate) => {
+            if (checkDuplicate) {
+                alert("This user has already been registered! Try a different username or email.")
+            }
+        }
+        )
+
     }
 
 }
