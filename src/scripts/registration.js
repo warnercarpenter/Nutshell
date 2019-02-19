@@ -71,7 +71,7 @@ const registrationLoginHandler = {
     logout: () => {
         sessionStorage.removeItem("userId")
     },
-    registrationDuplicateCheck: () => {
+    registrationDuplicateCheck: (userObject) => {
         APIManager.getUsers((userArray) => {
             let checkDuplicate = false
             userArray.forEach(user => {
