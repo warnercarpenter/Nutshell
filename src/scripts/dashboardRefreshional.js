@@ -21,7 +21,6 @@ const dashboardRefreshional = () => {
     const taskContainer = document.getElementById("taskDisplay")
     const friendContainer = document.getElementById("friendDisplay")
     const usernameWelcome = document.getElementById("usernameWelcome")
-    const logoutButton = document.getElementById("logoutButton")
     const nutshellLogo = document.getElementById("nutshellLogo")
     const headerRight = document.getElementById("headerRight")
     const reloadChats = () => {

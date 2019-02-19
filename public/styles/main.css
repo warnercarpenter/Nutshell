@@ -313,3 +313,23 @@ fieldset {
     border: 0;
     padding: 0;
 }
+
+.welcomeForm {
+    margin: auto;
+    text-align: center;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    background-image: url("https://www.dropbox.com/s/q79wlgn2nz8u0e0/ice%20cream%20lighter.jpg?raw=1");
+  }
+
+  .footer p {
+      font-weight: bold;
+      text-shadow: 1px 1px 1px white
+  }

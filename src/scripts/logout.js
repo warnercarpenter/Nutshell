@@ -8,7 +8,7 @@ import clickBubbler from "./eventListeners";
 const landing = () => {
     const HTMLcode = `<h1>Welcome!</h1>
     <div id="listenToMe">
-    <a href="#" id="register--link">Register</a> | <a href="#" id="login--link">Login</a>
+    <button id="register--link">Register</button> | <button id="login--link">Login</button>
     </div>`;
     document.querySelector("#formSection").innerHTML = HTMLcode;
     dashboardContainer.classList.add("hidden");
