@@ -60,7 +60,7 @@ const articleModule = {
         let articleId = event.target.id.split("--")[2]
         APIManager.getAnyById(database, articleId)
             .then((response) => {
-                printToDOM(articleModule.buildArticleForm, "#formSection")
+                printToDOM(articleModule.buildArticleForm(), "#formSection")
                 let button = document.getElementById("articles--create")
                 button.innerText = "Save Edits"
                 button.id = `articles--editing--${response.id}`

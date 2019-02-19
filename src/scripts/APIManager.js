@@ -38,6 +38,11 @@ const APIManager = {
             .then(res => res.json())
 
     },
+    fetchWithoutUserInfo: (desiredDatabase) => {
+        return fetch (`http://localhost:8088/${desiredDatabase}`)
+            .then(res => res.json())
+
+    },
     fetchAllEmbedded: (desiredDatabase) => {
         return fetch (`http://localhost:8088/users?_embed=${desiredDatabase}`)
             .then(res => res.json())

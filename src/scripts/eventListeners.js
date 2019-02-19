@@ -10,6 +10,7 @@ import tasksModule from "./task";
 import articleModule from "./article";
 import registrationLoginHandler from "./registration";
 import dashboardRefreshional from "./dashboardRefreshional";
+import landing from "./logout";
 
 const clickBubbler = {
     listener: () => {
@@ -20,6 +21,7 @@ const clickBubbler = {
                 let targetId = "";
                 if (targetList[1] === "add") {
                     let newHTMLstring = "";
+                    dashboardContainer.classList.toggle("hidden");
                     switch (targetList[0]) {
                         case 'event':
                             newHTMLstring = eventsModule.buildEntryForm();
@@ -56,42 +58,23 @@ const clickBubbler = {
                     // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
                     .then(
                         objectArray => {
+                            document.querySelector("#formSection").innerHTML = "";
                             dashboardRefreshional();
                         })
-                } else if (targetList[1] === "edit") {
-                    // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events')
-                    switch (targetList[0]) {
-                        case 'events':
-                            targetId = targetList[2];
-                            eventsModule.editEventObject(targetId);
-                            break;
-                        case 'chats':
-                            targetId = document.querySelector("#chatId");
-                            newObject = chatsModule.buildChatsObject(targetId);
-                            break;
-                        case 'tasks':
-                            targetId = document.querySelector("#objectId");
-                            newObject = tasksModule.captureFormValues(targetId);
-                            break;
-                        case 'articles':
-                            targetId = targetList[2];
-                            articleModule.articleEdit(targetId);
-                            break;
-                    }
                 } else if (targetList[1] === "delete") {
                     // call the api delete method and pass it the module name and the original object id
                     switch (targetList[0]) {
                         case 'events':
-                            targetId = document.querySelector("#eventId");
+                            targetId = targetList[2];
                             break;
                         case 'tasks':
                             targetId = document.querySelector("#objectId");
                             break;
                         case 'articles':
-                            targetId = document.querySelector("#articleId");
+                            targetId = targetList[2];
                             break;
                     }
-                    APIManager.delete(targetList[0], eventId)
+                    APIManager.delete(targetList[0], targetId)
                     // .then() and call the api list method, passing it the correct module and userid
                     .then(
                         () => {
@@ -151,14 +134,20 @@ const clickBubbler = {
             APIManager.getUsers()
             .then(
                 userList => {
+                    let login_match = false;
                     userList.forEach(element => {
-                        if (newObject.username === element.username && newObject.password === element.password ) {
+                        if (newObject.username === element.username && newObject.password === element.password) {
+                            login_match = true;
                             sessionStorage.setItem("userId", element.id);
+                            document.querySelector("#formSection").innerHTML = "";
                             dashboardRefreshional();
-                        } else {
-                            document.querySelector("#dashboardContainer").innerHTML += "The username or password does not match; please try again";
+                            clickBubbler.listener();
+                            clickBubbler.logout();
                         }
                 })
+                if (login_match === false) {
+                    document.querySelector("#dashboardContainer").innerHTML += "The username or password does not match; please try again";
+                }
             });
         })
     },
@@ -171,10 +160,20 @@ const clickBubbler = {
                 objectArray => {
                     let userId = objectArray.id;
                     sessionStorage.setItem("userId", userId);
+                    document.querySelector("#formSection").innerHTML = "";
                     dashboardRefreshional();
+                    clickBubbler.listener();
+                    clickBubbler.logout();
                 }
             )
         });
+    },
+    logout: () => {
+        document.querySelector("#logoutButton").addEventListener("click",
+        () => {
+            sessionStorage.removeItem("userId");
+            landing();
+        })
     }
 }
 
