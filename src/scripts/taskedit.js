@@ -7,7 +7,7 @@ const taskEdit = () => {
         if (event.target.id.split("--")[0] === "taskName") {
             const taskId = parseInt(event.target.id.split("--")[1])
             let taskObject = ""
-            APIManager.fetchWithExpandedUserInfo("tasks", sessionStorage.getItem("userId")).then(function(tasks) {
+            APIManager.fetchWithoutUserInfo("tasks").then(function(tasks) {
                 taskObject = tasks.find(task => task.id === taskId)
                 taskDisplay.innerHTML = `<div>Edit task title</div><input type="text" id="taskTextEdit" value="${taskObject.name}"></input>
                 <button id="taskTextEditSave">Save</button>`
