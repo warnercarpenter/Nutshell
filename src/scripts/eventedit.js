@@ -19,7 +19,7 @@ const eventEdit = () => {
                     <div>Edit event name</div><input type="text" id="eventNameEdit" value="${eventObject.name}"></input>
                     <div>Edit event location</div><input type="text" id="eventLocationEdit" value="${eventObject.location}"></input>
                     <div>Edit event date</div><input type="date" id="eventDateEdit" value="${year}-${month}-${day}"}></input>
-                <button id="eventEditSave">Save</button>`
+                <button id="eventEditSave">Save</button><button id="eventEditCancel">Cancel</button>`
 
                 document.getElementById("eventNameEdit").addEventListener("keyup", function(event) {
                     if (event.keyCode === 13) {
@@ -42,6 +42,10 @@ const eventEdit = () => {
                     eventObject.location = document.getElementById("eventLocationEdit").value
                     eventObject.date = new Date(document.getElementById("eventDateEdit").value).getTime()
                     APIManager.Put("events", eventId, eventObject).then(dashboardRefreshional)
+                })
+
+                document.getElementById("eventEditCancel").addEventListener("click", function(event) {
+                    dashboardRefreshional()
                 })
             })
         }
