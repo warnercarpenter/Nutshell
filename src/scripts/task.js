@@ -22,6 +22,7 @@ const tasksModule = {
             <label for="name">Name of task: </label><br>
             <input type="text" placeholder="Task name" id="taskName">
         </fieldset>
+        <fieldset>
             <label for="completion_date">Date to be completed by: </label><br>
             <input type="date" id="taskDate">
         <fieldset>
@@ -30,9 +31,13 @@ const tasksModule = {
         `
     },
     captureFormValues: function () {
+        let date = document.querySelector("#taskDate").value;
+        let timestamp = new Date(date);
+        let true_timestamp = timestamp.getTime();
+
         const taskObject = {
             name: document.querySelector("#taskName").value,
-            completion_date: document.querySelector("#taskDate").value,
+            completion_date: true_timestamp,
             userId: parseInt(sessionStorage.getItem("userId"))
         }
         return taskObject
