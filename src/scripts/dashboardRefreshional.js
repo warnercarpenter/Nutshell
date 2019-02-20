@@ -76,7 +76,8 @@ const dashboardRefreshional = () => {
     const reloadTasks = () => {
         taskContainer.innerHTML = ""
         return APIManager.fetchWithExpandedUserInfo("tasks", userId).then(function (tasks) {
-            const sortedTasks = tasks.sort((a, b) => a.completion_date - b.completion_date)
+            const completedTasks = tasks.filter(taskToCheck => taskToCheck.is_complete === false)
+            const sortedTasks = completedTasks.sort((a, b) => a.completion_date - b.completion_date)
             for (let i = 0; i < sortedTasks.length; i++) {
                 const currentTask = sortedTasks[i]
                 const taskHTML = tasksModule.taskToHTML(currentTask, userId)
@@ -129,3 +130,6 @@ const dashboardRefreshional = () => {
 }
 
 export default dashboardRefreshional
+
+
+
