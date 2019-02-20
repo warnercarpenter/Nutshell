@@ -9,6 +9,7 @@ import chatEdit from "./chatedit";
 import articleEdit from "./articleedit";
 import eventEdit from "./eventedit";
 import friendsListener from "./friendsListener";
+import friendsModule from "./friends";
 
 //
 
@@ -106,7 +107,35 @@ const dashboardRefreshional = () => {
     }
 
     const reloadFriends = () => {
-        friendContainer.innerHTML = ""
+        const userArray = []
+        const friendUserArray = []
+        const friendIdArray = []
+        APIManager.getUsers()
+        .then(function (users) {
+                users.forEach(function (user) {
+                    userArray.push(user)
+                })
+            })
+            .then(function () {
+                APIManager.fetchWithoutUserInfo("friends").then(function (friends) {
+                    friends.forEach(function (friend) {
+                        if (friend.userId === userId) {
+                            friendUserArray.push(userArray.find(a => a.id === friend.friendedUser))
+                            friendIdArray.push(friend.id)
+                        }
+                    })
+                })
+                    .then(function () {
+                        friendContainer.innerHTML = ""
+                        if (friendUserArray.length > 0) {
+                            friendUserArray.forEach(function (user) {
+                                const index = friendIdArray[friendUserArray.indexOf(user)]
+                                const friendHTML = friendsModule.buildFriendsHTML(user, index)
+                                printToDOM(friendHTML, "#" + friendContainer.id)
+                            })
+                        }
+                    })
+            })
     }
 
     if (dashboardContainer.classList.contains("hidden")) {
@@ -122,7 +151,7 @@ const dashboardRefreshional = () => {
         footer.classList.toggle("hidden")
     }
 
-    reloadChats().then(reloadArticles).then(reloadEvents).then(reloadTasks).then(reloadFriends).then(function() {
+    reloadChats().then(reloadArticles).then(reloadEvents).then(reloadTasks).then(reloadFriends).then(function () {
         dashboardContainer.addEventListener("click", eventListenerFunction)
 
         taskEdit()

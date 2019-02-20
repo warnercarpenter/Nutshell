@@ -28,7 +28,7 @@ input[type="checkbox"] {
     flex-wrap: nowrap;
     margin: auto;
     box-shadow: 0px 4px #d2bba0;
-  }
+}
 
 .headerText {
     white-space: nowrap;
@@ -277,17 +277,17 @@ hr {
 a:link {
     color: #fb98aa;
   }
-  
+
   /* visited link */
   a:visited {
     color: #fb98aa;
   }
-  
+
   /* mouse over link */
   a:hover {
     color: #fb738b;
   }
-  
+
   /* selected link */
   a:active {
     color: #e96f88;
@@ -336,13 +336,13 @@ fieldset {
     flex-direction: row;
   }
 
-  .footer div {
-      font-weight: bold;
-      text-shadow: 1px 1px 1px white;
-      vertical-align: middle;
-      margin-top: 24px;
-  }
-  .footer img {
+.footer div {
+    font-weight: bold;
+    text-shadow: 1px 1px 1px white;
+    vertical-align: middle;
+    margin-top: 24px;
+}
+.footer img {
     margin-top: 16px;
     margin-left: 5px
-  }
+}
