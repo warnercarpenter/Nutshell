@@ -20,18 +20,13 @@ const tasksModule = {
     },
     taskForm: function (objectId) {
         return `
-        <fieldset>
             <input type="hidden" id="userId" value="${objectId}"><br>
             <label for="name">Name of task: </label><br>
-            <input type="text" placeholder="Task name" id="taskName">
-        </fieldset>
-        <fieldset>
+            <input type="text" placeholder="Task name" id="taskNameInput"><br>
             <label for="completion_date">Date to be completed by: </label><br>
-            <input type="date" id="taskDate">
-        <fieldset>
+            <input type="date" id="taskDate"><br>
             <button onsubmit="return false" id="tasks--create">Submit</button>
             <button id="tasks--cancel">Cancel</button>
-        </fieldset>
         `
     },
     captureFormValues: function () {
@@ -41,7 +36,7 @@ const tasksModule = {
         let true_timestamp = timestamp.getTime();
 
         const taskObject = {
-            name: document.querySelector("#taskName").value,
+            name: document.querySelector("#taskNameInput").value,
             completion_date: true_timestamp,
             is_complete: false,
             userId: parseInt(sessionStorage.getItem("userId"))
@@ -49,14 +44,5 @@ const tasksModule = {
         return taskObject
     }
 }
-
-const editTask = () => {
-    let input = document.createElement("input")
-    input.type = "text"
-    input.name = "editTask"
-    return input
-}
-
-document.querySelector("#taskName").addEventListener("onclick", editTask())
 
 export default tasksModule

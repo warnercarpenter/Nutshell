@@ -3,6 +3,7 @@ import APIManager from "./APIManager";
 const registrationLoginHandler = {
     buildRegistrationForm: () => {
         return `<section id="registrationForm">
+        <br/>
         <fieldset>
             <label for="email">Email:</label>
             <input type="text" name="email" id="email"></input>
@@ -21,7 +22,7 @@ const registrationLoginHandler = {
         </fieldset>
         <fieldset>
             <label for="lastName">Last Name:</label>
-            <input type="text" name="lastName" id="lastName"></input>
+            <input type="text" name="lastName" id="lastName"></input><br/>
         <button id="registration--create">Register</button>
         </section>
         `
@@ -44,6 +45,7 @@ const registrationLoginHandler = {
     },
     buildLoginForm: () => {
         return `<section id="loginForm">
+        <br/>
         <fieldset>
             <label for="username">Username:</label>
             <input type="text" name="loginUsername" id="loginUsername"></input>

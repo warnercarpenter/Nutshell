@@ -11,7 +11,7 @@ const chatEdit = () => {
                 chatObject = chats.find(chat => chat.id === chatId)
                 chatDisplay.innerHTML = `<div>Edit chat</div><input type="text" id="chatTextEdit" value="${chatObject.text}"></input>
                 <button id="chatTextEditSave">Save</button>
-                <button id="chatTextEditCancel">Cancel</button>`
+                <button id="chats--cancel">Cancel</button>`
 
                 document.getElementById("chatTextEdit").addEventListener("keyup", function(event) {
                     if (event.keyCode === 13) {
@@ -22,9 +22,6 @@ const chatEdit = () => {
                 document.getElementById("chatTextEditSave").addEventListener("click", function(event) {
                     chatObject.text = document.getElementById("chatTextEdit").value
                     APIManager.Put("chats", chatId, chatObject).then(dashboardRefreshional)
-                })
-                document.getElementById("chatTextEditCancel").addEventListener("click", function(event) {
-                    dashboardRefreshional()
                 })
             })
         }

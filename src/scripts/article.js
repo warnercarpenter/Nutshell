@@ -3,23 +3,17 @@ import printToDOM from "./printToDOM";
 
 const articleModule = {
     buildArticleForm: (articleId) => {
-        return `<form id="articleForm">
-            <input type="hidden" name="articleId" value="${articleId}"></input>
-            <fieldset>
-                <label for="articleTitle">Article Title:</label><br/>
-                <input type="text" name="articleTitle" id="articleTitle"></input>
-            </fieldset>
-            <fieldset>
-                <label for="articleSummary">Article Summary:</label><br/>
-                <input type="text" name="articleSummary" id="articleSummary"></input>
-            </fieldset>
-            <fieldset>
-                <label for="articleURL">Article URL:</label><br/>
-                <input type="text" name="articleURL" id="articleURL"></input>
-            </fieldset>
+        return `<div id="articleForm">
+            <input type="hidden" name="articleId" value="${articleId}"></input><br>
+            <label for="articleTitle">Article Title:</label><br/>
+            <input type="text" name="articleTitle" id="articleTitle"></input><br>
+            <label for="articleSummary">Article Summary:</label><br/>
+            <input type="text" name="articleSummary" id="articleSummary"></input><br>
+            <label for="articleURL">Article URL:</label><br/>
+            <input type="text" name="articleURL" id="articleURL"></input><br>
             <button onsubmit="return false" id="articles--create">Post Your Article</button>
             <button id="articles--cancel">Cancel</button>
-        </form>`
+        </div>`
     },
     createArticleObject: () => {
         let title = document.querySelector("#articleTitle").value;
