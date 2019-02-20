@@ -11,6 +11,7 @@ import articleModule from "./article";
 import registrationLoginHandler from "./registration";
 import dashboardRefreshional from "./dashboardRefreshional";
 import landing from "./logout";
+import friendsModule from "./friends"
 
 const clickBubbler = {
     listener: () => {
@@ -55,17 +56,20 @@ const clickBubbler = {
                             newObject = articleModule.createArticleObject();
                             break;
                         case 'friends':
-                            newObject = friendsModule.createFriendsObject();
+                            newObject = friendsModule.buildFriendsObject();
                             break;
                     }
                     // then call the api create method and pass it the new object and the module name
-                    APIManager.Post(targetList[0], newObject)
-                        // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
-                        .then(
-                            objectArray => {
-                                document.querySelector("#formSection").innerHTML = "";
-                                dashboardRefreshional();
-                            })
+                    if (targetList[0] !== "friends"){
+                        APIManager.Post(targetList[0], newObject)
+                            // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
+                            .then(
+                                objectArray => {
+                                    document.querySelector("#formSection").innerHTML = "";
+                                    dashboardRefreshional();
+                                })
+                            }
+                        else {dashboardRefreshional()}
                 } else if (targetList[1] === "delete") {
                     // call the api delete method and pass it the module name and the original object id
                     switch (targetList[0]) {
