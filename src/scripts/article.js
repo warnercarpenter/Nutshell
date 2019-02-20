@@ -32,18 +32,24 @@ const articleModule = {
         return articleObject
 
     },
-    createArticleHTML: (articleObject, userId) => {
-        let baseHTML = `<section class="articles" id="article--${articleObject.id}">
-        <div class="articleTitle">${articleObject.title}</div>
-        <p>${articleObject.summary}</p>
-        <p class="articleLink"><a href="http://${articleObject.url}" target="_blank">${articleObject.url}</a></p>
-        <p class="articleSubText">by FILL LATER</p>
-        `
+    createArticleHTML: (articleObject, userId, username) => {
+        let baseHTML = ""
 
         if (articleObject.userId === userId) {
-            baseHTML += `
-                <button id="articles--edit--${articleObject.id}">Edit</button>
-                <button id="articles--delete--${articleObject.id}">Delete</button>
+            baseHTML += `<section class="articles" id="article--${articleObject.id}">
+            <div class="articleTitle">${articleObject.title}</div>
+            <p>${articleObject.summary}</p>
+            <p class="articleLink"><a href="http://${articleObject.url}" target="_blank">${articleObject.url}</a></p>
+            <p class="articleSubText">by ${username}</p>
+            <button id="articles--edit--${articleObject.id}">Edit</button>
+            <button id="articles--delete--${articleObject.id}">Delete</button>
+            `
+        } else {
+            baseHTML += `<section class="articles friendArticle" id="article--${articleObject.id}">
+            <div class="articleTitle">${articleObject.title}</div>
+            <p>${articleObject.summary}</p>
+            <p class="articleLink"><a href="http://${articleObject.url}" target="_blank">${articleObject.url}</a></p>
+            <p class="articleSubText">by ${username}</p>
             `
         }
 

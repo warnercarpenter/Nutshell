@@ -51,7 +51,7 @@ const eventsModule = {
             document.querySelector("#events--create").id = "events--editing";
         })
     },
-    createEventHTML: (eventObject, userId, checker) => {
+    createEventHTML: (eventObject, userId, checker, username) => {
         let time = timeConverter(eventObject.date)
         let baseHTML = ""
         if (checker === 0) {
@@ -59,19 +59,26 @@ const eventsModule = {
         } else {
             baseHTML = '<section>';
         }
-        baseHTML +=  `<section class="events" id="event--${eventObject.id}">
-        <div class="eventName">${eventObject.name}</div>
-        <p class="eventTime">Time: ${time}</p>
-        <p>Location: ${eventObject.location}</p>
-        <p class="eventSubText">by FILL LATER</p>
-        </section>`;
 
         if (eventObject.userId === userId) {
-            baseHTML += `
-                <button id="events--edit--${eventObject.id}">Edit</button>
-                <button id="events--delete--${eventObject.id}">Delete</button>
+            baseHTML +=  `<section class="events" id="event--${eventObject.id}">
+            <div class="eventName">${eventObject.name}</div>
+            <p class="eventTime">Time: ${time}</p>
+            <p>Location: ${eventObject.location}</p>
+            <p class="eventSubText">by ${username}</p>
+            </section>
+            <button id="events--edit--${eventObject.id}">Edit</button>
+            <button id="events--delete--${eventObject.id}">Delete</button>
             `
-        };
+        } else {
+            baseHTML +=  `<section class="events friendEvent" id="event--${eventObject.id}">
+            <div class="eventName">${eventObject.name}</div>
+            <p class="eventTime">Time: ${time}</p>
+            <p>Location: ${eventObject.location}</p>
+            <p class="eventSubText">by ${username}</p>
+            </section>
+            `
+        }
 
         baseHTML += "</section><hr/>"
 

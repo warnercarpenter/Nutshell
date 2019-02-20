@@ -93,12 +93,12 @@ const dashboardRefreshional = () => {
                 })
             })
             .then(function () {
-                APIManager.fetchWithoutUserInfo("articles")
+                APIManager.fetchWithExpandedUserInfoNoId("articles")
                     .then(function (articles) {
                         allArticles = articles
                         allArticles.forEach(function (article) {
                             friendArray.forEach(function (friend) {
-                                if (article.userId === friend) {
+                                if (article.user.id === friend) {
                                     articlesToPrint.push(article)
                                 }
                             })
@@ -108,10 +108,8 @@ const dashboardRefreshional = () => {
                         return articlesToPrint.sort((a, b) => a.timestamp - b.timestamp)
                     })
                     .then((sortedArticles) => {
-                        console.table(sortedArticles)
                         sortedArticles.forEach(currentArticle => {
-                            console.log(currentArticle)
-                            const articleHTML = articleModule.createArticleHTML(currentArticle, userId)
+                            const articleHTML = articleModule.createArticleHTML(currentArticle, userId, currentArticle.user.username)
                             printToDOM(articleHTML, "#" + articleContainer.id)
                         })
                     })
@@ -139,27 +137,26 @@ const dashboardRefreshional = () => {
                 })
             })
             .then(function () {
-                APIManager.fetchWithoutUserInfo("events")
+                APIManager.fetchWithExpandedUserInfoNoId("events")
                     .then(function (events) {
                         allEvents = events
                         allEvents.forEach(function (event) {
                             friendArray.forEach(function (friend) {
-                                if (event.userId === friend) {
+                                if (event.user.id === friend) {
                                     eventsToPrint.push(event)
                                 }
                             })
                         })
                     })
                     .then(() => {
-                        return eventsToPrint.sort((a, b) => a.timestamp - b.timestamp)
+                        return eventsToPrint.sort((a, b) => a.date - b.date)
                     })
                     .then((sortedEvents) => {
-                        console.table(sortedEvents)
-                        sortedEvents.forEach(currentEvent => {
-                            console.log(currentEvent)
-                            const eventHTML = eventsModule.createEventHTML(currentEvent, userId)
+                        for (let i = 0; i < sortedEvents.length; i++) {
+                            const currentEvent = sortedEvents[i]
+                            const eventHTML = eventsModule.createEventHTML(currentEvent, userId, i, currentEvent.user.username)
                             printToDOM(eventHTML, "#" + eventContainer.id)
-                        })
+                        }
                     })
 
             })

@@ -253,8 +253,8 @@ button:hover {
 }
 
 .nextEvent {
-    padding: 5px;
-    background-color: #f2efc7;
+    padding: 7px;
+    background-color: #ffe7eb;
     font-weight: bold;
 }
 
@@ -354,4 +354,18 @@ fieldset {
 .footer img {
     margin-top: 16px;
     margin-left: 5px
+}
+
+.friendEvent {
+    padding-left: 2px;
+    padding-top: 2px;
+    font-style: italic;
+    background-color: #f2efc7
+}
+
+.friendArticle {
+    padding-left: 2px;
+    padding-top: 2px;
+    font-style: italic;
+    background-color: #f2efc7
 }
