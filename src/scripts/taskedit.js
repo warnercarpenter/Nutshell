@@ -1,5 +1,6 @@
 import APIManager from "./APIManager";
 import dashboardRefreshional from "./dashboardRefreshional";
+import checkObjectError from "./checkObjectError"
 
 const taskEdit = () => {
     const taskDisplay = document.getElementById("taskDisplay")
@@ -22,7 +23,12 @@ const taskEdit = () => {
 
                     document.getElementById("taskTextEditSave").addEventListener("click", function (event) {
                         taskObject.name = document.getElementById("taskTextEdit").value
-                        APIManager.Put("tasks", taskId, taskObject).then(dashboardRefreshional)
+                        const hasError = checkObjectError(taskObject)
+                        if (hasError === true) {
+                            alert("All fields must be filled!")
+                        } else {
+                            APIManager.Put("tasks", taskId, taskObject).then(dashboardRefreshional)
+                        }
                     })
                 })
             }

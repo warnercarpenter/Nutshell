@@ -1,5 +1,6 @@
 import APIManager from "./APIManager";
 import dashboardRefreshional from "./dashboardRefreshional";
+import checkObjectError from "./checkObjectError"
 
 const articleEdit = () => {
     const articleDisplay = document.getElementById("articleDisplay")
@@ -36,7 +37,12 @@ const articleEdit = () => {
                     articleObject.title = document.getElementById("articleTitleEdit").value
                     articleObject.summary = document.getElementById("articleSummaryEdit").value
                     articleObject.url = document.getElementById("articleUrlEdit").value
+                    const hasError = checkObjectError(articleObject)
+                    if (hasError === true) {
+                      alert("All fields must be filled!")
+                  } else {
                     APIManager.Put("articles", articleId, articleObject).then(dashboardRefreshional)
+                  }
                 })
             })
         }
