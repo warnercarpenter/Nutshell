@@ -1,5 +1,3 @@
-import APIManager from "./APIManager";
-
 const registrationLoginHandler = {
     buildRegistrationForm: () => {
         return `<section id="registrationForm">
