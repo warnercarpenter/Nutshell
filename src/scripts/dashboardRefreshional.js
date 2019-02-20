@@ -41,6 +41,9 @@ const dashboardRefreshional = () => {
             if (targetList[0] === "tasks" && targetList[1] === "cancel") {
                 reloadTasks()
             }
+            if (targetList[0] === "friends" && targetList[1] === "cancel") {
+                reloadFriends()
+            }
         }
     }
 
@@ -127,7 +130,7 @@ const dashboardRefreshional = () => {
                 })
                     .then(function () {
                         friendContainer.innerHTML = ""
-                        if (friendUserArray[0] !== undefined) {
+                        if (friendUserArray.length > 0) {
                             friendUserArray.forEach(function (user) {
                                 const index = friendIdArray[friendUserArray.indexOf(user)]
                                 const friendHTML = friendsModule.buildFriendsHTML(user, index)
