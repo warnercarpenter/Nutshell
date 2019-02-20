@@ -12,6 +12,7 @@ import registrationLoginHandler from "./registration";
 import dashboardRefreshional from "./dashboardRefreshional";
 import landing from "./logout";
 import friendsModule from "./friends"
+import checkObjectError from "./checkObjectError";
 
 const clickBubbler = {
     listener: () => {
@@ -42,34 +43,44 @@ const clickBubbler = {
                     }
                 } else if (targetList[1] === "create") {
                     // call the correct object factory based on targetList[0], which should contain the module name (i.e. 'events')
+                    let hasError = false
                     switch (targetList[0]) {
                         case 'events':
                             newObject = eventsModule.createEventObject();
+                            hasError = checkObjectError(newObject)
                             break;
                         case 'chats':
                             newObject = chatsModule.buildChatsObject();
+                            hasError = checkObjectError(newObject)
                             break;
                         case 'tasks':
                             newObject = tasksModule.captureFormValues();
+                            hasError = checkObjectError(newObject)
                             break;
                         case 'articles':
                             newObject = articleModule.createArticleObject();
+                            hasError = checkObjectError(newObject)
                             break;
                         case 'friends':
                             newObject = friendsModule.buildFriendsObject();
                             break;
                     }
+
+                    if (hasError === true) {
+                        alert("All fields must be filled!")
+                    } else {
+                        if (targetList[0] !== "friends") {
+                            APIManager.Post(targetList[0], newObject)
+                                // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
+                                .then(
+                                    objectArray => {
+                                        document.querySelector("#formSection").innerHTML = "";
+                                        dashboardRefreshional();
+                                    })
+                        }
+                        else { dashboardRefreshional() }
+                    }
                     // then call the api create method and pass it the new object and the module name
-                    if (targetList[0] !== "friends"){
-                        APIManager.Post(targetList[0], newObject)
-                            // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
-                            .then(
-                                objectArray => {
-                                    document.querySelector("#formSection").innerHTML = "";
-                                    dashboardRefreshional();
-                                })
-                            }
-                        else {dashboardRefreshional()}
                 } else if (targetList[1] === "delete") {
                     // call the api delete method and pass it the module name and the original object id
                     switch (targetList[0]) {
@@ -126,10 +137,10 @@ const clickBubbler = {
                             }
                         })
                     })
-                    .then(function() {
-                        objectToComplete.is_complete = true
-                        APIManager.Put("tasks", taskId, objectToComplete).then(dashboardRefreshional)
-                    })
+                        .then(function () {
+                            objectToComplete.is_complete = true
+                            APIManager.Put("tasks", taskId, objectToComplete).then(dashboardRefreshional)
+                        })
                 }
             }
         })
@@ -179,6 +190,9 @@ const clickBubbler = {
             () => {
                 let username = document.querySelector("#username").value
                 let email = document.querySelector("#email").value
+                let password = document.querySelector("#password").value
+                let firstName = document.querySelector("#firstName").value
+                let lastName = document.querySelector("#lastName").value
 
                 const createUser = () => {
                     const newObject = registrationLoginHandler.createRegistrationObject();
@@ -212,7 +226,11 @@ const clickBubbler = {
                     })
                 }
 
-                registrationDuplicateCheck()
+                if (username === "" || email === "" || password === "" || firstName === "" || lastName === "") {
+                    alert("All fields must be filled!")
+                } else {
+                    registrationDuplicateCheck()
+                }
             })
     },
     logout: () => {

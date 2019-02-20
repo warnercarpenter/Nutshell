@@ -99,6 +99,11 @@ button:hover {
     font-weight: bold
 }
 
+.friendTitle {
+    font-size: 18px;
+    font-weight: bold
+}
+
 .chatTextContent {
     font-size: 18px;
     font-weight: bold
@@ -302,6 +307,10 @@ a:link {
 }
 
 .eventSubText {
+    font-size: 12px
+}
+
+.friendSubText {
     font-size: 12px
 }
 
