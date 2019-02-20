@@ -73,9 +73,6 @@ const clickBubbler = {
                         case 'events':
                             targetId = targetList[2];
                             break;
-                        case 'tasks':
-                            targetId = targetList[2];
-                            break;
                         case 'articles':
                             targetId = targetList[2];
                             break;
@@ -113,6 +110,20 @@ const clickBubbler = {
                                 document.querySelector("#formSection").innerHTML = "";
                             }
                         )
+                } else if (targetList[1] === "complete") {
+                    const taskId = parseInt(targetList[2])
+                    let objectToComplete = {}
+                    APIManager.fetchWithoutUserInfo("tasks").then(function (tasks) {
+                        tasks.forEach(task => {
+                            if (task.id === taskId) {
+                                objectToComplete = task
+                            }
+                        })
+                    })
+                    .then(function() {
+                        objectToComplete.is_complete = true
+                        APIManager.Put("tasks", taskId, objectToComplete).then(dashboardRefreshional)
+                    })
                 }
             }
         })
