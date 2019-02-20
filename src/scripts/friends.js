@@ -43,7 +43,12 @@ const friendsModule = {
                         userId: initiateUserId,
                         friendedUser: parseInt(friendedUserId)
                     }
-                    APIManager.Post("friends", newFriendObject)
+                    if (Number.isInteger(newFriendObject.friendedUser)) {
+                        APIManager.Post("friends", newFriendObject)
+                    }
+                    else{
+                        alert("We can't find this user in the database!")
+                    }
                 }
             })
 
