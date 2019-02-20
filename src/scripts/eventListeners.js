@@ -79,6 +79,9 @@ const clickBubbler = {
                         case 'articles':
                             targetId = targetList[2];
                             break;
+                        case 'friends':
+                            targetId = targetList[2];
+                            break;
                     }
                     APIManager.delete(targetList[0], targetId)
                         // .then() and call the api list method, passing it the correct module and userid
