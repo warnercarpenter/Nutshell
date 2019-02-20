@@ -25,7 +25,7 @@ const chatsModule = {
         let baseHTML = `
             <div class="chats" id="chat--${chatObject.id}">
                 <div class="chatTextContent">${chatObject.text}</div>
-                <p class="chatSubText">by ${username}<br/>Posted on ${chatTimestamp}</p>
+                <p class="chatSubText">by <span id="${userId}">${username}</span><br/>Posted on ${chatTimestamp}</p>
         `
 
         if (chatObject.userId === userId) {

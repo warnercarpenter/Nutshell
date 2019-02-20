@@ -11,6 +11,7 @@ import articleModule from "./article";
 import registrationLoginHandler from "./registration";
 import dashboardRefreshional from "./dashboardRefreshional";
 import landing from "./logout";
+import friendsModule from "./friends"
 
 const clickBubbler = {
     listener: () => {

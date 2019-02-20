@@ -1,3 +1,5 @@
+import APIManager from "./APIManager";
+
 const friendsModule = {
     buildFriendsForm: () => {
         return `
@@ -12,13 +14,43 @@ const friendsModule = {
         `
     },
     buildFriendsObject: () => {
-        const friendsObject = {}
-        friendsObject.text = document.getElementById("chat--textInput").value
-        friendsObject.timestamp = parseInt(Date.now())
-        friendsObject.userId = parseInt(sessionStorage.getItem('userId'))
-        return friendsObject
-    },
-    buildFriendsHTML: (chatObject, username, userId) => {
+        const friendFirstName = document.querySelector("#friendFirstName").value
+        const friendLastName = document.querySelector("#friendLastName").value
+        let duplicateCheck = false
+        let initiateUserId = sessionStorage.userId
+        let friendedUserId = ""
+        APIManager.getUsers()
+            .then((usersArray) => {
+                usersArray.forEach(user => {
+                    if (user.first_name === friendFirstName && user.last_name === friendLastName)
+                    {
+                        friendedUserId = user.userId
+                     }
+
+                });
+            })
+            .then (()=> APIManager.fetchWithoutUserInfo("friends"))
+            .then((friendsArray) => {
+                friendsArray.forEach(friend => {
+                    if (friend.userId === initiateUserId && friend.friendedUser === friendedUserId) {
+                        duplicateCheck = true
+                    }
+                })
+                if (duplicateCheck) {
+                    alert("It looks like you are already friends!")
+                }
+                else {
+                    let newFriendObject = {
+                        userId: initiateUserId,
+                        friendedUser: friendedUserId
+                    }
+                    return newFriendObject
+                }
+            });
+    }
+}
+
+buildFriendsHTML: (chatObject, username, userId) => {
     //     const chatTimestamp = timeConverter(chatObject.timestamp)
 
     //     let baseHTML = `
@@ -36,7 +68,7 @@ const friendsModule = {
     //     baseHTML += "</div><hr/>"
 
     //     return baseHTML
-    }
 }
+
 
 export default friendsModule
