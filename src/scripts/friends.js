@@ -54,28 +54,16 @@ const friendsModule = {
 
 
 
+    },
+    buildFriendsHTML: (userObject, index) => {
+        return `
+        <div class="friends" id="friend--${userObject.id}">
+            <div class="friendTitle">${userObject.first_name} ${userObject.last_name}</div>
+            <p class="friendSubText">Username: ${userObject.username}</p>
+            <button id="friends--delete--${index}">Delete</button>
+        </div><hr/>
+        `
     }
 }
-
-buildFriendsHTML: (chatObject, username, userId) => {
-    //     const chatTimestamp = timeConverter(chatObject.timestamp)
-
-    //     let baseHTML = `
-    //         <div class="chats" id="chat--${chatObject.id}">
-    //             <div class="chatTextContent">${chatObject.text}</div>
-    //             <p class="chatSubText">by ${username}<br/>Posted on ${chatTimestamp}</p>
-    //     `
-
-    //     if (chatObject.userId === userId) {
-    //         baseHTML += `
-    //             <button id="chats--edit--${chatObject.id}">Edit</button>
-    //         `
-    //     }
-
-    //     baseHTML += "</div><hr/>"
-
-    //     return baseHTML
-}
-
 
 export default friendsModule
