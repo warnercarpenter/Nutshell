@@ -69,13 +69,27 @@ const dashboardRefreshional = () => {
     }
 
     const reloadArticles = () => {
-        const articleArray = []
+        const articlesToPrint = []
         const friendArray = []
-
+        let allArticles = []
         APIManager.fetchWithExpandedUserInfo("articles", userId)
             .then(function (articles) {
                 articleContainer.innerHTML = ""
-                articleArray.push(articles)
+                articlesToPrint.push(articles)
+            })
+            .then(function() {
+                APIManager.fetchWithoutUserInfo("articles")
+                .then(function(articles) {
+                    allArticles = articles
+                    allArticles.forEach(function (article) {
+                        friendArray.forEach(function (friend) {
+                            if (article.userId === friend) {
+                                articlesToPrint.push(article)
+                            }
+                        })
+                    })
+                    console.log(articlesToPrint)
+
             })
             .then(function () {
                 APIManager.fetchWithoutUserInfo("friends").then(function (friends) {
@@ -85,91 +99,79 @@ const dashboardRefreshional = () => {
                         }
                     })
                 })
-                })
-                    // .then(
-                    //     APIManager.fetchWithoutUserInfo("articles")
-                    //         .then(function (friendArticles) {
-                    //             friendArticles.forEach(article => {
-                    //                 friendArray.forEach(friend => {
-                    //                     if (article.userId === friend)
-                    //                         articleArray.push(article)
-                    //                 })
-                    //             })
-                    //         })
-
-                    // )
-                    .then(
-                        friendArray.forEach(friend => {
-                            APIManager.fetchWithExpandedUserInfo("articles", friend)
-                            .then( function(article) {
-                                articleArray.push(article)})
-                                console.log(articleArray)
-
-
+            })
+            .then(function () {
+                console.log(friendArray)
+                friendArray.forEach(friend => {
+                    const article = APIManager.fetchWithExpandedUserInfo("articles", friend)
+                        .then(function () {
+                            articlesToPrint.push(article)
                         })
-                    )
-                    .then( () => {
-                        let sortedArticles = articleArray.sort((a, b) => a.timestamp - b.timestamp)
-                        for (let i = 0; i < sortedArticles.length; i++) {
-                        const currentArticle = sortedArticles[i]
-                        const articleHTML = articleModule.createArticleHTML(currentArticle, userId, currentArticle.user.username)
-                        printToDOM(articleHTML, "#" + articleContainer.id)
-                    }
                 })
-            }
+                    // .then(() => {
+                    //     let sortedArticles = articleArray.sort((a, b) => a.timestamp - b.timestamp)
+                    //     for (let i = 0; i < sortedArticles.length; i++) {
+                    //         const currentArticle = sortedArticles[i]
+                    //         const articleHTML = articleModule.createArticleHTML(currentArticle, userId, currentArticle.user.username)
+                    //         printToDOM(articleHTML, "#" + articleContainer.id)
+                    //     }
+                    // })
+            })
 
-const reloadEvents = () => {
-    return APIManager.fetchWithExpandedUserInfo("events", userId).then(function (events) {
-        eventContainer.innerHTML = ""
-        const sortedEvents = events.sort((a, b) => a.date - b.date)
-        for (let i = 0; i < sortedEvents.length; i++) {
-            const currentEvent = sortedEvents[i]
-            const eventHTML = eventsModule.createEventHTML(currentEvent, userId, i, currentEvent.user.username)
-            printToDOM(eventHTML, "#" + eventContainer.id)
-        }
-    })
-}
-
-const reloadTasks = () => {
-    return APIManager.fetchWithExpandedUserInfo("tasks", userId).then(function (tasks) {
-        taskContainer.innerHTML = ""
-        const completedTasks = tasks.filter(taskToCheck => taskToCheck.is_complete === false)
-        const sortedTasks = completedTasks.sort((a, b) => a.completion_date - b.completion_date)
-        for (let i = 0; i < sortedTasks.length; i++) {
-            const currentTask = sortedTasks[i]
-            const taskHTML = tasksModule.taskToHTML(currentTask, userId)
-            printToDOM(taskHTML, "#" + taskContainer.id)
-        }
-    })
-}
-
-const reloadFriends = () => {
-    friendContainer.innerHTML = ""
-}
-
-if (dashboardContainer.classList.contains("hidden")) {
-    dashboardContainer.classList.toggle("hidden")
-}
-if (nutshellLogo.classList.contains("centeredLogo")) {
-    nutshellLogo.classList.toggle("centeredLogo")
-}
-if (headerRight.classList.contains("hidden")) {
-    headerRight.classList.toggle("hidden")
-}
-if (footer.classList.contains("hidden")) {
-    footer.classList.toggle("hidden")
-}
-
-reloadChats().then(reloadArticles).then(reloadEvents).then(reloadTasks).then(reloadFriends).then(function () {
-    dashboardContainer.addEventListener("click", eventListenerFunction)
-
-    taskEdit()
-    chatEdit()
-    articleEdit()
-    eventEdit()
-    friendsListener()
-})
     }
+
+    const reloadEvents = () => {
+        return APIManager.fetchWithExpandedUserInfo("events", userId).then(function (events) {
+            eventContainer.innerHTML = ""
+            const sortedEvents = events.sort((a, b) => a.date - b.date)
+            for (let i = 0; i < sortedEvents.length; i++) {
+                const currentEvent = sortedEvents[i]
+                const eventHTML = eventsModule.createEventHTML(currentEvent, userId, i, currentEvent.user.username)
+                printToDOM(eventHTML, "#" + eventContainer.id)
+            }
+        })
+    }
+
+    const reloadTasks = () => {
+        return APIManager.fetchWithExpandedUserInfo("tasks", userId).then(function (tasks) {
+            taskContainer.innerHTML = ""
+            const completedTasks = tasks.filter(taskToCheck => taskToCheck.is_complete === false)
+            const sortedTasks = completedTasks.sort((a, b) => a.completion_date - b.completion_date)
+            for (let i = 0; i < sortedTasks.length; i++) {
+                const currentTask = sortedTasks[i]
+                const taskHTML = tasksModule.taskToHTML(currentTask, userId)
+                printToDOM(taskHTML, "#" + taskContainer.id)
+            }
+        })
+    }
+
+    const reloadFriends = () => {
+        friendContainer.innerHTML = ""
+    }
+
+    if (dashboardContainer.classList.contains("hidden")) {
+        dashboardContainer.classList.toggle("hidden")
+    }
+    if (nutshellLogo.classList.contains("centeredLogo")) {
+        nutshellLogo.classList.toggle("centeredLogo")
+    }
+    if (headerRight.classList.contains("hidden")) {
+        headerRight.classList.toggle("hidden")
+    }
+    if (footer.classList.contains("hidden")) {
+        footer.classList.toggle("hidden")
+    }
+
+    reloadChats().then(reloadArticles).then(reloadEvents).then(reloadTasks).then(reloadFriends).then(function () {
+        dashboardContainer.addEventListener("click", eventListenerFunction)
+
+        taskEdit()
+        chatEdit()
+        articleEdit()
+        eventEdit()
+        friendsListener()
+    })
+}
 
 export default dashboardRefreshional
 
