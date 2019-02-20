@@ -68,16 +68,46 @@ const dashboardRefreshional = () => {
         })
     }
 
+    // const reloadArticles = () => {
+    //     return APIManager.fetchWithExpandedUserInfo("articles", userId).then(function (articles) {
+    //         articleContainer.innerHTML = ""
+    //         const sortedArticles = articles.sort((a, b) => a.timestamp - b.timestamp)
+    //         for (let i = 0; i < sortedArticles.length; i++) {
+    //             const currentArticle = sortedArticles[i]
+    //             const articleHTML = articleModule.createArticleHTML(currentArticle, userId, currentArticle.user.username)
+    //             printToDOM(articleHTML, "#" + articleContainer.id)
+    //         }
+    //     })
+    // }
+
     const reloadArticles = () => {
-        return APIManager.fetchWithExpandedUserInfo("articles", userId).then(function (articles) {
+        const articleArray = []
+        const friendUserArray = []
+        APIManager.fetchWithExpandedUserInfo("articles", userId)
+        .then(function (articles) {
             articleContainer.innerHTML = ""
-            const sortedArticles = articles.sort((a, b) => a.timestamp - b.timestamp)
-            for (let i = 0; i < sortedArticles.length; i++) {
-                const currentArticle = sortedArticles[i]
-                const articleHTML = articleModule.createArticleHTML(currentArticle, userId, currentArticle.user.username)
-                printToDOM(articleHTML, "#" + articleContainer.id)
-            }
-        })
+            articleArray.push(articles)
+                })
+            .then(function () {
+                APIManager.fetchWithoutUserInfo("friends").then(function (friends) {
+                    friends.forEach(function (friend) {
+                        if (friend.userId === userId) {
+                            friendUserArray.push(userArray.find(a => a.id === friend.friendedUser))
+                            friendIdArray.push(friend.id)
+                        }
+                    })
+                })
+                    .then(function () {
+                        friendContainer.innerHTML = ""
+                        if (friendUserArray.length > 0) {
+                            friendUserArray.forEach(function (user) {
+                                const index = friendIdArray[friendUserArray.indexOf(user)]
+                                const friendHTML = friendsModule.buildFriendsHTML(user, index)
+                                printToDOM(friendHTML, "#" + friendContainer.id)
+                            })
+                        }
+                    })
+            })
     }
 
     const reloadEvents = () => {
@@ -134,6 +164,4 @@ const dashboardRefreshional = () => {
 }
 
 export default dashboardRefreshional
-
-
 
