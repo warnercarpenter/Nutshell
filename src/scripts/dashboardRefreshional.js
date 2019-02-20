@@ -23,6 +23,7 @@ const dashboardRefreshional = () => {
     const usernameWelcome = document.getElementById("usernameWelcome")
     const nutshellLogo = document.getElementById("nutshellLogo")
     const headerRight = document.getElementById("headerRight")
+    const footer = document.getElementById("footer")
     const reloadChats = () => {
         chatContainer.innerHTML = ""
         APIManager.getUsers().then(function (users) {
@@ -97,6 +98,9 @@ const dashboardRefreshional = () => {
     }
     if (headerRight.classList.contains("hidden")) {
         headerRight.classList.toggle("hidden")
+    }
+    if (footer.classList.contains("hidden")) {
+        footer.classList.toggle("hidden")
     }
 
     taskEdit()

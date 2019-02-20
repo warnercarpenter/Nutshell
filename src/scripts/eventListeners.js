@@ -206,6 +206,9 @@ const clickBubbler = {
                 if (headerRight.classList.contains("hidden") === false) {
                     headerRight.classList.toggle("hidden")
                 }
+                if (footer.classList.contains("hidden") === false) {
+                    footer.classList.toggle("hidden")
+                }
                 sessionStorage.removeItem("userId");
                 landing();
             })
