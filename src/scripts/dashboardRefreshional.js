@@ -73,28 +73,110 @@ const dashboardRefreshional = () => {
     }
 
     const reloadArticles = () => {
-        return APIManager.fetchWithExpandedUserInfo("articles", userId).then(function (articles) {
-            articleContainer.innerHTML = ""
-            const sortedArticles = articles.sort((a, b) => a.timestamp - b.timestamp)
-            for (let i = 0; i < sortedArticles.length; i++) {
-                const currentArticle = sortedArticles[i]
-                const articleHTML = articleModule.createArticleHTML(currentArticle, userId, currentArticle.user.username)
-                printToDOM(articleHTML, "#" + articleContainer.id)
-            }
-        })
+        const articlesToPrint = []
+        const friendArray = []
+        let allArticles = []
+        APIManager.fetchWithExpandedUserInfo("articles", userId)
+            .then(function (articles) {
+                articleContainer.innerHTML = ""
+                articles.forEach(article => {
+                    articlesToPrint.push(article)
+                })
+            })
+            .then(function () {
+                APIManager.fetchWithoutUserInfo("friends").then(function (friends) {
+                    friends.forEach(function (friend) {
+                        if (friend.userId === userId) {
+                            friendArray.push(friend.friendedUser)
+                        }
+                    })
+                })
+            })
+            .then(function () {
+                APIManager.fetchWithoutUserInfo("articles")
+                    .then(function (articles) {
+                        allArticles = articles
+                        allArticles.forEach(function (article) {
+                            friendArray.forEach(function (friend) {
+                                if (article.userId === friend) {
+                                    articlesToPrint.push(article)
+                                }
+                            })
+                        })
+                    })
+                    .then(() => {
+                        return articlesToPrint.sort((a, b) => a.timestamp - b.timestamp)
+                    })
+                    .then((sortedArticles) => {
+                        console.table(sortedArticles)
+                        sortedArticles.forEach(currentArticle => {
+                            console.log(currentArticle)
+                            const articleHTML = articleModule.createArticleHTML(currentArticle, userId)
+                            printToDOM(articleHTML, "#" + articleContainer.id)
+                        })
+                    })
+
+            })
+    }
+    const reloadEvents = () => {
+        const eventsToPrint = []
+        const friendArray = []
+        let allEvents = []
+        APIManager.fetchWithExpandedUserInfo("events", userId)
+            .then(function (events) {
+                eventContainer.innerHTML = ""
+                events.forEach(event => {
+                    eventsToPrint.push(event)
+                })
+            })
+            .then(function () {
+                APIManager.fetchWithoutUserInfo("friends").then(function (friends) {
+                    friends.forEach(function (friend) {
+                        if (friend.userId === userId) {
+                            friendArray.push(friend.friendedUser)
+                        }
+                    })
+                })
+            })
+            .then(function () {
+                APIManager.fetchWithoutUserInfo("events")
+                    .then(function (events) {
+                        allEvents = events
+                        allEvents.forEach(function (event) {
+                            friendArray.forEach(function (friend) {
+                                if (event.userId === friend) {
+                                    eventsToPrint.push(event)
+                                }
+                            })
+                        })
+                    })
+                    .then(() => {
+                        return eventsToPrint.sort((a, b) => a.timestamp - b.timestamp)
+                    })
+                    .then((sortedEvents) => {
+                        console.table(sortedEvents)
+                        sortedEvents.forEach(currentEvent => {
+                            console.log(currentEvent)
+                            const eventHTML = eventsModule.createEventHTML(currentEvent, userId)
+                            printToDOM(eventHTML, "#" + eventContainer.id)
+                        })
+                    })
+
+            })
     }
 
-    const reloadEvents = () => {
-        return APIManager.fetchWithExpandedUserInfo("events", userId).then(function (events) {
-            eventContainer.innerHTML = ""
-            const sortedEvents = events.sort((a, b) => a.date - b.date)
-            for (let i = 0; i < sortedEvents.length; i++) {
-                const currentEvent = sortedEvents[i]
-                const eventHTML = eventsModule.createEventHTML(currentEvent, userId, i, currentEvent.user.username)
-                printToDOM(eventHTML, "#" + eventContainer.id)
-            }
-        })
-    }
+
+    // const reloadEvents = () => {
+    //     return APIManager.fetchWithExpandedUserInfo("events", userId).then(function (events) {
+    //         eventContainer.innerHTML = ""
+    //         const sortedEvents = events.sort((a, b) => a.date - b.date)
+    //         for (let i = 0; i < sortedEvents.length; i++) {
+    //             const currentEvent = sortedEvents[i]
+    //             const eventHTML = eventsModule.createEventHTML(currentEvent, userId, i, currentEvent.user.username)
+    //             printToDOM(eventHTML, "#" + eventContainer.id)
+    //         }
+    //     })
+    // }
 
     const reloadTasks = () => {
         return APIManager.fetchWithExpandedUserInfo("tasks", userId).then(function (tasks) {
@@ -114,7 +196,7 @@ const dashboardRefreshional = () => {
         const friendUserArray = []
         const friendIdArray = []
         APIManager.getUsers()
-        .then(function (users) {
+            .then(function (users) {
                 users.forEach(function (user) {
                     userArray.push(user)
                 })
@@ -166,6 +248,4 @@ const dashboardRefreshional = () => {
 }
 
 export default dashboardRefreshional
-
-
 

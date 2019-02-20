@@ -32,12 +32,12 @@ const articleModule = {
         return articleObject
 
     },
-    createArticleHTML: (articleObject, userId, username) => {
+    createArticleHTML: (articleObject, userId) => {
         let baseHTML = `<section class="articles" id="article--${articleObject.id}">
         <div class="articleTitle">${articleObject.title}</div>
         <p>${articleObject.summary}</p>
         <p class="articleLink"><a href="http://${articleObject.url}" target="_blank">${articleObject.url}</a></p>
-        <p class="articleSubText">by ${username}</p>
+        <p class="articleSubText">by FILL LATER</p>
         `
 
         if (articleObject.userId === userId) {

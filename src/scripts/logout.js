@@ -1,8 +1,3 @@
-/*
-Author: Panya
-Task: load the landing page
-*/
-
 import clickBubbler from "./eventListeners";
 
 const landing = () => {

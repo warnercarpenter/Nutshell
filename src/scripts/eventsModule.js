@@ -1,8 +1,3 @@
-/*
-Author: Panya
-Task: handles all functions specific to the events listing in Nutshell
-*/
-
 import timeConverter from "./timestampparser";
 import APIManager from "./APIManager";
 
@@ -56,7 +51,7 @@ const eventsModule = {
             document.querySelector("#events--create").id = "events--editing";
         })
     },
-    createEventHTML: (eventObject, userId, checker, username) => {
+    createEventHTML: (eventObject, userId, checker) => {
         let time = timeConverter(eventObject.date)
         let baseHTML = ""
         if (checker === 0) {
@@ -68,7 +63,7 @@ const eventsModule = {
         <div class="eventName">${eventObject.name}</div>
         <p class="eventTime">Time: ${time}</p>
         <p>Location: ${eventObject.location}</p>
-        <p class="eventSubText">by ${username}</p>
+        <p class="eventSubText">by FILL LATER</p>
         </section>`;
 
         if (eventObject.userId === userId) {
