@@ -10,19 +10,13 @@ const eventsModule = {
     buildEntryForm: eventId => {
         return `<section id="eventForm">
             <input type="hidden" id="eventId" value="${eventId}"></input>
-            <fieldset>
-                <label for="eventName">Name of the event:</label>
-                <input type="text" name="eventName" id="eventName"></input>
-            </fieldset>
-            <fieldset>
-                <label for="eventDate">Date of the event:</label>
-                <input type="date" name="eventDate" id="eventDate"></input>
-                <input type="time" name="eventTime" id="eventTime"></input>
-            </fieldset>
-            <fieldset>
-                <label for="eventLocation">Location of the event:</label>
-                <input type="text" name="eventLocation" id="eventLocation"></input>
-            </fieldset>
+            <label for="eventName">Name of the event:</label><br>
+            <input type="text" name="eventName" id="eventName"></input><br>
+            <label for="eventDate">Date of the event:</label><br>
+            <input type="date" name="eventDate" id="eventDate"></input><br>
+            <input type="time" name="eventTime" id="eventTime"></input><br>
+            <label for="eventLocation">Location of the event:</label><br>
+            <input type="text" name="eventLocation" id="eventLocation"></input><br>
             <button onsubmit="return false" id="events--create">Create New Event</button>
             <button id="events--cancel">Cancel</button>
         </section>`;

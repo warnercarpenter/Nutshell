@@ -129,7 +129,7 @@ const clickBubbler = {
     },
     firstLoad: () => {
         document.querySelector("#listenToMe").addEventListener("click", event => {
-            if (event.target.nodeName === "A") {
+            if (event.target.nodeName === "BUTTON") {
                 const targetList = event.target.id.split("--");
                 if (targetList[0] === "register") {
                     const HTMLcode = registrationLoginHandler.buildRegistrationForm();
@@ -162,7 +162,7 @@ const clickBubbler = {
                                 }
                             })
                             if (login_match === false) {
-                                document.querySelector("#dashboardContainer").innerHTML += "The username or password does not match; please try again";
+                                alert("The username or password does not match; please try again")
                             }
                         });
             })
@@ -216,6 +216,9 @@ const clickBubbler = {
                 }
                 if (headerRight.classList.contains("hidden") === false) {
                     headerRight.classList.toggle("hidden")
+                }
+                if (footer.classList.contains("hidden") === false) {
+                    footer.classList.toggle("hidden")
                 }
                 sessionStorage.removeItem("userId");
                 landing();
