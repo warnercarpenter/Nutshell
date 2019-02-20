@@ -127,7 +127,7 @@ const dashboardRefreshional = () => {
                 })
                     .then(function () {
                         friendContainer.innerHTML = ""
-                        if (friendUserArray.length > 0) {
+                        if (friendUserArray[0] !== undefined) {
                             friendUserArray.forEach(function (user) {
                                 const index = friendIdArray[friendUserArray.indexOf(user)]
                                 const friendHTML = friendsModule.buildFriendsHTML(user, index)
