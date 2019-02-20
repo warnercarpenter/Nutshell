@@ -50,13 +50,4 @@ const tasksModule = {
     }
 }
 
-const editTask = () => {
-    let input = document.createElement("input")
-    input.type = "text"
-    input.name = "editTask"
-    return input
-}
-
-document.querySelector("#taskName").addEventListener("onclick", editTask())
-
 export default tasksModule
