@@ -17,19 +17,18 @@ const friendsModule = {
         const friendFirstName = document.querySelector("#friendFirstName").value
         const friendLastName = document.querySelector("#friendLastName").value
         let duplicateCheck = false
-        let initiateUserId = sessionStorage.userId
+        let initiateUserId = parseInt(sessionStorage.getItem("userId"))
         let friendedUserId = ""
         APIManager.getUsers()
             .then((usersArray) => {
                 usersArray.forEach(user => {
-                    if (user.first_name === friendFirstName && user.last_name === friendLastName)
-                    {
-                        friendedUserId = user.userId
-                     }
+                    if (user.first_name === friendFirstName && user.last_name === friendLastName) {
+                        friendedUserId = user.id
 
+                    }
                 });
             })
-            .then (()=> APIManager.fetchWithoutUserInfo("friends"))
+            .then(() => APIManager.fetchWithoutUserInfo("friends"))
             .then((friendsArray) => {
                 friendsArray.forEach(friend => {
                     if (friend.userId === initiateUserId && friend.friendedUser === friendedUserId) {
@@ -42,11 +41,14 @@ const friendsModule = {
                 else {
                     let newFriendObject = {
                         userId: initiateUserId,
-                        friendedUser: friendedUserId
+                        friendedUser: parseInt(friendedUserId)
                     }
-                    return newFriendObject
+                    APIManager.Post("friends", newFriendObject)
                 }
-            });
+            })
+
+
+
     }
 }
 
