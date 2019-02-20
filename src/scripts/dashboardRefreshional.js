@@ -78,7 +78,6 @@ const dashboardRefreshional = () => {
         let allArticles = []
         APIManager.fetchWithExpandedUserInfo("articles", userId)
             .then(function (articles) {
-                articleContainer.innerHTML = ""
                 articles.forEach(article => {
                     articlesToPrint.push(article)
                 })
@@ -108,6 +107,7 @@ const dashboardRefreshional = () => {
                         return articlesToPrint.sort((a, b) => a.timestamp - b.timestamp)
                     })
                     .then((sortedArticles) => {
+                        articleContainer.innerHTML = ""
                         sortedArticles.forEach(currentArticle => {
                             const articleHTML = articleModule.createArticleHTML(currentArticle, userId, currentArticle.user.username)
                             printToDOM(articleHTML, "#" + articleContainer.id)
@@ -122,7 +122,6 @@ const dashboardRefreshional = () => {
         let allEvents = []
         APIManager.fetchWithExpandedUserInfo("events", userId)
             .then(function (events) {
-                eventContainer.innerHTML = ""
                 events.forEach(event => {
                     eventsToPrint.push(event)
                 })
@@ -152,6 +151,7 @@ const dashboardRefreshional = () => {
                         return eventsToPrint.sort((a, b) => a.date - b.date)
                     })
                     .then((sortedEvents) => {
+                        eventContainer.innerHTML = ""
                         for (let i = 0; i < sortedEvents.length; i++) {
                             const currentEvent = sortedEvents[i]
                             const eventHTML = eventsModule.createEventHTML(currentEvent, userId, i, currentEvent.user.username)
