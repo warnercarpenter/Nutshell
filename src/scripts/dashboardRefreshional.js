@@ -106,7 +106,7 @@ const dashboardRefreshional = () => {
     friendsListener()
 
     dashboardContainer.addEventListener("click", function (event) {
-        if (event.target.nodeName === "BUTTON" || event.target.nodeName === "INPUT") {
+        if (event.target.nodeName === "BUTTON") {
             const targetList = event.target.id.split("--");
             if (targetList[0] === "chats" && targetList[1] === "cancel") {
                 reloadChats()

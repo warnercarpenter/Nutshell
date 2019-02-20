@@ -19,12 +19,15 @@ input[type="checkbox"] {
 
 .header {
     background-color: #6b5547;
+    background-image: url("https://www.dropbox.com/s/s9shorsu8dkg1se/header%20image.jpg?raw=1");
+    background-position: center;
     padding: 0px 0px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap;
-    margin: auto
+    margin: auto;
+    box-shadow: 0px 4px #d2bba0;
   }
 
 .headerText {
@@ -171,7 +174,8 @@ button:hover {
     height: 90%;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    padding-bottom: 22px;
 }
 
 #friendDisplay {
@@ -320,7 +324,7 @@ fieldset {
 }
 
 .footer {
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     height: 50px;
@@ -331,5 +335,6 @@ fieldset {
 
   .footer p {
       font-weight: bold;
-      text-shadow: 1px 1px 1px white
+      text-shadow: 1px 1px 1px white;
+      padding-top: 16px;
   }
