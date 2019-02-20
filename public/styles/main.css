@@ -36,7 +36,7 @@ input[type="checkbox"] {
 }
 
 .logo {
-    padding-top: 8px;
+    padding-top: 10px;
     padding-left: 25%;
     padding-bottom: 8px
 }
@@ -175,7 +175,7 @@ button:hover {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding-bottom: 22px;
+    padding-bottom: 20px;
 }
 
 #friendDisplay {
@@ -327,14 +327,22 @@ fieldset {
     position: relative;
     left: 0;
     bottom: 0;
-    height: 50px;
+    height: 65px;
     width: 100%;
     text-align: center;
     background-image: url("https://www.dropbox.com/s/q79wlgn2nz8u0e0/ice%20cream%20lighter.jpg?raw=1");
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
   }
 
-  .footer p {
+  .footer div {
       font-weight: bold;
       text-shadow: 1px 1px 1px white;
-      padding-top: 16px;
+      vertical-align: middle;
+      margin-top: 24px;
+  }
+  .footer img {
+    margin-top: 16px;
+    margin-left: 5px
   }
