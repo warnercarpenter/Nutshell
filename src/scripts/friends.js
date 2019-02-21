@@ -18,16 +18,22 @@ const friendsModule = {
         const friendFirstName = document.querySelector("#friendFirstName").value
         const friendLastName = document.querySelector("#friendLastName").value
         let duplicateCheck = false
+        let friendSelfCheck = false
         let initiateUserId = parseInt(sessionStorage.getItem("userId"))
         let friendedUserId = ""
         APIManager.getUsers()
             .then((usersArray) => {
                 usersArray.forEach(user => {
-                    if (user.first_name === friendFirstName && user.last_name === friendLastName) {
+                    if (user.first_name === friendFirstName && user.last_name === friendLastName && user.id === parseInt(sessionStorage.getItem("userId")))
+                    {
+                        friendSelfCheck = true
+                        alert("Dude...you can't be friends with yourself 🤷🏻‍")
+                    }
+                    else if (user.first_name === friendFirstName && user.last_name === friendLastName) {
                         friendedUserId = user.id
 
                     }
-                });
+                })
             })
             .then(() => APIManager.fetchWithoutUserInfo("friends"))
             .then((friendsArray) => {
@@ -47,7 +53,7 @@ const friendsModule = {
                     if (Number.isInteger(newFriendObject.friendedUser)) {
                         APIManager.Post("friends", newFriendObject)
                     }
-                    else{
+                    else if (!friendSelfCheck) {
                         alert("We can't find this user in the database!")
                     }
                 }
