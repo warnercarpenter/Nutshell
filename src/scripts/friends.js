@@ -1,4 +1,5 @@
 import APIManager from "./APIManager";
+import dashboardRefreshional from "./dashboardRefreshional";
 
 const friendsModule = {
     buildFriendsForm: () => {
@@ -51,6 +52,7 @@ const friendsModule = {
                     }
                 }
             })
+            .then(dashboardRefreshional())
 
 
 
