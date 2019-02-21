@@ -112,6 +112,7 @@ const dashboardRefreshional = () => {
                             const articleHTML = articleModule.createArticleHTML(currentArticle, userId, currentArticle.user.username)
                             printToDOM(articleHTML, "#" + articleContainer.id)
                         })
+                        articleContainer.scrollTop = articleContainer.scrollHeight;
                     })
 
             })
