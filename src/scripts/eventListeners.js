@@ -116,8 +116,7 @@ const clickBubbler = {
                     //desiredDatabase, objectId, editedObject
                     APIManager.Put(targetList[0], targetId, newObject)
                         // .then() and call the create HTML method from the correct module, using the returned Promise from api method to fill it
-                        .then(
-                            objectArray => {
+                        .then(() => {
                                 dashboardRefreshional();
                                 document.querySelector("#formSection").innerHTML = "";
                             }

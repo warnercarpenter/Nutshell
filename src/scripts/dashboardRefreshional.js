@@ -112,6 +112,7 @@ const dashboardRefreshional = () => {
                             const articleHTML = articleModule.createArticleHTML(currentArticle, userId, currentArticle.user.username)
                             printToDOM(articleHTML, "#" + articleContainer.id)
                         })
+                        articleContainer.scrollTop = articleContainer.scrollHeight;
                     })
 
             })
@@ -161,20 +162,6 @@ const dashboardRefreshional = () => {
 
             })
     }
-
-
-    // const reloadEvents = () => {
-    //     return APIManager.fetchWithExpandedUserInfo("events", userId).then(function (events) {
-    //         eventContainer.innerHTML = ""
-    //         const sortedEvents = events.sort((a, b) => a.date - b.date)
-    //         for (let i = 0; i < sortedEvents.length; i++) {
-    //             const currentEvent = sortedEvents[i]
-    //             const eventHTML = eventsModule.createEventHTML(currentEvent, userId, i, currentEvent.user.username)
-    //             printToDOM(eventHTML, "#" + eventContainer.id)
-    //         }
-    //     })
-    // }
-
     const reloadTasks = () => {
         return APIManager.fetchWithExpandedUserInfo("tasks", userId).then(function (tasks) {
             taskContainer.innerHTML = ""
